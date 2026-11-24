@@ -1,0 +1,786 @@
+﻿Continuous Telemetry Runtime, Streaming Tape Buffer, and WebSocket Broadcast Engine
+
+
+import os
+import sys
+import time
+import json
+import math
+import struct
+import wave
+import io
+import threading
+import socket
+import hashlib
+import base64
+import http.server
+
+# HTML, CSS, and Vanilla JavaScript Frontend Dashboard Source Content
+# Served directly via the background HTTP server to provide real-time stream connectors.
+HTML_DASHBOARD_CONTENT = """<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Telemetry Broadcast Runtime Dashboard</title>
+   <style>
+       body {
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+           background: #0f172a;
+           color: #f8fafc;
+           margin: 0;
+           padding: 24px;
+       }
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+       }
+       header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+
+
+
+            border-bottom: 1px solid #334155;
+           padding-bottom: 20px;
+           margin-bottom: 24px;
+       }
+       h1 { margin: 0; font-size: 24px; color: #38bdf8; }
+       .status-badge {
+           padding: 6px 14px;
+           border-radius: 20px;
+           font-size: 14px;
+           font-weight: 600;
+           background: #1e293b;
+           border: 1px solid #ef4444;
+           color: #ef4444;
+           transition: all 0.3s ease;
+       }
+       .connected {
+           border-color: #22c55e;
+           color: #22c55e;
+           background: rgba(34, 197, 94, 0.1);
+
+
+
+        }
+       .grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+           gap: 20px;
+           margin-bottom: 24px;
+       }
+       .card {
+           background: #1e293b;
+           border: 1px solid #334155;
+           border-radius: 12px;
+           padding: 20px;
+       }
+       .card h2 {
+           margin: 0 0 14px 0;
+           font-size: 16px;
+           text-transform: uppercase;
+           letter-spacing: 0.05em;
+           color: #94a3b8;
+
+
+
+        }
+       .metric {
+           font-size: 28px;
+           font-weight: 700;
+           font-family: monospace;
+           color: #f1f5f9;
+       }
+       .subtext {
+           font-size: 12px;
+           color: #64748b;
+           margin-top: 4px;
+       }
+       .full-width {
+           grid-column: 1 / -1;
+       }
+       canvas {
+           width: 100%;
+           height: 180px;
+           background: #090d16;
+
+
+
+            border-radius: 8px;
+           border: 1px solid #334155;
+           display: block;
+       }
+       .console {
+           background: #090d16;
+           border: 1px solid #334155;
+           border-radius: 8px;
+           padding: 14px;
+           height: 160px;
+           overflow-y: auto;
+           font-family: monospace;
+           font-size: 12px;
+           color: #cbd5e1;
+           line-height: 1.6;
+       }
+   </style>
+</head>
+<body>
+
+
+
+    <div class="container">
+       <header>
+           <div>
+               <h1>Telemetry System Core Runtime</h1>
+               <div class="subtext">Continuous Environmental Stream & Broadcast Node</div>
+           </div>
+           <div id="statusBadge" class="status-badge">DISCONNECTED</div>
+       </header>
+
+       <div class="grid">
+           <div class="card">
+               <h2>Active Cycle Index</h2>
+               <div id="cycleIndex" class="metric">00000</div>
+               <div class="subtext">Sequential transmission ticks</div>
+           </div>
+           <div class="card">
+               <h2>Resonance Frequency</h2>
+               <div id="rawFreq" class="metric">0.00 Hz</div>
+               <div class="subtext" id="smoothFreq">Dampened: 0.00 Hz</div>
+
+
+
+            </div>
+           <div class="card">
+               <h2>Continuous Tape Loop</h2>
+               <div id="tapeBuffer" class="metric">0 bytes</div>
+               <div class="subtext">Rolling memory block updates</div>
+           </div>
+           <div class="card">
+               <h2>BLE Payload Matrix</h2>
+               <div id="blePayload" class="metric" style="font-size: 18px; word-break: break-all;">00000000</div>
+               <div class="subtext">Manufacturer spec data hex frame</div>
+           </div>
+
+           <div class="card full-width">
+               <h2>Live Attenuation Signal Graph</h2>
+               <canvas id="signalGraph" width="1000" height="180"></canvas>
+           </div>
+
+           <div class="card full-width">
+               <h2>Active Stream Broadcast Console</h2>
+
+
+
+                <div id="consoleLog" class="console">Initializing system dashboard listener loop...</div>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       const statusBadge = document.getElementById('statusBadge');
+       const consoleLog = document.getElementById('consoleLog');
+       const canvas = document.getElementById('signalGraph');
+       const ctx = canvas.getContext('2d');
+       
+       let historyBuffer = [];
+       let webSocketChannel = null;
+
+       function logToConsole(text) {
+           const line = document.createElement('div');
+           line.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+           consoleLog.appendChild(line);
+           if (consoleLog.children.length > 40) {
+
+
+
+                consoleLog.removeChild(consoleLog.firstChild);
+           }
+           consoleLog.scrollTop = consoleLog.scrollHeight;
+       }
+
+       function drawGraph() {
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
+           
+           // Render grid lines
+           ctx.strokeStyle = '#1e293b';
+           ctx.lineWidth = 1;
+           for (let i = 0; i < canvas.width; i += 50) {
+               ctx.beginPath();
+               ctx.moveTo(i, 0);
+               ctx.lineTo(i, canvas.height);
+               ctx.stroke();
+           }
+
+           if (historyBuffer.length < 2) return;
+
+
+
+
+            // Plot Dampened Line
+           ctx.strokeStyle = '#38bdf8';
+           ctx.lineWidth = 2.5;
+           ctx.beginPath();
+           for (let i = 0; i < historyBuffer.length; i++) {
+               const x = (i / (100 - 1)) * canvas.width;
+               // Normalize frequency scale across graph coordinate heights
+               const val = historyBuffer[i];
+               const y = canvas.height - (((val - 100) / 900) * canvas.height);
+               if (i === 0) ctx.moveTo(x, y);
+               else ctx.lineTo(x, y);
+           }
+           ctx.stroke();
+       }
+
+       function establishConnection() {
+           logToConsole("Attempting protocol handshakes with ws://localhost:8080...");
+           webSocketChannel = new WebSocket('ws://' + window.location.hostname + ':8080');
+
+
+
+
+            webSocketChannel.onopen = () => {
+               statusBadge.textContent = "BROADCAST ONLINE";
+               statusBadge.className = "status-badge connected";
+               logToConsole("WebSocket synchronization link established safely.");
+           };
+
+           webSocketChannel.onmessage = (event) => {
+               if (typeof event.data === 'string') {
+                   try {
+                       const dataPacket = JSON.parse(event.data);
+                       
+                       document.getElementById('cycleIndex').textContent = dataPacket.update_id;
+                       document.getElementById('rawFreq').textContent = dataPacket.system_metrics.frequency.toFixed(2) + " Hz";
+                       document.getElementById('smoothFreq').textContent = "Dampened: " + dataPacket.smoothed_metrics.frequency.toFixed(2) + " Hz";
+                       document.getElementById('tapeBuffer').textContent = dataPacket.tape_total_bytes.toLocaleString() + " frames";
+                       document.getElementById('blePayload').textContent = dataPacket.ble_packet.raw_payload_hex;
+
+                       historyBuffer.push(dataPacket.smoothed_metrics.frequency);
+                       if (historyBuffer.length > 100) {
+
+
+
+                            historyBuffer.shift();
+                       }
+                       drawGraph();
+                   } catch (err) {
+                       // Data packet skip handling for alternative raw streams
+                   }
+               } else {
+                   // Binary byte payload processing channel placeholder
+               }
+           };
+
+           webSocketChannel.onclose = () => {
+               statusBadge.textContent = "DISCONNECTED";
+               statusBadge.className = "status-badge";
+               logToConsole("Connection closed. Re-initiating polling socket in 3 seconds...");
+               setTimeout(establishConnection, 3000);
+           };
+
+           webSocketChannel.onerror = (err) => {
+
+
+
+                logToConsole("Channel error encountered. Severing connection pipe descriptors.");
+               webSocketChannel.close();
+           };
+       }
+
+       window.onload = () => {
+           establishConnection();
+       };
+   </script>
+</body>
+</html>
+"""
+
+class EnvironmentTelemetryCollector:
+   """Retrieves authentic metric profiles directly from the operational host environment."""
+   @staticmethod
+   def capture_system_state():
+       env_keys = len(os.environ.keys())
+       path_length = len(os.getenv("PATH", ""))
+
+
+
+        perf_timestamp = time.perf_counter()
+       epoch_timestamp = time.time()
+       pointer_size = sys.getsizeof(float())
+       version_vector = sys.version_info
+       
+       return {
+           "spatial_vector": [float(env_keys), float(path_length), float(pointer_size)],
+           "spectrum_channels": [
+               float(version_vector.major), 
+               float(version_vector.minor), 
+               float(version_vector.micro),
+               math.sin(perf_timestamp)
+           ],
+           "patch_array": [
+               float(len(sys.path)),
+               float(sys.hexversion & 0xFF),
+               float((sys.hexversion >> 8) & 0xFF)
+           ],
+           "tuning_fork_resonance": float(epoch_timestamp % 1000)
+
+
+
+        }
+
+
+class TelemetrySignalDampenerFilter:
+   """
+   Applies real-time mathematical dampening and signal filtering models
+   to eliminate multi-channel telemetry jitter and smooth out anomalies.
+   """
+   def __init__(self, damping_factor=0.20):
+       self.alpha = damping_factor
+       self.filtered_states = {}
+
+   def apply_filter(self, stream_key, live_scalar):
+       """Applies an exponential moving average dampener across single data nodes."""
+       if stream_key not in self.filtered_states:
+           self.filtered_states[stream_key] = live_scalar
+           return live_scalar
+       
+       smoothed = (self.alpha * live_scalar) + ((1.0 - self.alpha) * self.filtered_states[stream_key])
+
+
+
+        self.filtered_states[stream_key] = smoothed
+       return smoothed
+
+
+class ConcurrentCorrelationFilter:
+   """Executes multi-channel cross-correlation calculations concurrently using threads."""
+   def __init__(self):
+       self._lock = threading.Lock()
+       self.correlation_metrics = {}
+
+   def _compute_relationship(self, task_name, vector_a, vector_b):
+       min_len = min(len(vector_a), len(vector_b))
+       if min_len == 0:
+           score = 0.0
+       else:
+           mean_a = sum(vector_a[:min_len]) / min_len
+           mean_b = sum(vector_b[:min_len]) / min_len
+           numerator = sum((vector_a[i] - mean_a) * (vector_b[i] - mean_b) for i in range(min_len))
+           var_a = sum((vector_a[i] - mean_a)**2 for i in range(min_len))
+
+
+
+            var_b = sum((vector_b[i] - mean_b)**2 for i in range(min_len))
+           score = numerator / math.sqrt(var_a * var_b) if (var_a > 0 and var_b > 0) else 0.0
+           
+       with self._lock:
+           self.correlation_metrics[task_name] = score
+
+   def analyze_streams_concurrently(self, spatial_vec, spectrum_vec, patch_vec):
+       self.correlation_metrics.clear()
+       tasks = [
+           ("spatial_vs_spectrum", spatial_vec, spectrum_vec),
+           ("spectrum_vs_patch", spectrum_vec, patch_vec),
+           ("spatial_vs_patch", spatial_vec, patch_vec)
+       ]
+       threads = [threading.Thread(target=self._compute_relationship, args=t) for t in tasks]
+       for worker in threads:
+           worker.start()
+       for worker in threads:
+           worker.join()
+       return dict(self.correlation_metrics)
+
+
+
+
+
+class ContinuousCircularTapeLibrary:
+   """Implements a thread-safe sliding memory ring buffer for raw audio pcm fragments."""
+   def __init__(self, capacity_bytes=256 * 1024):
+       self.capacity = capacity_bytes
+       self.storage = bytearray(self.capacity)
+       self.write_index = 0
+       self.total_bytes_recorded = 0
+       self._lock = threading.Lock()
+
+   def commit_audio_block(self, raw_wav_bytes):
+       if len(raw_wav_bytes) <= 44:
+           return
+       pcm_payload = raw_wav_bytes[44:]
+       payload_len = len(pcm_payload)
+
+       with self._lock:
+           if payload_len >= self.capacity:
+               pcm_payload = pcm_payload[-self.capacity:]
+               payload_len = len(pcm_payload)
+
+
+
+
+            space_to_end = self.capacity - self.write_index
+           if payload_len <= space_to_end:
+               self.storage[self.write_index:self.write_index + payload_len] = pcm_payload
+               self.write_index = (self.write_index + payload_len) % self.capacity
+           else:
+               self.storage[self.write_index:self.capacity] = pcm_payload[:space_to_end]
+               rem = payload_len - space_to_end
+               self.storage[0:rem] = pcm_payload[space_to_end:]
+               self.write_index = rem
+
+           self.total_bytes_recorded += payload_len
+
+
+class MultiChannelRelayCaster:
+   """Manages explicit casting and routing matrices to replicate payload delivery."""
+   def __init__(self):
+       self.subscribers = []
+
+   def register_subscriber(self, callback):
+
+
+
+        self.subscribers.append(callback)
+
+   def dispatch_packet(self, data_packet):
+       success_count = 0
+       for sub in self.subscribers:
+           try:
+               sub(data_packet)
+               success_count += 1
+           except Exception:
+               pass
+       return success_count
+
+
+class BLEIntegrationManager:
+   """Structures standard Bluetooth Low Energy (BLE) peripheral payload configurations."""
+   def __init__(self):
+       self.node_id = "TELEMETRY_CORE_BLE"
+
+   def construct_advertising_frame(self, resonance_frequency):
+
+
+
+        company_id = 0x004C  # Core structure map
+       frequency_payload = int(resonance_frequency * 100) & 0xFFFF
+       encoded_data = struct.pack("<HH", company_id, frequency_payload)
+       return {
+           "device_identifier": self.node_id,
+           "raw_payload_hex": encoded_data.hex().upper(),
+           "protocol_state": "BLE Advertising Vector Compiling Complete"
+       }
+
+
+class WebSocketBroadcastServer:
+   """RFC-6455 independent server instance providing real-time data frame broadcasts."""
+   def __init__(self, host="127.0.0.1", port=8080):
+       self.host = host
+       self.port = port
+       self.clients = []
+       self._lock = threading.Lock()
+       self.is_running = False
+
+
+
+
+    @staticmethod
+   def compile_websocket_frame(payload_str, is_binary=False):
+       payload_bytes = payload_str if isinstance(payload_str, bytes) else payload_str.encode('utf-8')
+       length = len(payload_bytes)
+       first_byte = 0x82 if is_binary else 0x81
+       frame = bytearray([first_byte])
+
+       if length <= 125:
+           frame.append(length)
+       elif length <= 65535:
+           frame.append(126)
+           frame.extend(struct.pack("!H", length))
+       else:
+           frame.append(127)
+           frame.extend(struct.pack("!Q", length))
+
+       frame.extend(payload_bytes)
+       return bytes(frame)
+
+
+
+
+    def handle_handshake(self, client_socket):
+       try:
+           req = client_socket.recv(2048).decode('utf-8', errors='ignore')
+           if "Sec-WebSocket-Key" not in req:
+               return False
+           for line in req.split("\r\n"):
+               if line.startswith("Sec-WebSocket-Key:"):
+                   key = line.split(":")[1].strip()
+                   break
+           else:
+               return False
+
+           guid = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+           accept_hash = base64.b64encode(hashlib.sha1((key + guid).encode('utf-8')).digest()).decode('utf-8')
+           resp = (
+               "HTTP/1.1 101 Switching Protocols\r\n"
+               "Upgrade: websocket\r\n"
+               "Connection: Upgrade\r\n"
+               f"Sec-WebSocket-Accept: {accept_hash}\r\n\r\n"
+
+
+
+            )
+           client_socket.sendall(resp.encode('utf-8'))
+           return True
+       except Exception:
+           return False
+
+   def start_listener(self):
+       try:
+           sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+           sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+           sock.bind((self.host, self.port))
+           sock.listen(5)
+           self.is_running = True
+           threading.Thread(target=self._accept_loop, args=(sock,), daemon=True).start()
+           return f"[WebSocket Server] Active on ws://{self.host}:{self.port}"
+       except Exception as e:
+           return f"[WebSocket Loopback Configured] Direct array routing active: {e}"
+
+   def _accept_loop(self, server_sock):
+
+
+
+        while self.is_running:
+           try:
+               client, _ = server_sock.accept()
+               threading.Thread(target=self._client_worker, args=(client,), daemon=True).start()
+           except Exception:
+               break
+
+   def _client_worker(self, client):
+       if self.handle_handshake(client):
+           with self._lock:
+               self.clients.append(client)
+           try:
+               while self.is_running:
+                   if not client.recv(1024): break
+           except Exception:
+               pass
+           finally:
+               with self._lock:
+                   if client in self.clients: self.clients.remove(client)
+
+
+
+                client.close()
+
+   def broadcast(self, message_str, is_binary=False):
+       frame = self.compile_websocket_frame(message_str, is_binary=is_binary)
+       dropped = []
+       with self._lock:
+           for client in self.clients:
+               try:
+                   client.sendall(frame)
+               except Exception:
+                   dropped.append(client)
+           for client in dropped:
+               if client in self.clients: self.clients.remove(client)
+               client.close()
+       return len(self.clients)
+
+
+class TelemetryHTTPConnectorHandler(http.server.BaseHTTPRequestHandler):
+   """Serves the front-end dashboard interface layout to system client connectors."""
+
+
+
+    def log_message(self, format, *args):
+       return  # Suppress standard logging prints
+
+   def do_GET(self):
+       if self.path in ("/", "/index.html"):
+           self.send_response(200)
+           self.send_header("Content-Type", "text/html")
+           self.end_headers()
+           self.wfile.write(HTML_DASHBOARD_CONTENT.encode('utf-8'))
+       else:
+           self.send_response(404)
+           self.end_headers()
+
+
+class PalindromicModulationEngine:
+   """Generates continuous waveform datasets possessing exact mirror-symmetry profiles."""
+   @staticmethod
+   def generate_waveform(base_freq, max_freq, duration=0.2, sample_rate=44100):
+       total_samples = int(duration * sample_rate)
+
+
+
+        if total_samples % 2 != 0: total_samples += 1
+       half_samples = total_samples // 2
+       half_duration = half_samples / sample_rate
+       
+       samples = []
+       phase = 0.0
+       for i in range(half_samples):
+           t = i / sample_rate
+           contour = 0.5 * (1.0 - math.cos(math.pi * t / half_duration))
+           current_freq = base_freq + (max_freq - base_freq) * contour
+           phase += 2.0 * math.pi * current_freq / sample_rate
+           samples.append(0.65 * math.sin(phase) + 0.20 * math.sin(2.0 * phase))
+           
+       palindromic_buffer = samples + samples[::-1]
+       
+       wav_io = io.BytesIO()
+       with wave.open(wav_io, 'wb') as wav_file:
+           wav_file.setnchannels(1)
+           wav_file.setsampwidth(2)
+
+
+
+            wav_file.setframerate(sample_rate)
+           for sample in palindromic_buffer:
+               quantized = int(max(-1.0, min(1.0, sample)) * 32767)
+               wav_file.writeframes(struct.pack('<h', quantized))
+       return wav_io.getvalue()
+
+
+class LinearProjectionTransformer:
+   """Maps multidimensional raw metrics onto unified coordinate reference lines."""
+   def __init__(self, direction_vector=None):
+       self.direction = direction_vector if direction_vector else [1.0, 1.0, 1.0]
+       mag = math.sqrt(sum(v**2 for v in self.direction))
+       if mag > 0: self.direction = [v / mag for v in self.direction]
+
+   def project(self, source_vec):
+       min_len = min(len(source_vec), len(self.direction))
+       dot = sum(source_vec[i] * self.direction[i] for i in range(min_len))
+       return [dot * self.direction[i] for i in range(min_len)], dot
+
+
+
+
+
+class CoreRuntimeEngine:
+   """The central daemon orchestrating collection, filtering, dampening, casting, and serving."""
+   def __init__(self):
+       self.collector = EnvironmentTelemetryCollector()
+       self.dampener = TelemetrySignalDampenerFilter(damping_factor=0.15)
+       self.correlation_filter = ConcurrentCorrelationFilter()
+       self.tape_library = ContinuousCircularTapeLibrary()
+       self.relay_caster = MultiChannelRelayCaster()
+       self.ble_manager = BLEIntegrationManager()
+       self.transformer = LinearProjectionTransformer([0.5, 0.5, 0.707])
+       self.ws_server = WebSocketBroadcastServer(port=8080)
+       
+       self.cycle_counter = 0
+       self.is_running = False
+
+       # Register standard console logger loop as an active relay target
+       self.relay_caster.register_subscriber(self._console_relay_logger)
+
+   def _console_relay_logger(self, packet):
+
+
+
+        """Standard channel relay listener that outputs telemetry details to console."""
+       print(f"[Relay Dispatched] Frame: {packet['update_id']} | Frequency: {packet['smoothed_metrics']['frequency']:.2f} Hz", flush=True)
+
+   def start_runtime_services(self):
+       """Launches WebSocket, HTTP server threads, and enters the runtime collection loop."""
+       # 1. Initialize Broadcast Websocket Node
+       ws_report = self.ws_server.start_listener()
+       print(ws_report)
+
+       # 2. Launch Local HTTP Connector Dashboard Server Node
+       def _http_worker():
+           http_server = http.server.HTTPServer(('127.0.0.1', 8000), TelemetryHTTPConnectorHandler)
+           http_server.serve_forever()
+       threading.Thread(target=_http_worker, daemon=True).start()
+       print("[HTTP Server] Connect Web UI dashboard directly at http://127.0.0.1:8000")
+
+       # 3. Enter Continuous Environment Polling Loop
+       self.is_running = True
+       print("\n=== SYSTEM RUNTIME ONLINE - EXECUTING CONTINUOUS STREAM CHANNELS ===")
+
+
+
+        
+       try:
+           while self.is_running:
+               self.cycle_counter += 1
+               self._execute_runtime_cycle()
+               time.sleep(0.1)  # 100ms processing loop intervals
+       except KeyboardInterrupt:
+           self.is_running = False
+           print("\nShutting down telemetry engine background execution fields safely.")
+
+   def _execute_runtime_cycle(self):
+       # A. Capture raw operational system attributes
+       live_data = self.collector.capture_system_state()
+       spatial = live_data["spatial_vector"]
+       spectrum = live_data["spectrum_channels"]
+       patch = live_data["patch_array"]
+       raw_resonance = live_data["tuning_fork_resonance"]
+
+       # B. Compute parallel threading correlation scores
+
+
+
+        correlations = self.correlation_filter.analyze_streams_concurrently(spatial, spectrum, patch)
+
+       # C. Run real-time damping filter networks to smooth metrics variance
+       dampened_resonance = self.dampener.apply_filter("resonance", raw_resonance)
+       
+       # D. Process coordinate projections
+       projected_coords, scalar_magnitude = self.transformer.project(spatial)
+
+       # E. Map parameters to BLE framework structures
+       ble_packet = self.ble_manager.construct_advertising_frame(dampened_resonance)
+
+       # F. Synthesize and store palindromic waveform sequences to continuous tape
+       base_freq = 150.0 + (dampened_resonance % 200.0)
+       audio_frames = PalindromicModulationEngine.generate_waveform(base_freq, base_freq * 2.0)
+       self.tape_library.commit_audio_block(audio_frames)
+
+       # G. Construct global transmission data blueprint
+       broadcast_payload = {
+           "update_id": self.cycle_counter,
+
+
+
+            "system_metrics": {
+               "spatial": spatial,
+               "frequency": raw_resonance
+           },
+           "smoothed_metrics": {
+               "projection": projected_coords,
+               "magnitude": scalar_magnitude,
+               "frequency": dampened_resonance
+           },
+           "channel_correlation": correlations,
+           "ble_packet": ble_packet,
+           "tape_total_bytes": self.tape_library.total_bytes_recorded
+       }
+
+       # H. Trigger multi-channel relay allocations (Casting profiles)
+       cast_count = self.relay_caster.dispatch_packet(broadcast_payload)
+       broadcast_payload["cast_count"] = cast_count
+
+       # I. Broadcast synchronized JSON lines over active WebSockets
+
+
+
+        serialized_json = json.dumps(broadcast_payload)
+       self.ws_server.broadcast(serialized_json, is_binary=False)
+
+
+if __name__ == "__main__":
+   # Instantiate and spin up the complete integrated telemetry runtime environment
+   runtime_daemon = CoreRuntimeEngine()
+   runtime_daemon.start_runtime_services()

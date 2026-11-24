@@ -1,0 +1,6 @@
+{
+  "name": "DeFi Arbitrage Engine",
+  "description": "Real-time dashboard and backend engine for monitoring and executing arbitrage across decentralized exchanges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "ol/ol.css";
+
+@layer utilities {
+  .font-uclk-sans {
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+  .font-uclk-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+}

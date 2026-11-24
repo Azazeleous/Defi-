@@ -1,0 +1,887 @@
+﻿Advanced Hamiltonian Singularity Integration Lab
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Hamiltonian Singularity Integration Lab</title>
+   <style>
+       :root {
+           --bg-color: #05050a;
+           --panel-bg: rgba(13, 13, 25, 0.85);
+           --panel-border: rgba(0, 255, 204, 0.2);
+           --text-main: #e0e0ff;
+           --text-dim: #8888aa;
+           --accent-cyan: #00ffcc;
+           --accent-pink: #ff0077;
+           --danger-red: #ff3333;
+       }
+
+       * {
+
+
+
+            box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+           user-select: none;
+       }
+
+       body, html {
+           width: 100%;
+           height: 100%;
+           overflow: hidden;
+           background-color: var(--bg-color);
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+           color: var(--text-main);
+       }
+
+       /* Top Header Component */
+       #top-header {
+           position: absolute;
+           top: 0;
+
+
+
+            left: 0;
+           width: 100%;
+           height: 44px;
+           background: linear-gradient(180deg, rgba(10,10,20,0.8) 0%, rgba(10,10,20,0) 100%);
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-size: 13px;
+           letter-spacing: 0.15em;
+           text-transform: uppercase;
+           color: var(--accent-cyan);
+           text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+           z-index: 10;
+           cursor: pointer;
+           border-bottom: 1px solid rgba(0, 255, 204, 0.05);
+           transition: background 0.3s ease;
+       }
+
+       #top-header:hover {
+
+
+
+            background: linear-gradient(180deg, rgba(0, 255, 204, 0.1) 0%, rgba(10,10,20,0) 100%);
+       }
+
+       /* Main Fullscreen Canvas Rendering Plane */
+       #simCanvas {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           display: block;
+           z-index: 1;
+       }
+
+       /* Interactive Floating UI Panel Dashboard */
+       #ui-panel {
+           position: absolute;
+           top: 60px;
+           left: 20px;
+
+
+
+            width: 340px;
+           max-height: calc(100% - 80px);
+           background: var(--panel-bg);
+           border: 1px solid var(--panel-border);
+           border-radius: 12px;
+           padding: 20px;
+           z-index: 5;
+           display: flex;
+           flex-direction: column;
+           gap: 18px;
+           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 255, 204, 0.05);
+           backdrop-filter: blur(12px);
+           -webkit-backdrop-filter: blur(12px);
+           transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
+           overflow-y: auto;
+       }
+
+       /* Hidden Class for Clear UI Toggle Feature */
+       #ui-panel.hidden {
+
+
+
+            opacity: 0;
+           transform: translateX(-30px);
+           visibility: hidden;
+           pointer-events: none;
+       }
+
+       h1 {
+           font-size: 18px;
+           font-weight: 600;
+           letter-spacing: -0.02em;
+           color: #ffffff;
+           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+           padding-bottom: 8px;
+       }
+
+       .section-title {
+           font-size: 11px;
+           text-transform: uppercase;
+           letter-spacing: 0.1em;
+
+
+
+            color: var(--text-dim);
+           margin-bottom: 4px;
+       }
+
+       .control-group {
+           display: flex;
+           flex-direction: column;
+           gap: 6px;
+       }
+
+       .control-label-row {
+           display: flex;
+           justify-content: space-between;
+           font-size: 12px;
+       }
+
+       .val-display {
+           font-family: monospace;
+           color: var(--accent-cyan);
+
+
+
+            font-weight: bold;
+       }
+
+       /* Custom Styled Sliders */
+       input[type="range"] {
+           -webkit-appearance: none;
+           width: 100%;
+           height: 4px;
+           background: rgba(255, 255, 255, 0.1);
+           border-radius: 2px;
+           outline: none;
+       }
+
+       input[type="range"]::-webkit-slider-thumb {
+           -webkit-appearance: none;
+           width: 14px;
+           height: 14px;
+           border-radius: 50%;
+           background: var(--accent-cyan);
+
+
+
+            cursor: pointer;
+           box-shadow: 0 0 8px var(--accent-cyan);
+           transition: transform 0.1s;
+       }
+
+       input[type="range"]::-webkit-slider-thumb:hover {
+           transform: scale(1.2);
+       }
+
+       /* Selector Button Groups */
+       .btn-group {
+           display: flex;
+           background: rgba(0, 0, 0, 0.3);
+           border-radius: 6px;
+           padding: 2px;
+           border: 1px solid rgba(255, 255, 255, 0.05);
+       }
+
+       .selector-btn {
+
+
+
+            flex: 1;
+           background: transparent;
+           border: none;
+           color: var(--text-dim);
+           padding: 8px;
+           font-size: 11px;
+           font-weight: 600;
+           text-transform: uppercase;
+           letter-spacing: 0.05em;
+           cursor: pointer;
+           border-radius: 4px;
+           transition: all 0.2s ease;
+       }
+
+       .selector-btn.active {
+           background: rgba(0, 255, 204, 0.15);
+           color: var(--accent-cyan);
+           box-shadow: inset 0 0 6px rgba(0, 255, 204, 0.2);
+       }
+
+
+
+
+        /* Diagnostics Console Windows */
+       .diagnostics-box {
+           background: rgba(0, 0, 0, 0.4);
+           border-radius: 8px;
+           padding: 12px;
+           border: 1px solid rgba(255, 255, 255, 0.05);
+           display: flex;
+           flex-direction: column;
+           gap: 6px;
+           font-family: monospace;
+           font-size: 11px;
+       }
+
+       .diag-row {
+           display: flex;
+           justify-content: space-between;
+       }
+
+       .diag-val {
+
+
+
+            color: #ffffff;
+       }
+
+       .status-badge {
+           padding: 2px 6px;
+           border-radius: 4px;
+           font-weight: bold;
+       }
+
+       .status-nominal {
+           background: rgba(0, 255, 100, 0.15);
+           color: #00ff64;
+       }
+
+       .status-failed {
+           background: rgba(255, 51, 51, 0.2);
+           color: var(--danger-red);
+           animation: pulse-alert 1s infinite alternate;
+       }
+
+
+
+
+        @keyframes pulse-alert {
+           0% { box-shadow: 0 0 2px rgba(255, 51, 51, 0.4); }
+           100% { box-shadow: 0 0 12px rgba(255, 51, 51, 0.8); }
+       }
+
+       .action-btn {
+           background: linear-gradient(135deg, rgba(255,0,119,0.2) 0%, rgba(10,10,20,0.6) 100%);
+           border: 1px solid rgba(255, 0, 119, 0.4);
+           color: #ffffff;
+           padding: 10px;
+           border-radius: 6px;
+           font-size: 12px;
+           font-weight: bold;
+           cursor: pointer;
+           letter-spacing: 0.05em;
+           text-transform: uppercase;
+           transition: all 0.2s ease;
+       }
+
+
+
+
+        .action-btn:hover {
+           background: linear-gradient(135deg, rgba(255,0,119,0.3) 0%, rgba(255,0,119,0.1) 100%);
+           border-color: var(--accent-pink);
+           box-shadow: 0 0 10px rgba(255, 0, 119, 0.3);
+       }
+
+       /* Ambient Instruction Footer */
+       .instruction-footer {
+           font-size: 11px;
+           color: var(--text-dim);
+           line-height: 1.4;
+           text-align: center;
+           border-top: 1px solid rgba(255, 255, 255, 0.05);
+           padding-top: 10px;
+       }
+
+       /* Responsive Modifications */
+       @media (max-width: 480px) {
+           #ui-panel {
+
+
+
+                width: calc(100% - 40px);
+               left: 20px;
+               right: 20px;
+           }
+       }
+   </style>
+</head>
+<body>
+
+   <!-- Double Click Header Target to Clear UI Display Layer -->
+   <header id="top-header">
+       ⚡ Hamiltonian Singularity Integration Lab • Double-Click to Toggle UI ⚡
+   </header>
+
+   <!-- Background Rendering Viewport Plane -->
+   <canvas id="simCanvas"></canvas>
+
+   <!-- Floating Parameters control dashboard panel -->
+   <div id="ui-panel">
+
+
+
+        <h1>System Diagnostics</h1>
+
+       <!-- Mathematical Integrator Methodology Selectors -->
+       <div class="control-group">
+           <div class="section-title">Integration Methodology</div>
+           <div class="btn-group">
+               <button class="selector-btn" id="btn-euler">Forward Euler</button>
+               <button class="selector-btn active" id="btn-leapfrog">Symplectic Leapfrog</button>
+           </div>
+       </div>
+
+       <!-- Singularity Resolution Variables Control Block -->
+       <div class="control-group">
+           <div class="control-label-row">
+               <span>Plummer Softening Coefficient (<span style="font-family:serif;">ε</span>)</span>
+               <span class="val-display" id="display-softening">0.00</span>
+           </div>
+           <input type="range" id="slider-softening" min="0" max="40" step="0.5" value="0">
+       </div>
+
+
+
+
+        <!-- System Dynamics Step Controls -->
+       <div class="control-group">
+           <div class="control-label-row">
+               <span>Time Step Magnitude (dt)</span>
+               <span class="val-display" id="display-dt">0.10</span>
+           </div>
+           <input type="range" id="slider-dt" min="0.01" max="0.5" step="0.01" value="0.10">
+       </div>
+
+       <!-- Central Attractor Gravitational Profile -->
+       <div class="control-group">
+           <div class="control-label-row">
+               <span>Central Core Mass (μ)</span>
+               <span class="val-display" id="display-mass">15000</span>
+           </div>
+           <input type="range" id="slider-mass" min="1000" max="40000" step="1000" value="15000">
+       </div>
+
+       <!-- Live Numerical Matrix Monitor Dashboard Layout -->
+
+
+
+        <div class="control-group">
+           <div class="section-title">State Vector Metrics</div>
+           <div class="diagnostics-box">
+               <div class="diag-row">
+                   <span>Engine Stability Status:</span>
+                   <span id="status-badge" class="status-badge status-nominal">NOMINAL</span>
+               </div>
+               <div class="diag-row">
+                   <span>Separation Radius (r):</span>
+                   <span id="diag-r" class="diag-val">--</span>
+               </div>
+               <div class="diag-row">
+                   <span>Total System Energy (H):</span>
+                   <span id="diag-energy" class="diag-val">--</span>
+               </div>
+               <div class="diag-row">
+                   <span>Velocity Delta Vector:</span>
+                   <span id="diag-vel" class="diag-val">--</span>
+               </div>
+
+
+
+            </div>
+       </div>
+
+       <!-- Control Interactivity Triggers -->
+       <button class="action-btn" id="btn-reset">Reset Test Vector</button>
+       <button class="action-btn" style="background:none; border:1px solid rgba(255,255,255,0.15);" id="btn-collision">Force Direct Singularity Run</button>
+
+       <footer class="instruction-footer">
+           Click anywhere inside the dark canvas plane to spawn or reposition the dynamic phase vector directly. Try launching orbits with softening set to 0 to observe immediate collapse vs numerical preservation.
+       </footer>
+   </div>
+
+   <script>
+       // Core Web Canvas Graphics Engine Hooks
+       const canvas = document.getElementById('simCanvas');
+       const ctx = canvas.getContext('2d');
+       const header = document.getElementById('top-header');
+       const uiPanel = document.getElementById('ui-panel');
+
+
+
+
+        // Parameter Elements DOM Mapping Interface
+       const sliderSoftening = document.getElementById('slider-softening');
+       const sliderDt = document.getElementById('slider-dt');
+       const sliderMass = document.getElementById('slider-mass');
+       const displaySoftening = document.getElementById('display-softening');
+       const displayDt = document.getElementById('display-dt');
+       const displayMass = document.getElementById('display-mass');
+
+       const btnEuler = document.getElementById('btn-euler');
+       const btnLeapfrog = document.getElementById('btn-leapfrog');
+       const btnReset = document.getElementById('btn-reset');
+       const btnCollision = document.getElementById('btn-collision');
+
+       const diagR = document.getElementById('diag-r');
+       const diagEnergy = document.getElementById('diag-energy');
+       const diagVel = document.getElementById('diag-vel');
+       const statusBadge = document.getElementById('status-badge');
+
+       // State Machine Storage Structure
+
+
+
+        let simMode = 'leapfrog'; // 'euler' or 'leapfrog'
+       let epsilon = 0.0;
+       let dt = 0.10;
+       let mu = 15000;
+       let engineCrashed = false;
+
+       // Position coordinates mapped inside window metrics
+       let originX = window.innerWidth / 2;
+       let originY = window.innerHeight / 2;
+
+       // Orbital State Dynamics Vector Mapping Block
+       let state = { x: 180, y: 0, vx: 0, vy: 8.5 }; 
+       const pathHistory = [];
+       const maxHistory = 400;
+
+       // Structural Array of Background Mesh Vector Matrix Particles
+       const bgFieldGrid = [];
+       const numGridPointsX = 36;
+       const numGridPointsY = 24;
+
+
+
+
+        // Populate baseline coordinates map for gravity canvas deformations
+       function initBackgroundField() {
+           bgFieldGrid.length = 0;
+           const stepX = window.innerWidth / numGridPointsX;
+           const stepY = window.innerHeight / numGridPointsY;
+           
+           for(let i = 0; i <= numGridPointsX; i++) {
+               for(let j = 0; j <= numGridPointsY; j++) {
+                   bgFieldGrid.push({
+                       baseX: i * stepX,
+                       baseY: j * stepY,
+                       currentX: i * stepX,
+                       currentY: j * stepY
+                   });
+               }
+           }
+       }
+
+       // Initialize and Set Responsive Layout Constraints
+
+
+
+        function resizeViewport() {
+           canvas.width = window.innerWidth;
+           canvas.height = window.innerHeight;
+           originX = canvas.width / 2;
+           originY = canvas.height / 2;
+           initBackgroundField();
+       }
+       window.addEventListener('resize', resizeViewport);
+       resizeViewport();
+
+       // Double-click toggle mechanics initialization handler
+       header.addEventListener('dblclick', () => {
+           uiPanel.classList.toggle('hidden');
+       });
+
+       // Event Hook Input Control Systems Interface
+       sliderSoftening.addEventListener('input', (e) => {
+           epsilon = parseFloat(e.target.value);
+           displaySoftening.innerText = epsilon.toFixed(2);
+
+
+
+        });
+       sliderDt.addEventListener('input', (e) => {
+           dt = parseFloat(e.target.value);
+           displayDt.innerText = dt.toFixed(2);
+       });
+       sliderMass.addEventListener('input', (e) => {
+           mu = parseInt(e.target.value);
+           displayMass.innerText = mu;
+       });
+
+       btnEuler.addEventListener('click', () => {
+           simMode = 'euler';
+           btnEuler.classList.add('active');
+           btnLeapfrog.classList.remove('active');
+       });
+       btnLeapfrog.addEventListener('click', () => {
+           simMode = 'leapfrog';
+           btnLeapfrog.classList.add('active');
+           btnEuler.classList.remove('active');
+
+
+
+        });
+
+       function resetVectorState() {
+           state.x = 180;
+           state.y = 0;
+           state.vx = 0;
+           state.vy = Math.sqrt(mu / 180); // Circular execution velocity baseline metric
+           pathHistory.length = 0;
+           engineCrashed = false;
+           statusBadge.className = "status-badge status-nominal";
+           statusBadge.innerText = "NOMINAL";
+       }
+       btnReset.addEventListener('click', resetVectorState);
+
+       btnCollision.addEventListener('click', () => {
+           // Drop angular components completely to force absolute zero crossing vector track
+           state.x = 220;
+           state.y = 120;
+           state.vx = -4.5;
+
+
+
+            state.vy = -2.45;
+           // Align trajectory precisely down the barrel to origin vector coordinates
+           const angle = Math.atan2(-state.y, -state.x);
+           const speed = 6.0;
+           state.vx = Math.cos(angle) * speed;
+           state.vy = Math.sin(angle) * speed;
+           pathHistory.length = 0;
+           engineCrashed = false;
+       });
+
+       // Canvas Coordinate Context Interactivity Receptors
+       canvas.addEventListener('mousedown', (e) => {
+           // Check if UI configuration layers bounding coordinates overlap user selections
+           if (!uiPanel.classList.contains('hidden')) {
+               const rect = uiPanel.getBoundingClientRect();
+               if (e.clientX >= rect.left && e.clientX <= rect.right && 
+                   e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                   return; // Retain menu input focus
+               }
+
+
+
+            }
+           
+           // Re-map target to screen origin system
+           state.x = e.clientX - originX;
+           state.y = e.clientY - originY;
+           
+           // Construct stable perpendicular circular orbit vectors for velocity parameters
+           const r = Math.sqrt(state.x * state.x + state.y * state.y);
+           if (r > 5) {
+               const orbitalV = Math.sqrt(mu / r);
+               state.vx = -state.y / r * orbitalV;
+               state.vy = state.x / r * orbitalV;
+           } else {
+               state.vx = 0;
+               state.vy = 0;
+           }
+           pathHistory.length = 0;
+           engineCrashed = false;
+       });
+
+
+
+
+        // Mathematical Force Gradient Accelerator Metric Function
+       function computeAcceleration(x, y) {
+           // Base Coordinate Radius Vector calculation
+           const rSq = x * x + y * y;
+           
+           // Softened Hamiltonian Radius modification step
+           const softenedRadiusSq = rSq + (epsilon * epsilon);
+           const rMag = Math.sqrt(softenedRadiusSq);
+           
+           // Guard against hard infinity generation in absolute unsoftened state bounds
+           if (rMag === 0) {
+               return { ax: NaN, ay: NaN, r: 0 };
+           }
+           
+           // Gravitational Vector scaling execution
+           const factor = -mu / (softenedRadiusSq * rMag);
+           return {
+               ax: x * factor,
+               ay: y * factor,
+
+
+
+                r: Math.sqrt(rSq)
+           };
+       }
+
+       // Integration Loops Pipeline Execution Implementation
+       function stepSimulation() {
+           if (engineCrashed) return;
+
+           if (simMode === 'euler') {
+               // Forward Euler Step Equation Execution Model
+               const accel = computeAcceleration(state.x, state.y);
+               
+               if (isNaN(accel.ax) || isNaN(accel.ay) || isNaN(state.x) || isNaN(state.y)) {
+                   triggerEngineCrash();
+                   return;
+               }
+
+               state.x += state.vx * dt;
+               state.y += state.vy * dt;
+
+
+
+                state.vx += accel.ax * dt;
+               state.vy += accel.ay * dt;
+               
+           } else {
+               // Symplectic Kick-Drift-Kick Leapfrog Formulation Structure
+               let accel = computeAcceleration(state.x, state.y);
+               
+               if (isNaN(accel.ax) || isNaN(accel.ay) || isNaN(state.x) || isNaN(state.y)) {
+                   triggerEngineCrash();
+                   return;
+               }
+
+               // Kick 0.5 step velocity
+               const vHalfX = state.vx + accel.ax * (dt / 2);
+               const vHalfY = state.vy + accel.ay * (dt / 2);
+
+               // Full Position coordinate drift step update
+               state.x += vHalfX * dt;
+               state.y += vHalfY * dt;
+
+
+
+
+                // Re-evaluate acceleration values at modified tracking step position points
+               accel = computeAcceleration(state.x, state.y);
+               
+               if (isNaN(accel.ax) || isNaN(accel.ay)) {
+                   triggerEngineCrash();
+                   return;
+               }
+
+               // Kick remaining 0.5 step velocity parameters
+               state.vx = vHalfX + accel.ax * (dt / 2);
+               state.vy = vHalfY + accel.ay * (dt / 2);
+           }
+
+           // Verify vector validation thresholds for numeric system integrity check
+           if (isNaN(state.vx) || isNaN(state.vy) || Math.abs(state.vx) === Infinity || Math.abs(state.vy) === Infinity) {
+               triggerEngineCrash();
+           }
+
+           // Record spatial configuration metrics to rendering arrays
+
+
+
+            pathHistory.push({ x: state.x, y: state.y });
+           if (pathHistory.length > maxHistory) {
+               pathHistory.shift();
+           }
+       }
+
+       function triggerEngineCrash() {
+           engineCrashed = true;
+           statusBadge.className = "status-badge status-failed";
+           statusBadge.innerText = "CRASH (NaN/INF)";
+       }
+
+       // Calculation Function for System Hamiltonian (Total Energy Metric H = T + V)
+       function computeHamiltonianMetrics() {
+           const r = Math.sqrt(state.x * state.x + state.y * state.y);
+           const softenedR = Math.sqrt(state.x * state.x + state.y * state.y + epsilon * epsilon);
+           
+           // Kinetic energy component parameter 0.5 * v^2
+           const vSq = state.vx * state.vx + state.vy * state.vy;
+
+
+
+            const kinetic = 0.5 * vSq;
+           
+           // Potential energy component parameter -mu / r
+           const potential = -mu / (softenedR === 0 ? 0.0001 : softenedR);
+           const totalH = kinetic + potential;
+
+           diagR.innerText = r.toFixed(2);
+           diagEnergy.innerText = totalH.toFixed(2);
+           diagVel.innerText = `[${state.vx.toFixed(1)}, ${state.vy.toFixed(1)}]`;
+       }
+
+       // Full Background Distortion Vector Fields Core Engine 
+       function updateBackgroundFieldMatrix() {
+           for (let pt of bgFieldGrid) {
+               // Calculate physical offsets from active singularity core point coordinate parameters
+               const dx = pt.baseX - originX;
+               const dy = pt.baseY - originY;
+               const distSq = dx * dx + dy * dy;
+               
+
+
+
+                // Construct elastic distortion scale profiles tracking potential field depths
+               const gravityScaling = mu * 1.8;
+               const fieldSoftening = 2500 + (epsilon * epsilon * 15);
+               const shiftMagnitude = gravityScaling / (distSq + fieldSoftening);
+               
+               // Pull vector spatial metrics smoothly toward coordinate center points
+               pt.currentX = pt.baseX - dx * shiftMagnitude;
+               pt.currentY = pt.baseY - dy * shiftMagnitude;
+           }
+       }
+
+       // Main Rendering Loop Sequence Function
+       function renderScene() {
+           // Apply semi-transparent wash background clearing vectors to provide beautiful motion trails
+           ctx.fillStyle = 'rgba(5, 5, 10, 0.2)';
+           ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+           // Compute background deformation matrix structures
+           updateBackgroundFieldMatrix();
+
+
+
+
+            // Render Deformed Phase Space Grid System Field Framework
+           ctx.strokeStyle = 'rgba(0, 255, 204, 0.04)';
+           ctx.lineWidth = 1;
+
+           // Draw X grid vector lines
+           for (let i = 0; i <= numGridPointsX; i++) {
+               ctx.beginPath();
+               for (let j = 0; j <= numGridPointsY; j++) {
+                   const idx = i * (numGridPointsY + 1) + j;
+                   if (bgFieldGrid[idx]) {
+                       if (j === 0) ctx.moveTo(bgFieldGrid[idx].currentX, bgFieldGrid[idx].currentY);
+                       else ctx.lineTo(bgFieldGrid[idx].currentX, bgFieldGrid[idx].currentY);
+                   }
+               }
+               ctx.stroke();
+           }
+
+           // Draw Y grid vector lines
+           for (let j = 0; j <= numGridPointsY; j++) {
+
+
+
+                ctx.beginPath();
+               for (let i = 0; i <= numGridPointsX; i++) {
+                   const idx = i * (numGridPointsY + 1) + j;
+                   if (bgFieldGrid[idx]) {
+                       if (i === 0) ctx.moveTo(bgFieldGrid[idx].currentX, bgFieldGrid[idx].currentY);
+                       else ctx.lineTo(bgFieldGrid[idx].currentX, bgFieldGrid[idx].currentY);
+                   }
+               }
+               ctx.stroke();
+           }
+
+           // Draw Core Central Attractor Singularity Well Source Node
+           const radialPulse = 6 + Math.sin(Date.now() * 0.005) * 1.5;
+           const coreGlow = ctx.createRadialGradient(originX, originY, 1, originX, originY, radialPulse * 3);
+           coreGlow.addColorStop(0, '#ffffff');
+           coreGlow.addColorStop(0.2, 'rgba(0, 255, 204, 0.8)');
+           coreGlow.addColorStop(0.6, 'rgba(255, 0, 119, 0.2)');
+           coreGlow.addColorStop(1, 'rgba(0,0,0,0)');
+           
+
+
+
+            ctx.fillStyle = coreGlow;
+           ctx.beginPath();
+           ctx.arc(originX, originY, radialPulse * 3, 0, Math.PI * 2);
+           ctx.fill();
+
+           // Render Softening Boundary Shield Sphere limits visually if epsilon > 0
+           if (epsilon > 0) {
+               ctx.strokeStyle = 'rgba(0, 255, 204, 0.15)';
+               ctx.lineWidth = 1;
+               ctx.setLineDash([4, 4]);
+               ctx.beginPath();
+               ctx.arc(originX, originY, epsilon, 0, Math.PI * 2);
+               ctx.stroke();
+               ctx.setLineDash([]);
+           }
+
+           // Render Orbital Trace Path Historical Vectors Array
+           if (pathHistory.length > 1) {
+               ctx.beginPath();
+
+
+
+                ctx.moveTo(pathHistory[0].x + originX, pathHistory[0].y + originY);
+               for (let i = 1; i < pathHistory.length; i++) {
+                   ctx.lineTo(pathHistory[i].x + originX, pathHistory[i].y + originY);
+               }
+               ctx.strokeStyle = simMode === 'leapfrog' ? 'rgba(0, 255, 204, 0.6)' : 'rgba(255, 0, 119, 0.6)';
+               ctx.lineWidth = 2;
+               ctx.stroke();
+           }
+
+           // Draw Active Orbital Trajectory Mass Object Plane Node Element
+           if (!engineCrashed) {
+               ctx.fillStyle = '#ffffff';
+               ctx.shadowColor = varAccentColor();
+               ctx.shadowBlur = 10;
+               ctx.beginPath();
+               ctx.arc(state.x + originX, state.y + originY, 5, 0, Math.PI * 2);
+               ctx.fill();
+               ctx.shadowBlur = 0; // Reset canvas filter buffer states
+           } else {
+
+
+
+                // Render Visual Singularity Crash Collision Detonation marker flags
+               ctx.fillStyle = varDangerColor();
+               ctx.font = 'bold 12px monospace';
+               ctx.fillText('⚡ SINGULARITY COLLAPSE CRASH', state.x + originX + 10, state.y + originY + 4);
+               
+               ctx.strokeStyle = varDangerColor();
+               ctx.lineWidth = 1;
+               ctx.beginPath();
+               ctx.arc(state.x + originX, state.y + originY, 12, 0, Math.PI * 2);
+               ctx.stroke();
+           }
+       }
+
+       function varAccentColor() {
+           return simMode === 'leapfrog' ? '#00ffcc' : '#ff0077';
+       }
+       function varDangerColor() {
+           return '#ff3333';
+       }
+
+
+
+
+        // Integrated Frame Master Animation Processing Loop
+       function loop() {
+           // Cycle multiple physics update frames per loop iteration to maintain computational trajectory tracking accuracy
+           for (let i = 0; i < 3; i++) {
+               stepSimulation();
+           }
+           computeHamiltonianMetrics();
+           renderScene();
+           requestAnimationFrame(loop);
+       }
+
+       // Initialize default vector loops sequence
+       resetVectorState();
+       requestAnimationFrame(loop);
+
+   </script>
+</body>
+</html>

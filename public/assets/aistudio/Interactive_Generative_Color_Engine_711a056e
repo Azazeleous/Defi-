@@ -1,0 +1,439 @@
+﻿Interactive Generative Color Engine
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Generative Color Engine & Parallax Waves</title>
+   <style>
+       * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+       }
+
+       body, html {
+           width: 100%;
+           height: 100%;
+           overflow: hidden;
+           background-color: #080810;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+
+
+            color: #e2e8f0;
+       }
+
+       #artCanvas {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           display: block;
+           z-index: 1;
+       }
+
+       /* Glassmorphic control panel */
+       .control-panel {
+           position: absolute;
+           bottom: 24px;
+           left: 50%;
+           transform: translateX(-50%);
+
+
+
+            z-index: 10;
+           background: rgba(15, 23, 42, 0.65);
+           backdrop-filter: blur(12px);
+           -webkit-backdrop-filter: blur(12px);
+           border: 1px rgba(255, 255, 255, 0.08) solid;
+           border-radius: 16px;
+           padding: 16px 24px;
+           display: flex;
+           flex-wrap: wrap;
+           gap: 20px;
+           align-items: center;
+           justify-content: center;
+           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+           width: calc(100% - 32px);
+           max-width: 680px;
+           transition: opacity 0.3s ease;
+       }
+
+       .control-group {
+
+
+
+            display: flex;
+           flex-direction: column;
+           gap: 6px;
+       }
+
+       label {
+           font-size: 11px;
+           text-transform: uppercase;
+           letter-spacing: 0.05em;
+           color: #94a3b8;
+           font-weight: 600;
+       }
+
+       select, input[type="range"] {
+           background: rgba(30, 41, 59, 0.8);
+           border: 1px solid rgba(255, 255, 255, 0.1);
+           color: #f8fafc;
+           padding: 8px 12px;
+           border-radius: 8px;
+
+
+
+            font-size: 14px;
+           outline: none;
+           cursor: pointer;
+           transition: all 0.2s ease;
+       }
+
+       select:focus, input[type="range"]:focus {
+           border-color: rgba(255, 255, 255, 0.3);
+       }
+
+       input[type="range"] {
+           -webkit-appearance: none;
+           width: 120px;
+           height: 6px;
+           background: rgba(30, 41, 59, 0.8);
+           padding: 0;
+       }
+
+       input[type="range"]::-webkit-slider-thumb {
+
+
+
+            -webkit-appearance: none;
+           width: 14px;
+           height: 14px;
+           border-radius: 50%;
+           background: #f8fafc;
+           cursor: pointer;
+       }
+
+       .stats {
+           position: absolute;
+           top: 16px;
+           left: 16px;
+           z-index: 10;
+           font-size: 12px;
+           font-family: monospace;
+           color: rgba(255, 255, 255, 0.4);
+           pointer-events: none;
+           background: rgba(0,0,0,0.2);
+           padding: 4px 8px;
+
+
+
+            border-radius: 4px;
+       }
+
+       /* Responsive styling for small mobile viewports */
+       @media (max-width: 480px) {
+           .control-panel {
+               bottom: 12px;
+               padding: 12px;
+               gap: 12px;
+           }
+           .control-group {
+               flex: 1 1 calc(50% - 6px);
+           }
+           input[type="range"] {
+               width: 100%;
+           }
+       }
+   </style>
+</head>
+<body>
+
+
+
+
+    <div class="stats" id="fpsDisplay">FPS: --</div>
+   <canvas id="artCanvas"></canvas>
+
+   <div class="control-panel">
+       <div class="control-group">
+           <label for="paletteSel">Color Mode</label>
+           <select id="paletteSel">
+               <option value="ember">Ember Engine</option>
+               <option value="ion" selected>Ion Engine</option>
+               <option value="nebula">Nebula Engine</option>
+               <option value="cosmic">Cosmic Cosmic</option>
+           </select>
+       </div>
+
+       <div class="control-group">
+           <label for="speedSlider">Simulation Speed</label>
+           <input type="range" id="speedSlider" min="0" max="2" step="0.1" value="0.8">
+       </div>
+
+
+
+
+        <div class="control-group">
+           <label for="densitySlider">Wave Complexity</label>
+           <input type="range" id="densitySlider" min="1" max="5" step="0.2" value="2.6">
+       </div>
+
+       <div class="control-group">
+           <label for="renderMode">Style</label>
+           <select id="renderMode">
+               <option value="fluid">Fluid Strands</option>
+               <option value="matrix">Quantum Grid</option>
+               <option value="aurora">Aurora Horizon</option>
+           </select>
+       </div>
+   </div>
+
+   <script>
+       const canvas = document.getElementById("artCanvas");
+       const ctx = canvas.getContext("2d");
+       const paletteSel = document.getElementById("paletteSel");
+
+
+
+        const speedSlider = document.getElementById("speedSlider");
+       const densitySlider = document.getElementById("densitySlider");
+       const renderMode = document.getElementById("renderMode");
+       const fpsDisplay = document.getElementById("fpsDisplay");
+
+       let W = window.innerWidth;
+       let H = window.innerHeight;
+       const TAU = Math.PI * 2;
+       let t = 0;
+
+       // Custom UI states linked to rendering loop
+       let speedMultiplier = parseFloat(speedSlider.value);
+       let waveComplexity = parseFloat(densitySlider.value);
+
+       // Track frames for diagnostics
+       let lastFrameTime = performance.now();
+       let frameCount = 0;
+       let fps = 0;
+
+
+
+
+        function resizeCanvas() {
+           W = window.innerWidth;
+           H = window.innerHeight;
+           canvas.width = W;
+           canvas.height = H;
+       }
+       window.addEventListener("resize", resizeCanvas);
+       resizeCanvas();
+
+       // --- Integrated User Mathematical Engine ---
+
+       function gradientAnchor(p, t){
+           // p=0..1 position along palette
+           // fast “color engine” producing RGB anchors without parsing HSL strings
+           // uses palette type to shape frequencies
+           const kind = paletteSel.value;
+           const k = (kind==="ember") ? 1.2 : (kind==="ion") ? 1.0 : (kind==="nebula") ? 0.9 : 0.8;
+           
+           const rr = 128 + 110*Math.sin(TAU*(t*k + p*0.55 + (kind==="ember"?0.1:0.0)));
+
+
+
+            const gg = 128 + 110*Math.sin(TAU*(t*k*1.1 + p*0.65 + (kind==="ion"?0.2:0.45)));
+           const bb = 128 + 110*Math.sin(TAU*(t*k*0.9 + p*0.75 + (kind==="nebula"?0.35:0.65)));
+           
+           return [clamp255(rr), clamp255(gg), clamp255(bb)];
+       }
+
+       function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+       function clamp255(x){ return Math.max(0, Math.min(255, x)); }
+       function lerp(a,b,t){ return a+(b-a)*t; }
+
+       // Parallax input variables
+       let aimX = 0, aimY = 0;
+       let currentX = 0, currentY = 0; // Smoothed rendering positions for easing
+
+       addEventListener("pointermove", (e) => {
+           aimX = (e.clientX / W - 0.5) * 2;
+           aimY = (e.clientY / H - 0.5) * 2;
+       }, {passive: true});
+
+
+
+
+        // --- Interactive Mathematical Render Styles ---
+
+       function drawFluidStrands() {
+           const totalLines = 45;
+           ctx.lineWidth = 2;
+           
+           for (let i = 0; i < totalLines; i++) {
+               const normI = i / totalLines;
+               const rgb = gradientAnchor(normI, t * 0.2);
+               ctx.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${0.15 + (1 - normI) * 0.25})`;
+
+               ctx.beginPath();
+               for (let x = 0; x <= W; x += 15) {
+                   const normX = x / W;
+                   
+                   // Complex noise wave utilizing the user's parallax inputs
+                   const wave1 = Math.sin(normX * waveComplexity * 3 + t + normI * 2) * 80;
+                   const wave2 = Math.cos(normX * 1.5 - t * 0.7 + normI * TAU) * 40;
+                   
+
+
+
+                    // Inject parallax interpolation effect into coordinate distortion
+                   const parallaxY = currentY * 90 * Math.sin(normX * Math.PI + t);
+                   const parallaxX = currentX * 50 * normI;
+
+                   const y = (H * 0.5) + wave1 + wave2 + parallaxY + (normI - 0.5) * (H * 0.5);
+                   
+                   if (x === 0) {
+                       ctx.moveTo(x + parallaxX, y);
+                   } else {
+                       ctx.lineTo(x + parallaxX, y);
+                   }
+               }
+               ctx.stroke();
+           }
+       }
+
+       function drawQuantumGrid() {
+           const columns = 24;
+           const rows = 16;
+
+
+
+            const cellW = W / columns;
+           const cellH = H / rows;
+
+           for (let c = 0; c <= columns; c++) {
+               for (let r = 0; r <= rows; r++) {
+                   const normC = c / columns;
+                   const normR = r / rows;
+                   
+                   // Combining spatial coordinates with time for unique palette placements
+                   const colorPos = (normC + normR) * 0.5;
+                   const rgb = gradientAnchor(colorPos, t * 0.15);
+                   
+                   // Distortion calculation utilizing parallax influences
+                   const distX = Math.sin(normR * Math.PI * waveComplexity + t + currentY * 2) * 20;
+                   const distY = Math.cos(normC * Math.PI * waveComplexity + t + currentX * 2) * 20;
+
+                   const posX = c * cellW + distX + (currentX * 15);
+                   const posY = r * cellH + distY + (currentY * 15);
+
+
+
+
+                    ctx.fillStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.45)`;
+                   ctx.beginPath();
+                   ctx.arc(posX, posY, 2.5 + (Math.sin(t + colorPos * 10) * 1.5), 0, TAU);
+                   ctx.fill();
+               }
+           }
+       }
+
+       function drawAuroraHorizon() {
+           const slices = 60;
+           const sliceWidth = W / slices;
+           
+           for (let i = 0; i < slices; i++) {
+               const normI = i / slices;
+               const rgb = gradientAnchor(normI, t * 0.1);
+               
+               // Construct seamless gradient columns
+               const grad = ctx.createLinearGradient(i * sliceWidth, 0, i * sliceWidth, H);
+               grad.addColorStop(0, '#04040c');
+
+
+
+                
+               const waveHeightNorm = 0.5 + Math.sin(normI * waveComplexity + t) * 0.2 + (currentY * 0.15);
+               const safeColorStop = clamp01(waveHeightNorm);
+               
+               grad.addColorStop(safeColorStop, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.3)`);
+               grad.addColorStop(1, '#020205');
+
+               ctx.fillStyle = grad;
+               ctx.fillRect(i * sliceWidth, 0, sliceWidth + 1, H);
+           }
+       }
+
+       // --- Main Simulation Loop ---
+
+       function renderLoop() {
+           // Performance / Diagnostics tracking
+           frameCount++;
+           const now = performance.now();
+           if (now >= lastFrameTime + 1000) {
+
+
+
+                fps = Math.round((frameCount * 1000) / (now - lastFrameTime));
+               fpsDisplay.textContent = `FPS: ${fps}`;
+               frameCount = 0;
+               lastFrameTime = now;
+           }
+
+           // Smooth out raw pointer parallax inputs using interpolation
+           currentX = lerp(currentX, aimX, 0.08);
+           currentY = lerp(currentY, aimY, 0.08);
+
+           // Update simulation runtime clock
+           t += 0.02 * speedMultiplier;
+
+           // Render backgrounds & clear buffers
+           if (renderMode.value === "fluid") {
+               // Persistent translucent trailing clear for motion blur trail aesthetics
+               ctx.fillStyle = "rgba(8, 8, 16, 0.07)";
+               ctx.fillRect(0, 0, W, H);
+               drawFluidStrands();
+
+
+
+            } else if (renderMode.value === "matrix") {
+               ctx.fillStyle = "#06060c";
+               ctx.fillRect(0, 0, W, H);
+               drawQuantumGrid();
+           } else if (renderMode.value === "aurora") {
+               ctx.clearRect(0, 0, W, H);
+               drawAuroraHorizon();
+           }
+
+           requestAnimationFrame(renderLoop);
+       }
+
+       // --- Control Panel Input Listeners ---
+
+       speedSlider.addEventListener("input", (e) => {
+           speedMultiplier = parseFloat(e.target.value);
+       });
+
+       densitySlider.addEventListener("input", (e) => {
+
+
+
+            waveComplexity = parseFloat(e.target.value);
+       });
+
+       renderMode.addEventListener("change", () => {
+           // Full refresh clear when swapping modes to avoid cross-render artifacts
+           ctx.fillStyle = "#080810";
+           ctx.fillRect(0, 0, W, H);
+       });
+
+       // Initialize frame loop sequence on layout load
+       window.onload = function() {
+           requestAnimationFrame(renderLoop);
+       };
+   </script>
+</body>
+</html>

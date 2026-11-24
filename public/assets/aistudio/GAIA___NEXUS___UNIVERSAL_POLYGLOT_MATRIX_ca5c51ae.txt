@@ -1,0 +1,575 @@
+# GAIA / NEXUS — UNIVERSAL POLYGLOT MATRIX
+## Unified Build, Integration & Verification Directive
+**Designation:** `AE.AXS.POLYGLOT.3.0`  
+**Integration target:** Existing Untitled Google AI Studio project  
+**Baseline:** Preserve all existing source, module identities, checkpoints, and project history  
+**Execution policy:** Inspect → Reconcile → Implement → Test → Verify → Record  
+**Release state:** Do not declare production-ready until acceptance criteria pass.
+
+### 0. Governing doctrine
+
+Enforce these invariants throughout the entire implementation:
+
+- Boundary — Nothing executes beyond its time.
+- Capacity — Nothing claims capacity without measurement.
+- Correctness — Nothing claims correctness without verification.
+
+Authorization:
+
+\[
+A=B\land C\land V
+\]
+
+Proof domains:
+
+\[
+V=V_{\mathrm{recovery}}\land
+V_{\mathrm{algebraic}}\land
+V_{\mathrm{cryptographic}}
+\]
+
+Preserve the system order:
+
+`S.O.S. → HAMILTONIAN → CRYPTIC → GAIA → VERIFIED LEDGER`
+
+Never allow a visualization, model response, caller-provided status, or unverified worker message to establish proof.
+
+### 1. Source-preserving inventory
+
+Before editing, inspect the complete source tree, package manifest, lockfile, build configuration, existing tests, and project documentation.
+
+Inspect at minimum:
+
+- `src/engine/algorithmRegistry.ts`
+- `src/engine/hccgnScheduler.ts`
+- `src/engine/pqMerkleReceiptEngine.ts`
+- `src/engine/sqliteLedgerStore.ts`
+- `src/engine/stratumNetworkEngine.ts`
+- `src/engine/v7VerificationEngine.ts`
+- `src/engine/unifiedSingularityEngine.ts`
+- `src/engine/nuefPolyglotQuineEngine.ts`
+- `src/engine/crypticGraphingEngine.ts`
+- `src/engine/circularProcessingRuntime.ts`
+- `src/engine/mathConvergenceEngine.ts`
+- `src/engine/universalClockCanonical.ts`
+- `src/engine/universalClockKernel.ts`
+- `src/components/CosmicGuardianVoidCanvas.tsx`
+- `src/components/FourDimensionalHypergeometricWorkspace.tsx`
+- `src/components/UnifiedSingularityWorkspace.tsx`
+- `src/App.tsx`
+- `src/types/cryptic.ts`
+- `src/types/gaiaNexus.ts`
+- `src/os/interfaces/`
+- `src/workers/`
+- `server.ts`
+- `package.json`
+- `tsconfig.json`
+- `vite.config.ts`
+
+Inspect all existing imports and consumers before changing any public interface.
+
+Produce a source inventory with:
+- File path and module identity.
+- Actual exported functions and classes.
+- Actual imports and dependents.
+- Implemented, partial, missing, or unverified status.
+- Existing tests and measured test coverage.
+- Duplicate or conflicting implementations.
+- Dependencies and capability requirements.
+
+Do not replace an existing engine simply because a new implementation would be easier.
+
+### 2. Canonical contracts and versioned manifests
+
+Extend existing shared types instead of creating a competing type system.
+
+Establish or reconcile:
+
+- `AE.SOVEREIGN.OS`
+- `AE.AXS.POLYGLOT`
+- `AE.BELLMAN.ADAPTIVE.IO`
+- `AE.MINERVA.UNBOUND.INVERSE`
+- `AE.SL6.DUALTRACE.4P`
+- `AE.CHUNK.COPRIME.4P`
+- `AE.BLAKE2B.SEAL`
+
+Preserve existing names and version history.
+
+Define shared contracts for:
+- Module identity and semantic version.
+- API and schema compatibility.
+- Capabilities and permissions.
+- Device and service identity.
+- Execution context.
+- System events and correlation IDs.
+- Health and readiness.
+- Error and recovery states.
+- Verification receipts.
+- Worker messages.
+
+Create or reconcile versioned manifests for the modules. Generate hashes from actual file contents; never invent checksums.
+
+### 3. Universal Polyglot Matrix Terminal
+
+Implement `AE.AXS.POLYGLOT.3.0` as a language-independent command kernel.
+
+The terminal must accept distinct command families:
+
+- `quine`
+- `pkg:<command>`
+- `math:<expression>`
+- Native shell commands
+- Programming-language operations
+- Mathematical expressions
+- Registered engine commands
+- `exit`
+
+Canonical examples:
+
+```text
+quine
+pkg:install <package>
+math:gcd(65537, 97152)
+math:inverse(65537, 97152)
+math:prime(104729)
+engine:status
+engine:verify <receipt-id>
+exit
+```
+
+These are command forms; each must be parsed and dispatched through a registered provider.
+
+Architecture:
+
+`Input → Lexer → Parser → Semantic Analysis → AXIR → Capability Resolution → Authorization → Native Backend → Result Envelope → Verification → Ledger`
+
+Implement:
+- Original-input preservation.
+- Token and source-position tracking.
+- Operator precedence.
+- Explicit type and signedness handling.
+- Locale and Unicode normalization without losing the original input.
+- Parse diagnostics.
+- Canonical intermediate representation.
+- Native execution-provider interfaces.
+- Capability and permission checks.
+- Structured result envelopes.
+- Correlation IDs and receipts.
+
+Preserve PIPETHRUUC operators:
+
+- `|` — pipe
+- `>` — output redirection
+- `<` — input redirection
+- `<--` — reverse redirection
+
+Recognize `<--` before interpreting individual angle-bracket operators.
+
+Do not claim every command is interchangeable. Bash, PowerShell, Python, SQL, Mathematica, and native operating-system commands have different semantics. Route them to the correct native backend.
+
+### 4. Package-manager federation
+
+Discover available providers rather than assuming every manager exists.
+
+Support adapters for:
+
+**Operating systems**
+- Windows: WinGet, Chocolatey, Scoop.
+- macOS: Homebrew, MacPorts.
+- Debian/Ubuntu: APT and dpkg.
+- Fedora/RHEL: DNF and YUM.
+- Arch: Pacman.
+- openSUSE: Zypper.
+- Alpine: APK.
+- Gentoo: Portage.
+- NixOS: Nix.
+- Guix: Guix.
+- FreeBSD: pkg.
+- NetBSD: pkgin.
+- Android/Termux: pkg and apt.
+- Flatpak and Snap where available.
+
+**Language ecosystems**
+- Python: pip, uv, Poetry, PDM, Conda, Mamba.
+- JavaScript: npm, pnpm, Yarn, Bun.
+- Rust: Cargo.
+- Go: go install.
+- Ruby: gem and Bundler.
+- PHP: Composer.
+- .NET: dotnet.
+- Java: Maven and Gradle.
+- R: install.packages.
+- Wolfram: PacletInstall.
+
+Each adapter must expose:
+- Discovery.
+- Availability.
+- Version.
+- Install, update, remove, and query capabilities.
+- Exit status.
+- Output and error streams.
+- Authorization requirements.
+- Execution duration.
+
+Use dry-run or read-only discovery for the initial audit. Do not install, remove, or update host packages without explicit authorization.
+
+### 5. Unified mathematics and computational providers
+
+Create a shared mathematical provider interface.
+
+Integrate existing mathematical implementations and dispatch to available providers such as:
+- Native TypeScript exact arithmetic.
+- Python/SymPy.
+- Wolfram Engine/Mathematica, when configured.
+- Other registered numerical or symbolic providers.
+
+Preserve exact arithmetic where possible. Record precision, assumptions, units, numerical tolerances, and provider identity.
+
+Cover:
+- Number theory and modular arithmetic.
+- Prime and coprime operations.
+- Abstract algebra.
+- Groups, rings, fields, permutations, and finite fields.
+- Calculus and numerical methods.
+- Linear algebra and matrix operations.
+- Geometry and differential geometry.
+- Statistics and inference.
+- Optimization and control theory.
+- Information theory.
+- QC-LDPC.
+- Reed–Solomon/GF(256).
+- Cryptographic primitives.
+- Graph and lattice algorithms.
+
+The shared algorithm registry must identify each algorithm's input schema, output schema, complexity, capability requirements, and verification method.
+
+### 6. Cryptographic identity and inverse verification
+
+Preserve the three-stage receipt pipeline:
+
+```text
+computeOriginalHash()
+verifyTransformationChain()
+solidifyVersionedReceipt()
+```
+
+Mathematical foundation:
+
+\[
+D_0\xrightarrow{\mathrm{HASH}}H
+\xrightarrow{\mathrm{TRANSFORM+VERIFY}}D_3
+\xrightarrow{\mathrm{SOLIDIFY}}\mathcal I_v
+\]
+
+Implement real SHA-256 and SHA-256d over exact byte sequences.
+
+Preserve:
+- Original byte length.
+- Encoding.
+- Input digest.
+- Algorithm identity and version.
+- Transformation parameters.
+- Final output digest.
+- Verification result.
+- Receipt schema and timestamp.
+
+For reversible transformations, verify both directions when the domain permits:
+
+\[
+F(F^{-1}(y))=y
+\]
+
+\[
+F^{-1}(F(x))=x
+\]
+
+Integrate `AE.MINERVA.UNBOUND.INVERSE` as a generic operator-injection module.
+
+Do not claim SHA-256 can be reversed. A modular inverse is an inverse in a defined modular arithmetic domain, not an inverse of an arbitrary cryptographic hash.
+
+Use independent recomputation for verification. Caller-supplied success flags are not evidence.
+
+Use canonical serialization, preferably RFC 8785 JSON Canonicalization Scheme, before hashing structured receipts.
+
+SHA-256 provides integrity identification, not authentication. Add signatures or authenticated receipts only with sound key management.
+
+### 7. ADL directional-lattice scheduler
+
+Preserve the six-position schedule:
+
+\[
+L=\{2,1,1,2,2,1\}
+\]
+
+\[
+D=\{-1,+1,+1,-1\}
+\]
+
+Generate each event from its original position, lane, and directional-cycle index.
+
+The reverse schedule must reverse event order and negate each direction:
+
+\[
+S^{-1}=\operatorname{Reverse}(S),
+\quad d_i\mapsto-d_i
+\]
+
+Every transition must record:
+- Sequence number.
+- Lane.
+- Direction.
+- Input state.
+- Output state.
+- Scheduler cursor.
+- Monotonic start and completion measurements.
+- Completion status.
+- Verification result.
+
+Advance the scheduler only after the operation has completed and its result has been validated.
+
+Preserve the forward → reverse → forward replay test.
+
+Integrate `AE.BELLMAN.ADAPTIVE.IO` with actual asynchronous I/O providers. If Linux `io_uring` is available, use it through a native service or backend. Do not represent browser workers as `io_uring`.
+
+`io_uring` is an asynchronous I/O interface, not the virtual-memory swap scheduler.
+
+### 8. CRYPTIC Cube and four-dimensional environment
+
+Preserve the existing WebGL background and 4D traversal components.
+
+The visualization must be a projection of the canonical computational state, not a second competing database.
+
+Integrate:
+- XYZW coordinate representation.
+- Origin marker.
+- Directional lattice.
+- Six-axis Sierpinski rendering.
+- Layer and prism indexing.
+- Dewey-style hierarchical indices.
+- Coprime intersections.
+- Reversible traversal paths.
+- Hash-to-coordinate lookup.
+- Algorithm ring.
+- Search and result highlighting.
+- Dynamic layer expansion.
+- Runtime snapshots.
+
+Preserve the existing mouse, touch, WSAD, Q/E, Space/Shift, and arrow-key controls.
+
+Add explicit keyboard focus handling so terminal inputs and form controls do not accidentally trigger flight movement.
+
+Use deterministic coordinates for computational records. Separate decorative animation from verified state.
+
+Do not fabricate a hash pool by displaying a calculated counter. A displayed record count must correspond to actual persisted or in-memory records.
+
+### 9. Computational concurrency and capacity measurement
+
+Build an adaptive execution coordinator.
+
+Discover:
+- Available CPU concurrency.
+- Worker availability.
+- Memory limits where exposed.
+- Browser execution constraints.
+- Network throughput and latency.
+- Provider availability.
+- Queue depth.
+- Task completion and error rates.
+
+Benchmark each algorithm and provider with actual workload measurements.
+
+Report:
+- Operations per second.
+- Bytes per second.
+- Median and tail latency.
+- Queue depth.
+- Worker utilization.
+- Error rate.
+- Retry count.
+- Memory use when measurable.
+- Clock source and resolution.
+
+Use bounded queues, backpressure, cancellation, timeouts, and checkpoint recovery.
+
+Never claim hundreds of thousands of hashes per picosecond unless a real, reproducible benchmark establishes that throughput. Do not extrapolate from a mathematical counter or clock conversion.
+
+### 10. Error correction and recovery
+
+Integrate QC-LDPC as the selected LDPC approach.
+
+Combine it with recursive Reed–Solomon/GF(256) correction and independent reverification.
+
+Track:
+- Code parameters.
+- Syndrome.
+- Correction count.
+- Decoder status.
+- Residual errors.
+- Reverification result.
+- Original and corrected data digests.
+
+A corrected payload must still pass the required integrity and transformation checks.
+
+Preserve failed candidates and diagnostics rather than silently discarding them.
+
+### 11. Blockchain, Stratum, Merkle and NFT evidence
+
+Separate these operations:
+
+1. Hash computation.
+2. Mining-share validation.
+3. Block-header proof-of-work validation.
+4. Canonical chain inclusion.
+5. Transaction verification.
+6. Merkle inclusion proof.
+7. Snapshot registration.
+8. NFT issuance.
+
+A mining share is not a mined block.
+
+A hash calculation is not proof of valid proof-of-work.
+
+A Merkle inclusion proof establishes inclusion in a committed tree; it does not prove the truth of the record's description.
+
+An NFT references a snapshot; it is not the original artifact and does not authenticate the event merely by existing.
+
+Preserve original bytes and immutable snapshot metadata.
+
+Do not mint, transfer, or publish tokens automatically. Require explicit authorization and secure signing.
+
+### 12. Ledger and historical provenance
+
+Use the existing SQLite ledger implementation if it is sound. Inspect its schema and transaction behavior before modifying it.
+
+Persist:
+- Event identity.
+- Parent and correlation IDs.
+- Module and algorithm versions.
+- Input and output digests.
+- Transformation metadata.
+- ADL schedule and cursor.
+- Verification evidence.
+- Snapshot references.
+- Provider measurements.
+- Error and recovery records.
+
+Use transactional writes and migration tests.
+
+Do not interpret a draft WAL filename or browser-only persistence as proof of a durable, independently recoverable ledger.
+
+### 13. Runtime and build repair
+
+Investigate the current Vite WebSocket disconnect and unhandled rejection.
+
+Determine whether it is:
+- A transient hot-module-reload connection loss.
+- A server restart issue.
+- A proxy or port issue.
+- A frontend/backend lifecycle mismatch.
+- An application-level unhandled rejection.
+
+Fix the actual cause. Do not merely suppress the error.
+
+Check:
+- Server lifecycle.
+- WebSocket configuration.
+- Worker lifecycle.
+- React effect cleanup.
+- Duplicate event listeners.
+- Resource disposal.
+- SQLite connection lifecycle.
+- Worker termination and recovery.
+
+Preserve the existing application UI and background renderer.
+
+### 14. Test and acceptance sequence
+
+Run the existing test suite first. Add focused tests where coverage is missing.
+
+Required acceptance groups:
+
+**A. Polyglot**
+- Lexer and parser.
+- Operator precedence.
+- `<--` recognition.
+- Original-input preservation.
+- Provider dispatch.
+- Permission denial.
+- Unsupported provider handling.
+
+**B. Mathematics**
+- GCD and coprimality.
+- Modular inverse.
+- Prime tests.
+- Exact arithmetic.
+- Numerical tolerance and error bounds.
+
+**C. Cryptography**
+- SHA-256 known vectors.
+- SHA-256d known vectors.
+- Exact byte encoding.
+- Transformation-chain reconstruction.
+- Receipt canonicalization.
+- Independent digest verification.
+
+**D. ADL**
+- Six-event schedule.
+- Correct four-direction cycle.
+- Reverse order and negated direction.
+- Forward/reverse/forward state equality.
+- Failed transition does not advance cursor.
+
+**E. Error correction**
+- QC-LDPC validation.
+- Reed–Solomon/GF(256) correction.
+- Syndrome checks.
+- Independent post-correction verification.
+
+**F. Ledger**
+- Atomic writes.
+- Restart recovery.
+- Schema migration.
+- Duplicate event handling.
+- Hash-chain verification.
+
+**G. Rendering**
+- WebGL context lifecycle.
+- Keyboard and pointer controls.
+- Focus isolation.
+- Deterministic coordinate mapping.
+- Layer indexing.
+- Rendering performance measurements.
+
+**H. Runtime**
+- Server startup.
+- WebSocket stability.
+- Worker communication.
+- Cancellation.
+- Timeout.
+- Resource cleanup.
+- Restart and checkpoint recovery.
+
+### 15. Completion report
+
+At the end, provide:
+
+1. Exact files inspected.
+2. Exact files created or modified.
+3. Existing functionality preserved.
+4. Modules completed.
+5. Modules still partial or unavailable.
+6. Build output.
+7. Type-check output.
+8. Test counts and failures.
+9. Measured performance.
+10. Known limitations.
+11. Ledger and receipt status.
+12. Next implementation boundary.
+
+Do not report success for a test that was not run. Do not mark an integration complete because a file was created or a UI element was rendered.
+
+### Final release condition
+
+The build is complete only when the existing source has been reconciled, implementations are connected through explicit contracts, required tests pass, measured capacity is recorded, and independent verification receipts are generated.
+
+**The Architect / Nexus / Cryptic News LLC / Project: The Nexus Generation: GaiaSSoul / SERIES: The Nexus of Gaia / ID: 137451921129154222|040592|433855274**

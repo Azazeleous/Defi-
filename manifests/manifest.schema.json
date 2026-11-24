@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "manifestVersion",
+    "moduleId",
+    "moduleVersion",
+    "apiVersion",
+    "schemaVersion",
+    "description",
+    "status"
+  ],
+  "properties": {
+    "manifestVersion": { "type": "string" },
+    "moduleId": { "type": "string" },
+    "moduleVersion": { "type": "string" },
+    "apiVersion": { "type": "string" },
+    "schemaVersion": { "type": "string" },
+    "description": { "type": "string" },
+    "status": { "type": "string", "enum": ["DEVELOPMENT", "STABLE", "DEPRECATED"] }
+  }
+}

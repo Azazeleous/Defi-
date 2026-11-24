@@ -1,0 +1,9 @@
+{
+  "manifestVersion": "1.0.0",
+  "moduleId": "AE.DEVICE.MESH",
+  "moduleVersion": "6.2.0",
+  "apiVersion": "v2",
+  "schemaVersion": "1.0.0",
+  "description": "Cryptic Device Mesh Core: Subsea link monitoring, persistent storage watcher, cross-node telemetry replication, and udev hardware abstraction.",
+  "status": "STABLE"
+}

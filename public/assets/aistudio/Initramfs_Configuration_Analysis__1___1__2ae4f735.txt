@@ -1,0 +1,289 @@
+Yes. The key change is that **inversion becomes pair-local, continuously interleaved, and independently verified**—not a global switch that reverses the entire engine after an error.
+
+Your four lanes form **two tethered opposing pairs**. Each lane keeps its own registered execution sequence, while retaining the opposing lane's original ticket and location. The two pairs then cross-verify one another.
+
+## 1. The four-lane arrangement
+
+<box border radius="lg" padding={3} gap={3}>
+  <title size="lg">AE.SL6.DUALTRACE</title>
+  <text color="secondary" size="xs" weight="medium">PAIR A · PRIMARY FORWARD / OPPOSING REVERSE</text>
+  <grid columns={2} gap={2}>
+    <grid-item>
+      <box background="rgba(30,160,110,0.10)" radius="md" padding={3} gap={1}>
+        **Lane 1 · Automation**
+        <title size="xl" color="success">1234</title>
+        <text size="xs" color="secondary">Forward source order</text>
+        <badge color="success">Own execution ticket</badge>
+      </box>
+    </grid-item>
+    <grid-item>
+      <box background="rgba(50,130,210,0.10)" radius="md" padding={3} gap={1}>
+        **Lane 2 · Shadow**
+        <title size="xl" color="info">4321</title>
+        <text size="xs" color="secondary">Opposing inverse order</text>
+        <badge color="info">Mirrored ticket</badge>
+      </box>
+    </grid-item>
+  </grid>
+  <divider color="subtle"/>
+  <text color="secondary" size="xs" weight="medium">PAIR B · REVERSE / OPPOSING FORWARD</text>
+  <grid columns={2} gap={2}>
+    <grid-item>
+      <box background="rgba(30,160,110,0.10)" radius="md" padding={3} gap={1}>
+        **Lane 3 · Automation**
+        <title size="xl" color="success">4321</title>
+        <text size="xs" color="secondary">Reverse source order</text>
+        <badge color="success">Own execution ticket</badge>
+      </box>
+    </grid-item>
+    <grid-item>
+      <box background="rgba(50,130,210,0.10)" radius="md" padding={3} gap={1}>
+        **Lane 4 · Shadow**
+        <title size="xl" color="info">1234</title>
+        <text size="xs" color="secondary">Opposing inverse order</text>
+        <badge color="info">Mirrored ticket</badge>
+      </box>
+    </grid-item>
+  </grid>
+  <divider color="subtle"/>
+  <box background="surface-secondary" radius="md" padding={3} gap={1}>
+    **Shared coaxial verification point**
+    <title size="2xl" textAlign="center" tabularNums>0.5</title>
+    <text color="secondary" size="xs" textAlign="center">Pair A ↔ Pair B · compare state, sequence, polarity, and closure</text>
+  </box>
+</box>
+
+The important distinction:
+
+- Lane 1 is not merely a copy of Lane 3.
+- Lane 2 is not merely a copy of Lane 4.
+- Each lane has its own execution cursor and ticket.
+- Each lane knows which original location it is opposing.
+- A mismatch in one pair does not silently reverse or rewrite the other pair.
+
+## 2. Fractional and whole boundaries
+
+Your delimiters have separate meanings:
+
+| Boundary | Meaning | Execution responsibility |
+|---|---|---|
+| `{ }` | Fractional increments | Interleaved timing and sub-step observations |
+| `( )` | Whole-cycle boundaries | Complete operator sequence and cycle closure |
+| `1234` | Forward traversal | Original ordering |
+| `4321` | Reverse traversal | Opposing ordering |
+| `0.5` | Midpoint | Pair synchronization and comparison |
+
+The fractional streams are complementary:
+
+\[
+F=\{0.1,0.2,\ldots,0.9\}
+\]
+
+\[
+R=\{0.9,0.8,\ldots,0.1\}
+\]
+
+At each fractional checkpoint, the engine compares the corresponding paired states. At the whole-cycle boundary, it verifies that the inverse composition reconstructs the original state.
+
+One essential mathematical safeguard: reversing the order `1234` to `4321` is only a valid inverse if each operator has a defined inverse and the inverse operations are applied in reverse composition order.
+
+## 3. The interleaved execution rule
+
+Instead of running one complete forward pass and waiting for a later reverse pass, use this repeating structure:
+
+<CodeBlock language="text" editable>
+REGISTER SOURCE TICKET
+        |
+        v
+  +----- PAIR A -----+
+  |                  |
+  | L1: 1234         | L2: 4321
+  | Automation       | Shadow
+  |                  |
+  +--------+---------+
+           |
+     FRACTIONAL CHECK
+       { 0.1 ... 0.9 }
+           |
+     MIDPOINT CHECK
+          0.5
+           |
+  +--------+---------+
+  |                  |
+  | L3: 4321         | L4: 1234
+  | Automation       | Shadow
+  |                  |
+  +----- PAIR B -----+
+           |
+     FRACTIONAL CHECK
+       { 0.9 ... 0.1 }
+           |
+     WHOLE CYCLE CHECK
+        (1234 / 4321)
+           |
+     CROSS-PAIR CLOSURE
+           |
+     REGISTER RECEIPT
+</CodeBlock>
+
+Each lane can advance its own work when its dependencies are ready. Verification remains inside the compute kernel's control path; the graph is an observation of that state, not the authority that decides whether a computation is valid.
+
+## 4. Each inverse adjusts against its own paired source
+
+This is the part I would make fundamental to the kernel.
+
+For every operator \(O_i\), the automation lane records its input, output, operator version, and sequence position. Its shadow partner independently applies the corresponding inverse.
+
+\[
+x_{i+1}=O_i(x_i;\theta_i)
+\]
+
+\[
+\hat{x}_i=O_i^{-1}(x_{i+1};\hat{\theta}_i)
+\]
+
+\[
+e_i=\hat{x}_i-x_i
+\]
+
+The pair evaluates its reconstruction error:
+
+\[
+\boxed{\|e_i\|\leq\tau_i}
+\]
+
+If the inverse has adjustable parameters, the shadow can calculate a bounded correction:
+
+\[
+\hat{\theta}_{i}^{(k+1)}
+=
+\hat{\theta}_{i}^{(k)}
+-
+\eta\nabla_{\theta}L_i
+\]
+
+where \(L_i\) measures reconstruction error.
+
+There are three important rules:
+
+1. The shadow may adjust its own inverse parameters, but never rewrite the automation lane's original input or output.
+2. Every adjustment receives a new version and verification receipt.
+3. If no valid inverse exists, the pair reports an unresolved state. It must not manufacture a successful reconstruction.
+
+This gives you continuous inverse calibration rather than a single reverse operation at shutdown.
+
+## 5. The ticket must preserve the original location
+
+I would replace the existing ticket model with this stronger contract:
+
+```ts
+export type Polarity = 1 | -1;
+export type LaneId = 1 | 2 | 3 | 4;
+export type SequenceOrder = "1234" | "4321";
+export type LaneRole = "automation" | "shadow";
+export type PairId = "A" | "B";
+
+export interface ExecutionTicket {
+  readonly ticketId: string;
+  readonly sourceSequenceId: string;
+  readonly sourceLane: LaneId;
+  readonly opposingLane: LaneId;
+  readonly originalOrder: SequenceOrder;
+  readonly originalPosition: number;
+  readonly polarity: Polarity;
+  readonly operatorSetVersion: string;
+  readonly stateFingerprint: string;
+}
+
+export interface PairedLaneState {
+  readonly laneId: LaneId;
+  readonly pairId: PairId;
+  readonly role: LaneRole;
+  readonly order: SequenceOrder;
+
+  // Each lane owns its execution cursor.
+  readonly executionCursor: number;
+  readonly fractionalCursor: number;
+  readonly wholeCycle: number;
+
+  // Original source location never changes.
+  readonly sourceTicket: ExecutionTicket;
+
+  // The opposing location is independently retained.
+  readonly opposingTicket: ExecutionTicket;
+
+  // Explicit polarity: never inferred from formatting.
+  readonly polarity: Polarity;
+
+  // Inverse calibration is independently versioned.
+  readonly inverseVersion: number;
+  readonly reconstructionError: number;
+}
+
+export interface PairVerification {
+  readonly pairId: PairId;
+  readonly sourceSequenceId: string;
+  readonly sourceFingerprint: string;
+  readonly reconstructedFingerprint: string;
+  readonly maximumResidual: number;
+  readonly verified: boolean;
+  readonly fractionalCheckpoint: number;
+  readonly wholeCycle: number;
+}
+```
+
+## 6. The four lanes should be graphed independently
+
+<AsyncImage query="abstract technical visualization four parallel interwoven data streams two opposing mirrored trajectories central synchronization point dark scientific interface cyan orange green purple vector lines" aspectRatio="16:9" width="100%" />
+
+The visualization should show:
+
+- Four independent lane trajectories.
+- Two distinct automation/shadow pairings.
+- Forward and reverse progression simultaneously.
+- Fractional checkpoint markers.
+- The shared midpoint.
+- Each lane's original ticket and opposing ticket.
+- Reconstruction residuals and inverse adjustment versions.
+- A separate whole-cycle closure indicator.
+
+The graph should never be the source of truth. The kernel owns the state; the graph renders the verified state.
+
+## 7. Important corrections before incorporating the supplied TypeScript
+
+There are several existing implementation details that must be corrected rather than carried forward unchanged:
+
+| Existing element | Required correction |
+|---|---|
+| `exceptionMarker: ""` | Preserve explicit `+1` and `-1` polarity. Never erase the negative sign. |
+| `Math.abs(0.3 - ...)` | Preserve directional values; absolute value destroys orientation information. |
+| `1324` / `4321` | Treat each as a scheduling order, not proof of inversion. |
+| `0.1ms` timing | Treat as a target measurement interval, not a guaranteed JavaScript execution interval. |
+| `cryptographicReceiptHash` | Use a real BLAKE2b or SHA-256 implementation; the current arithmetic expression is not a cryptographic hash. |
+| `nX` in the BigInt literal | Invalid TypeScript syntax; the expression must be corrected. |
+| MAC comparison | Not device authentication; use authenticated device identity. |
+| CMOS permissions | Keep privileged hardware access in a properly authorized OS service or driver. Browser visualization cannot directly control CMOS permissions. |
+| 8 MB allocation | Distinguish a reserved capacity from actual allocated, written, and verified bytes. |
+
+One storage arithmetic detail is worth preserving: 8 MiB is 8,388,608 bytes. A 388,608-byte tail leaves exactly 8,000,000 bytes, not four 2 MiB blocks plus an additional tail. The allocation map must account for every byte without overlap.
+
+---
+
+**The resulting architectural designation:**
+
+<title size="2xl" color="default">AE.SL6.DUALTRACE.4P</title>
+<text color="secondary" weight="medium" size="sm">Four-Lane Paired Interleaved Inverse Kernel</text>
+
+Its governing rule:
+
+\[
+\boxed{
+\text{Every automation lane has an opposing shadow,}
+\quad
+\text{every shadow retains its source ticket,}
+\quad
+\text{every inverse is continuously verified.}
+}
+\]
+
+And the final distinction: **the four lanes do not merely mirror one another; they preserve independent execution histories while sharing a common verification origin.** That is what makes the architecture meaningfully cross-verifiable rather than four copies of the same computation.

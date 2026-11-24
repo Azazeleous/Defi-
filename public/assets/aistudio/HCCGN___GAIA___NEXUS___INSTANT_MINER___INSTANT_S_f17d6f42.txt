@@ -1,0 +1,1293 @@
+# HCCGN / GAIA / NEXUS — INSTANT MINER & INSTANT SOLVER
+## Master Implementation Directive — CRYPTIC Mining Intelligence Platform
+### Project culmination and functional integration mandate
+
+**System designation:** HCCGN.CRYPTIC.INSTANT.MINER  
+**Version target:** 1.0.0 — Integrated implementation  
+**Parent architecture:** HCCGN / GAIA / NEXUS / CRYPTIC  
+**Temporal kernel:** HCCGN.UCLK.DUAL.ADAPTIVE  
+**Primary application:** Existing Google AI Studio project currently open  
+**Implementation mode:** Preserve, audit, integrate, test, and advance the existing application.
+
+---
+
+# 0. PRIMARY DIRECTIVE
+
+Take ownership of the existing application in this Google AI Studio project.
+
+Do not create a disconnected demonstration, disposable prototype, mock mining environment, or replacement application.
+
+Inspect the complete existing source tree, understand the actual implementation, and evolve it into a unified computational mining, solving, verification, graphing, continuous-worker, and receipt-accounting application.
+
+The objective is to produce a genuinely functioning, extensible computational platform with three coordinated mining tiers:
+
+1. **INSTANT MINER / INSTANT SOLVER:** Immediate bounded computation, candidate generation, solving, independent verification, and live graphing.
+2. **CONTINUOUS MINING INSTANCES:** Persistent, independently managed workers with checkpoints, heartbeat, telemetry, and fault recovery.
+3. **FEDERATED MINING COORDINATOR:** Distributed workload scheduling, pool/protocol integration, share verification, receipt reconciliation, and reward accounting.
+
+All three tiers must use the same algorithm registry, clock architecture, computation contracts, verification engine, and event ledger.
+
+The system must be engineered for measurable performance and correctness. Never claim to outperform industrial mining operations, achieve a particular hashrate, or produce guaranteed rewards without independently verifiable measurements.
+
+**Do not merely describe changes. Implement the actual source changes.**
+
+---
+
+# 1. FIRST: AUDIT THE EXISTING APPLICATION
+
+Inspect every relevant source file before modifying anything.
+
+Existing architecture includes:
+
+- `src/components/CalculusCoprimeGridModal.tsx`
+- `src/components/FourLaneLatticeConsole.tsx`
+- `src/components/CrypticGraphingWorkspace.tsx`
+- `src/components/AnalyticsDashboard.tsx`
+- `src/components/MiningAdvancedAnalytics.tsx`
+- `src/components/StripeMultiCurrencyPayouts.tsx`
+- `src/components/ArbitrageActivityLog.tsx`
+- `src/components/ArbitrageAuditLog.tsx`
+- `src/components/ExecutionDetailModal.tsx`
+- `src/components/D3FourLaneTransitionGraph.tsx`
+- `src/components/GaiaVaultLedger.tsx`
+- `src/engine/crypticGraphingEngine.ts`
+- `src/engine/cuboctahedralTraceEngine.ts`
+- `src/contracts/dualtrace.ts`
+- `src/contracts/axs-polyglot.ts`
+- `src/contracts/sovereign-os.ts`
+- `src/types/cryptic.ts`
+- `src/types/arbitrage.ts`
+- `src/workers/calculusWorker.ts`
+- `src/workers/matrixWorker.ts`
+- `src/workers/gaiaNexusWorker.ts`
+- `server.ts`
+- `package.json`
+- `mockData.ts`, if present
+- Existing data, algorithm, and storage modules.
+
+Inspect all other files and dependencies that affect these systems.
+
+## Audit requirements
+
+Establish:
+
+1. Which functions actually execute computations.
+2. Which functions only visualize or animate.
+3. Which algorithms have real implementations.
+4. Which algorithms are placeholders or incomplete.
+5. Which telemetry is measured versus inferred.
+6. Which ledger records are durable.
+7. Which receipts are cryptographically verifiable.
+8. Which server endpoints are operational.
+9. Which external services are actually connected.
+10. Which existing tests establish correctness.
+
+Preserve working features.
+
+Remove duplicated implementations only after confirming their responsibilities and dependencies.
+
+Do not destroy existing project files, assets, history, or functional interfaces.
+
+Create a source-backed integration map and a list of actual defects before implementing the next architecture.
+
+---
+
+# 2. THREE-TIER MINING ARCHITECTURE
+
+## TIER 1 — INSTANT MINER / INSTANT SOLVER
+
+Designation:
+
+`CRYPTIC.T1.INSTANT`
+
+Purpose:
+
+A user submits a supported computational job and immediately receives a measurable execution session.
+
+Required capabilities:
+
+- Select an explicitly supported algorithm.
+- Select a supported network or standalone benchmark.
+- Load validated job parameters.
+- Initialize a computation session.
+- Generate candidate inputs.
+- Execute the actual algorithm.
+- Evaluate candidates against the actual target.
+- Submit candidates when the configured protocol supports submission.
+- Independently verify results.
+- Record execution time and operation count.
+- Display live graphs.
+- Produce a cryptographic execution receipt.
+
+### Instant solver
+
+The solver must remain algorithm-independent wherever the mathematics permits.
+
+Its interface accepts:
+
+- Input state.
+- Forward operator.
+- Inverse operator, when one exists.
+- Algorithm parameters.
+- Verification policy.
+- Execution budget.
+
+For reversible transformations, verify:
+
+\[
+F(F^{-1}(Y))=Y
+\]
+
+Where applicable, also verify:
+
+\[
+F^{-1}(F(X))=X
+\]
+
+Do not claim that SHA-256 or BLAKE2b can be inverted merely because an inverse-indexing or reversible arithmetic transformation exists.
+
+Cryptographic hashes remain one-way functions for the purposes of this system.
+
+The solver must distinguish:
+
+- Exact inverse reconstruction.
+- Candidate search.
+- Error correction.
+- Statistical estimation.
+- Cryptographic digest verification.
+- Consensus target validation.
+
+These are different computational operations.
+
+### Instant execution interface
+
+Provide:
+
+- Start.
+- Pause.
+- Resume.
+- Stop.
+- Cancel.
+- Reset.
+- Verify.
+- Export receipt.
+
+Display actual measured:
+
+- Completed operations.
+- Candidate count.
+- Valid candidates.
+- Hash calls.
+- Bytes processed.
+- Elapsed time.
+- Operations per second.
+- Hashes per second.
+- Average latency.
+- p95 latency.
+- Verification status.
+- Current execution state.
+
+No hardcoded performance claims.
+
+---
+
+## TIER 2 — CONTINUOUS MINING INSTANCES
+
+Designation:
+
+`CRYPTIC.T2.CONTINUOUS`
+
+Purpose:
+
+Run multiple independently managed computation instances over sustained periods.
+
+Each worker must possess:
+
+- Unique worker ID.
+- Unique execution epoch.
+- Independent algorithm configuration.
+- Independent nonce or input allocation.
+- Independent cursor.
+- Work assignment.
+- Heartbeat.
+- Checkpoint.
+- Last verified receipt.
+- Actual resource measurements.
+- Failure and recovery history.
+
+### Continuous worker functionality
+
+Implement:
+
+- Start and stop individual workers.
+- Start and stop worker groups.
+- Pause and resume.
+- Worker restart.
+- Checkpoint recovery.
+- Work lease expiration.
+- Duplicate-work prevention.
+- Backpressure.
+- Queue management.
+- Resource limits.
+- Graceful shutdown.
+
+Workers must never silently duplicate the same assigned work unless duplication is explicitly required for independent verification.
+
+Worker recovery must restore the last valid checkpoint, not fabricate progress.
+
+### Worker state machine
+
+- INITIALIZING
+- READY
+- RUNNING
+- PAUSED
+- VERIFYING
+- CHECKPOINTING
+- DEGRADED
+- RECOVERING
+- STOPPED
+- FAILED
+
+Every transition must be recorded.
+
+### Continuous monitoring
+
+Provide a live graph for:
+
+- Per-worker throughput.
+- Aggregate throughput.
+- Worker availability.
+- CPU usage where available.
+- Memory consumption.
+- Queue depth.
+- Job completion.
+- Verification failures.
+- Heartbeat age.
+- Missed deadlines.
+
+Clearly distinguish unavailable measurements from zero values.
+
+---
+
+## TIER 3 — FEDERATED MINING COORDINATOR
+
+Designation:
+
+`CRYPTIC.T3.FEDERATED`
+
+Purpose:
+
+Coordinate multiple workers and supported mining protocols through a common job and verification contract.
+
+Required capabilities:
+
+- Work distribution.
+- Worker registration.
+- Work assignment.
+- Lease management.
+- Share collection.
+- Share verification.
+- Duplicate-share detection.
+- Difficulty accounting.
+- Pool protocol adapters.
+- Block candidate tracking.
+- Receipt reconciliation.
+- Reward eligibility accounting.
+
+The coordinator must not assume that every cryptocurrency uses the same proof-of-work algorithm.
+
+Implement protocol adapters separately.
+
+Support only algorithms and protocols that have actual, tested implementations.
+
+Potential algorithm families include:
+
+- SHA-256.
+- Scrypt.
+- RandomX.
+- Other explicitly implemented and validated proof-of-work algorithms.
+
+Network adapters must establish actual compatibility with their respective protocol specifications.
+
+Proof-of-stake networks must not be presented as conventional mining networks.
+
+### Candidate verification
+
+For a proof-of-work candidate:
+
+1. Construct the canonical header or work input.
+2. Apply the network-defined algorithm.
+3. Calculate the actual digest.
+4. Apply the protocol-defined target interpretation.
+5. Validate the candidate.
+6. Preserve the original input and parameters.
+7. Record the result.
+8. Submit only through the configured supported protocol.
+9. Record the actual network or pool response.
+
+Never treat a locally generated candidate as an accepted block.
+
+Never treat a locally generated share as a pool-accepted share.
+
+---
+
+# 3. HCCGN UNIVERSAL CLOCK INTEGRATION
+
+Integrate the existing HCCGN.UCLK.DUAL.ADAPTIVE specification as the common temporal contract.
+
+The clock must be independent of the visualizer and computation workers.
+
+## Canonical timing
+
+| Parameter | Value |
+|---|---:|
+| Base timing target | 100,000 ns |
+| Base interval | 100 μs |
+| Solver window | 500,000 ns |
+| Base intervals per solver window | 5 |
+| Nominal intervals per second | 10,000 |
+| Nominal solver windows per second | 2,000 |
+
+Use integer nanoseconds internally.
+
+Use an actual monotonic native clock for scheduling and elapsed-time measurement.
+
+Use UTC correlation for event provenance and cross-device reconstruction.
+
+### Dual-interval adaptive convention
+
+Use BOTH:
+
+- 100,000 ns nominal scheduling interval.
+- Adaptive, measured computation batch.
+
+The batch size must be determined from actual throughput and remaining execution budget.
+
+Do not assume that 100,000 ns guarantees that the operating system can dispatch or finish a computation.
+
+### Absolute deadlines
+
+\[
+d_n=M_0+nT
+\]
+
+Where:
+
+- M₀ is the monotonic epoch origin.
+- T is 100,000 ns.
+- n is the interval index.
+
+Measure actual dispatch:
+
+\[
+j_n=t_n-d_n
+\]
+
+Measure execution:
+
+\[
+e_n=t_{\mathrm{finish},n}-t_n
+\]
+
+Do not accumulate timing drift by scheduling each next interval relative to the previous actual wake-up.
+
+Missed deadlines must be recorded.
+
+No uncontrolled catch-up bursts.
+
+### Solver cadence
+
+Every five nominal intervals, aggregate the current computation window and invoke the solver.
+
+The solver must evaluate:
+
+- Four-lane execution results.
+- Forward/reverse reconstruction.
+- Residuals.
+- Sequence continuity.
+- Clock jitter.
+- Computation duration.
+- Verification status.
+
+A late solver must be identified as late.
+
+A failed solver must not be reported as converged.
+
+### Epoch closure
+
+Each nominal one-second epoch must record:
+
+- Start time.
+- End deadline.
+- Actual elapsed time.
+- Completed operations.
+- Completed bytes.
+- Completed hash calls.
+- Valid candidates.
+- Verified results.
+- Incomplete jobs.
+- Missed intervals.
+- Solver outcomes.
+- Final receipt.
+
+Actual elapsed time must be measured. Do not assume an epoch lasted exactly one second because its nominal deadline was one second.
+
+---
+
+# 4. FOUR-LANE COMPUTATIONAL VERIFICATION
+
+Preserve and integrate the existing four-lane architecture.
+
+| Lane | Role | Direction |
+|---|---|---|
+| 1 | Forward automation | Forward |
+| 2 | Opposing shadow | Reverse |
+| 3 | Reverse automation | Reverse |
+| 4 | Opposing shadow | Forward |
+
+Each lane maintains independent:
+
+- Ticket.
+- Cursor.
+- Sequence.
+- Input.
+- Output.
+- Operator version.
+- Residual.
+- Receipt.
+
+Do not allow one lane to rewrite another lane's original execution record.
+
+The solver receives a snapshot of all lane states.
+
+A result must be classified:
+
+- VERIFIED
+- VERIFIED_WITH_CORRECTION
+- UNRESOLVED
+- REJECTED
+- INCOMPLETE
+- LATE
+
+Preserve the difference between a reversible mathematical transform and a cryptographic hash.
+
+---
+
+# 5. ALGORITHM REGISTRY — REDUCED AND REUSABLE COMPUTATIONAL LIBRARY
+
+Build one canonical algorithm registry.
+
+The objective is to reuse the complete validated algorithm library already present in the project while reducing duplicated code and unnecessary dependencies.
+
+Do not discard useful algorithms merely because they do not fit one universal interface.
+
+Organize algorithms by their actual mathematical responsibility.
+
+## Registry categories
+
+### A. Cryptographic computation
+
+- SHA-256.
+- BLAKE2b.
+- Other implemented and validated digest algorithms.
+
+### B. Reversible arithmetic
+
+- Modular arithmetic.
+- Coprime residue projection.
+- Modular multiplicative inverses.
+- Fixed-width integer arithmetic.
+- Reversible ARX transformations.
+- Forward/reverse indexing.
+
+### C. Error correction
+
+- QC-LDPC.
+- Reed–Solomon over GF(256).
+- Syndrome calculation.
+- Decoding and re-verification.
+- Berlekamp–Welch only where its mathematical assumptions apply.
+
+### D. Numerical computing
+
+- Matrix operations.
+- Linear algebra.
+- Polynomial operations.
+- Numerical stability analysis.
+- Statistics.
+- Residual measurement.
+- Optimization.
+
+### E. Distributed computation
+
+- Job allocation.
+- Work leasing.
+- Worker state.
+- Checkpointing.
+- Event sequencing.
+- Backpressure.
+- Fault recovery.
+
+### F. Verification
+
+- Independent reconstruction.
+- Hash verification.
+- Merkle receipt validation.
+- Signature verification.
+- Target comparison.
+- Candidate validation.
+
+### G. Graphing and analysis
+
+- Time-series analysis.
+- Throughput.
+- Latency.
+- Jitter.
+- Residual curves.
+- Solver convergence.
+- Worker health.
+
+Every registry entry must contain:
+
+- Unique identifier.
+- Version.
+- Input schema.
+- Output schema.
+- Algorithm category.
+- Dependency list.
+- Supported execution environments.
+- Required precision.
+- Validation tests.
+- Known limitations.
+- Capability requirements.
+
+Do not claim an algorithm is available unless its implementation and tests exist.
+
+---
+
+# 6. MATHEMATICA AND SYMBOLIC COMPUTATION
+
+Integrate Mathematica/Wolfram-compatible symbolic computation through an explicit adapter.
+
+Use symbolic computation for:
+
+- Algebraic identities.
+- Modular arithmetic verification.
+- Polynomial analysis.
+- Matrix transformations.
+- Numerical derivation.
+- Formula verification.
+- Solver cross-checks.
+
+The main execution engine must not depend on a Mathematica connection being permanently available.
+
+When a Wolfram connection exists, use it for supported calculations.
+
+When unavailable, expose the connection as unavailable rather than silently substituting invented results.
+
+Preserve reproducible input and output records for every external symbolic computation.
+
+The independent verification engine must still validate the returned result.
+
+---
+
+# 7. GRAPHING AND LIVE ANALYTICS
+
+Upgrade the existing AnalyticsDashboard and CrypticGraphingWorkspace.
+
+Use the existing Recharts integration where appropriate.
+
+All graphs must subscribe to actual engine events.
+
+Required visualizations:
+
+1. Instant execution throughput.
+2. Continuous worker throughput.
+3. Aggregate throughput.
+4. Solver convergence.
+5. Four-lane comparison.
+6. Forward/reverse residual.
+7. Hash latency distribution.
+8. Clock jitter distribution.
+9. Computation duration.
+10. Candidate validation.
+11. Accepted and rejected shares.
+12. Worker availability.
+13. Queue depth.
+14. Receipt verification history.
+15. Reward eligibility and settlement status.
+
+### Graph integrity
+
+Every graph must expose:
+
+- Data source.
+- Measurement units.
+- Measurement time.
+- Collection interval.
+- Last update.
+- Data quality.
+- Missing-data state.
+
+Never fabricate:
+
+- TH/s.
+- Network latency.
+- Global node measurements.
+- Uptime.
+- Pool acceptance.
+- Reward balances.
+- Block discoveries.
+
+Use a clear distinction between:
+
+- Actual measurements.
+- Derived measurements.
+- Historical imported measurements.
+- Estimates.
+- Unavailable telemetry.
+
+Do not present an estimate as a direct observation.
+
+Remove unsupported 99.982% uptime, continuous-runtime, or other performance claims unless the project has the required durable measurement records.
+
+---
+
+# 8. RECEIPT AND REWARD ACCOUNTING MIDDLE SERVICE
+
+Designation:
+
+`CRYPTIC.RECEIPT.CLEARING`
+
+Build an independent service layer between computation, mining protocol adapters, and payout processing.
+
+This layer is responsible for establishing whether a result is eligible for reward accounting.
+
+## Receipt lifecycle
+
+- CREATED
+- COMPUTATION_COMPLETE
+- LOCALLY_VERIFIED
+- SUBMITTED
+- POOL_ACKNOWLEDGED
+- SHARE_ACCEPTED
+- REWARD_PENDING
+- REWARD_CONFIRMED
+- SETTLEMENT_ELIGIBLE
+- SETTLED
+- REJECTED
+- DISPUTED
+- REVERSED
+
+Do not skip states.
+
+A locally verified computation is not automatically a pool-accepted share.
+
+A pool-accepted share is not automatically a paid reward.
+
+A reward estimate is not an actual account balance.
+
+## Receipt contents
+
+Each receipt must preserve:
+
+- Receipt ID.
+- Job ID.
+- Worker ID.
+- Epoch ID.
+- Algorithm identifier.
+- Algorithm version.
+- Input digest.
+- Output digest.
+- Target.
+- Candidate result.
+- Sequence number.
+- Parent receipt.
+- Monotonic execution timestamps.
+- UTC-correlated timestamps.
+- Clock uncertainty.
+- Actual operation count.
+- Actual hash count.
+- Verification outcome.
+- Protocol submission response.
+- Pool acknowledgement where applicable.
+- Reward accounting reference.
+- Settlement state.
+
+Use canonical serialization.
+
+Use actual SHA-256 or BLAKE2b for digest integrity.
+
+Use a trusted root for Merkle verification.
+
+Use signatures or authenticated message verification where the receipt trust model requires them.
+
+A hash alone does not authenticate its creator.
+
+Never expose private keys or authentication secrets in receipts or logs.
+
+## Accounting rules
+
+- Maintain an append-only accounting ledger.
+- Prevent duplicate reward credits.
+- Use idempotency keys.
+- Reconcile accepted shares against actual pool records.
+- Reconcile reward credits against authoritative settlement records.
+- Preserve reversals and corrections.
+- Keep estimated rewards separate from confirmed rewards.
+- Record all fee and conversion calculations transparently.
+
+No reward may be credited as confirmed merely because the application generated a receipt.
+
+---
+
+# 9. STRIPE CONNECT AND PAYOUT ARCHITECTURE
+
+Integrate a real Stripe-backed fiat payout architecture where the platform, account, jurisdiction, and connected-account configuration are eligible.
+
+Do not use a mock Stripe API.
+
+Do not invent Stripe payout IDs.
+
+Do not invent fees, exchange rates, account balances, or completed transactions.
+
+### Backend requirements
+
+Use server-side Stripe API integration.
+
+Store credentials in environment variables or the project's approved secret-management service.
+
+Never place secret API keys in frontend code.
+
+Implement:
+
+- Connected-account onboarding.
+- Account capability checks.
+- Eligibility checks.
+- Fiat balance accounting.
+- Supported-currency validation.
+- Payout creation.
+- Payout status retrieval.
+- Payout history.
+- Webhook processing.
+- Webhook signature verification.
+- Idempotency.
+- Reconciliation.
+- Failure handling.
+- Audit logging.
+
+Use the actual Stripe Connect product model supported by the platform's account and region.
+
+Stripe payout objects must represent real Stripe-supported payout flows. Do not describe a Stripe bank payout as an on-chain cryptocurrency transfer.
+
+Cryptocurrency settlement, if legally and technically supported, must use a separate explicitly supported provider and settlement adapter. Do not invent a Stripe cryptocurrency payout endpoint.
+
+### Eligibility and authorization
+
+Keep all live-money functionality disabled until an authorized adult-operated business account, required legal eligibility, provider approval, and compliance controls are established.
+
+Do not collect bank details, identity documents, or payment credentials directly in the application when a provider-hosted onboarding flow is appropriate.
+
+Use test-mode Stripe integration for software verification.
+
+Clearly label test-mode transactions.
+
+Test-mode events must never be represented as real money or real mining rewards.
+
+### Payout safeguards
+
+Require:
+
+- Authenticated account.
+- Authorized payout role.
+- Verified reward ledger entry.
+- Settlement eligibility.
+- Sufficient available balance.
+- Idempotency key.
+- Duplicate payout detection.
+- Audit receipt.
+- Explicit payout confirmation.
+- Webhook reconciliation.
+
+A payout request is not proof of a completed payout.
+
+Only a verified provider response can advance its settlement state.
+
+---
+
+# 10. AUTHENTICATION AND APPLICATION SECURITY
+
+Integrate the existing authentication infrastructure.
+
+Implement role-based access:
+
+- VIEWER
+- OPERATOR
+- ENGINEER
+- ACCOUNTING
+- ADMINISTRATOR
+
+Use least-privilege permissions.
+
+Secure session handling.
+
+Protect all payout endpoints.
+
+Validate every server request.
+
+Apply rate limits.
+
+Use server-side authorization checks.
+
+Protect webhook endpoints with signature verification.
+
+Prevent secret leakage through:
+
+- Browser bundles.
+- Logs.
+- Debug panels.
+- Receipts.
+- Error messages.
+- Source control.
+
+Keep public configuration separate from private credentials.
+
+Do not introduce hidden phrases, magic words, undocumented entry requirements, or undocumented privileged commands.
+
+Every administrative action must have explicit authorization and an audit record.
+
+---
+
+# 11. DATABASE AND EVENT MODEL
+
+Use the existing storage architecture where sound.
+
+Add durable data models for:
+
+- Algorithms.
+- Mining jobs.
+- Workers.
+- Execution epochs.
+- Computation batches.
+- Candidates.
+- Shares.
+- Solver results.
+- Verification records.
+- Clock measurements.
+- Receipts.
+- Reward entries.
+- Payouts.
+- Audit events.
+
+Each record must have a stable identifier and schema version.
+
+Use database transactions for operations that must be atomic.
+
+Use unique constraints to prevent duplicate submissions and reward credits.
+
+Use append-only event history for financial and verification events.
+
+Never rely on browser local state as the authoritative reward ledger.
+
+---
+
+# 12. APPLICATION INTERFACE
+
+Preserve the existing GAIA/NEXUS/CRYPTIC visual identity.
+
+Create a unified main workspace with the following navigation:
+
+1. Overview.
+2. Instant Miner.
+3. Instant Solver.
+4. Continuous Instances.
+5. Federated Coordinator.
+6. Algorithm Registry.
+7. Four-Lane Solver.
+8. Live Graphing.
+9. Clock and Timing.
+10. Receipt Ledger.
+11. Reward Accounting.
+12. Stripe Connect.
+13. Audit and Diagnostics.
+14. Settings.
+
+### Overview dashboard
+
+Show:
+
+- Clock health.
+- Active workers.
+- Active jobs.
+- Actual aggregate throughput.
+- Solver status.
+- Verified results.
+- Pending shares.
+- Accepted shares.
+- Confirmed rewards.
+- Settlement state.
+- Recent faults.
+
+Do not display invented data to fill empty panels.
+
+An empty state must explain that no verified data has yet been collected.
+
+### Instant Miner interface
+
+Provide a clear job setup and live execution panel.
+
+### Instant Solver interface
+
+Provide forward/reverse inputs, candidate reconstruction, residual visualization, and verification receipts.
+
+### Continuous Instances interface
+
+Provide independent worker controls and monitoring.
+
+### Graphing interface
+
+Provide synchronized charts with selectable time ranges and exportable measurement records.
+
+### Receipt interface
+
+Allow users to inspect the full provenance and verification history of each receipt.
+
+---
+
+# 13. ENGINEERING RELIABILITY
+
+Fix existing React state and rendering issues.
+
+Preserve the existing protections against:
+
+- Synchronous state updates during render.
+- Nested state updates.
+- Maximum update depth loops.
+- Duplicate ledger notifications.
+- Continuous animation writes to persistent storage.
+
+Use refs for high-frequency animation state where appropriate.
+
+Keep durable computation and rendering separate.
+
+Use workers or native services for compute-intensive tasks.
+
+Do not let React rendering block the computation scheduler.
+
+Do not let graph refreshes mutate the mining ledger.
+
+### Vite and runtime reliability
+
+Investigate the previous WebSocket disconnect.
+
+Verify:
+
+- Development server startup.
+- HMR connectivity.
+- API connectivity.
+- Worker initialization.
+- Backend health.
+- Reconnection handling.
+- Error reporting.
+
+Do not dismiss a WebSocket failure as harmless without determining its cause.
+
+---
+
+# 14. TESTING AND ACCEPTANCE GATES
+
+No feature is considered complete because a component renders.
+
+Each subsystem must have actual tests.
+
+## Gate A — Build
+
+- TypeScript compilation.
+- Lint.
+- Production build.
+- Dependency integrity.
+- No unresolved imports.
+- No console-breaking errors.
+
+## Gate B — Clock
+
+- Monotonicity.
+- Absolute-deadline correctness.
+- Timing measurements.
+- Jitter accounting.
+- Missed interval handling.
+- Epoch closure.
+
+## Gate C — Algorithms
+
+- Known test vectors.
+- Forward/reverse correctness where applicable.
+- Cryptographic digest vectors.
+- Error-correction test vectors.
+- Invalid-input rejection.
+- Boundary conditions.
+
+## Gate D — Mining
+
+- Candidate generation.
+- Correct algorithm selection.
+- Actual target comparison.
+- Nonce allocation.
+- Duplicate-work detection.
+- Candidate verification.
+
+## Gate E — Continuous workers
+
+- Start and stop.
+- Checkpoint and restore.
+- Worker failure.
+- Lease expiration.
+- Backpressure.
+- Duplicate prevention.
+
+## Gate F — Solver
+
+- Four-lane independence.
+- Reconstruction.
+- Residual accounting.
+- Unresolved result handling.
+- Receipt generation.
+
+## Gate G — Pool integration
+
+- Protocol connection.
+- Job reception.
+- Share submission.
+- Actual acknowledgement.
+- Rejected-share handling.
+- Reconnection.
+- Duplicate submission prevention.
+
+## Gate H — Accounting
+
+- Receipt lifecycle.
+- Duplicate reward prevention.
+- Confirmed versus estimated rewards.
+- Reconciliation.
+- Reversal handling.
+
+## Gate I — Stripe
+
+- Test-mode authentication.
+- Connected-account status.
+- Supported currency handling.
+- Payout creation in test mode.
+- Webhook signature validation.
+- Idempotency.
+- Failure handling.
+- Settlement reconciliation.
+
+## Gate J — Interface
+
+- Live event updates.
+- Accurate chart units.
+- Empty states.
+- Error states.
+- Responsive layout.
+- No fabricated performance claims.
+
+For every test, retain:
+
+- Test identifier.
+- Source version.
+- Input.
+- Expected result.
+- Actual result.
+- Pass/fail.
+- Execution timestamp.
+- Relevant receipt or diagnostic.
+
+Do not report a test as passed unless it actually ran.
+
+---
+
+# 15. PERFORMANCE ENGINEERING AND COMPETITIVE BENCHMARKING
+
+The platform should aim for excellent engineering quality, efficient computation, and measurable scalability.
+
+Do not use marketing statements as performance evidence.
+
+Benchmark each supported algorithm separately.
+
+Report:
+
+- Hardware.
+- Operating system.
+- Runtime.
+- Compiler.
+- Algorithm version.
+- Thread count.
+- Memory consumption.
+- Energy measurements where available.
+- Actual throughput.
+- Latency distribution.
+- Error rate.
+- Verification rate.
+
+Compare only equivalent algorithms, hardware classes, workload conditions, and measurement methods.
+
+Do not claim superiority over multinational mining operations without independently reproducible comparative evidence.
+
+Optimize using measured bottlenecks.
+
+Prioritize:
+
+1. Correctness.
+2. Algorithm implementation quality.
+3. Memory efficiency.
+4. Parallel execution.
+5. Worker scheduling.
+6. Reduced data movement.
+7. Verification efficiency.
+8. Stable sustained performance.
+
+The goal is a competitive and scientifically measurable system, not an unsupported leaderboard claim.
+
+---
+
+# 16. IMPLEMENTATION ORDER
+
+Perform the work in this sequence.
+
+### Phase 1 — Source inventory
+
+Inspect the entire project and establish the actual implementation map.
+
+### Phase 2 — Core integration
+
+Unify algorithm interfaces, clock contracts, computation batches, and event schemas.
+
+### Phase 3 — Instant Miner and Solver
+
+Implement bounded real computation, candidate verification, and receipts.
+
+### Phase 4 — Graphing
+
+Connect all charts to actual computation and clock telemetry.
+
+### Phase 5 — Continuous Instances
+
+Implement worker orchestration, checkpoints, heartbeats, and recovery.
+
+### Phase 6 — Federated Coordinator
+
+Implement work distribution and supported pool protocol adapters.
+
+### Phase 7 — Receipt Clearing
+
+Implement share verification, reward eligibility, durable accounting, and reconciliation.
+
+### Phase 8 — Stripe Connect
+
+Implement secure test-mode fiat payout integration and eligibility controls.
+
+### Phase 9 — Full verification
+
+Run all build, algorithm, timing, worker, protocol, accounting, and UI tests.
+
+### Phase 10 — Final integration
+
+Remove duplicated code, resolve type mismatches, repair broken interfaces, and ensure all modules use the same authoritative contracts.
+
+---
+
+# 17. EXECUTION RULES
+
+1. Work in the existing application.
+2. Preserve working features.
+3. Read source before changing it.
+4. Do not create mock data or simulated successful operations.
+5. Do not invent external API responses.
+6. Do not fabricate mining performance.
+7. Do not fabricate rewards.
+8. Do not fabricate uptime.
+9. Do not claim network connectivity without a successful connection.
+10. Do not claim a pool share was accepted without its actual acknowledgement.
+11. Do not claim a payout completed without authoritative provider confirmation.
+12. Do not silently replace an unavailable integration with a simulation.
+13. Expose unavailable capabilities honestly.
+14. Keep all secrets server-side.
+15. Maintain backward compatibility where practical.
+16. Version all contracts and receipts.
+17. Run actual tests after each implementation phase.
+18. Correct regressions before advancing.
+19. Do not delete source or historical records to make tests pass.
+20. Produce a final implementation report with evidence.
+
+If a required external service is unavailable, implement the real adapter boundary and report the exact missing credential, capability, or service dependency. Do not invent successful functionality.
+
+---
+
+# 18. REQUIRED FINAL DELIVERABLE
+
+At completion, provide:
+
+- Updated project source.
+- New and modified file inventory.
+- Architecture diagram.
+- Algorithm registry.
+- Clock integration report.
+- Instant Miner implementation report.
+- Instant Solver implementation report.
+- Continuous worker implementation report.
+- Federated coordinator implementation report.
+- Receipt lifecycle documentation.
+- Reward accounting documentation.
+- Stripe integration and eligibility report.
+- Database migration information.
+- Test results.
+- Build results.
+- Known limitations.
+- Remaining external dependencies.
+- Reproducible benchmark methodology.
+
+For each claimed completion, identify the relevant source file and test evidence.
+
+Use these statuses:
+
+- IMPLEMENTED AND VERIFIED
+- IMPLEMENTED, NOT YET VERIFIED
+- PARTIALLY IMPLEMENTED
+- BLOCKED BY EXTERNAL DEPENDENCY
+- NOT IMPLEMENTED
+
+Do not use a generic "100% complete" statement.
+
+---
+
+# FINAL SYSTEM OBJECTIVE
+
+Deliver one integrated computational platform:
+
+**INSTANT MINER** — bounded, measurable computation.
+
+**INSTANT SOLVER** — candidate reconstruction and independent verification.
+
+**CONTINUOUS INSTANCES** — persistent, recoverable workers.
+
+**FEDERATED COORDINATOR** — distributed work and protocol interoperability.
+
+**ALGORITHM REGISTRY** — reusable, validated mathematical and computational procedures.
+
+**HCCGN CLOCK** — unified temporal scheduling and measurement.
+
+**GRAPHING ENGINE** — live, source-backed computational observability.
+
+**RECEIPT CLEARING** — independently verified work and reward eligibility.
+
+**STRIPE CONNECT** — authorized fiat settlement integration.
+
+The entire system must share one consistent execution contract, one verifiable event model, and one durable audit trail.
+
+The objective is to create a robust, extensible, high-performance mining and solving application whose performance and correctness can be independently demonstrated.
+
+**Begin by auditing the existing project and then implement the highest-priority integration defects. Do not stop after writing a plan.**
+
+---
+
+**The Architect / Nexus / Cryptic News LLC / Project: The Nexus Generation: GaiaSSoul / SERIES: The Nexus of Gaia / ID: 137451921129154222|040592|433855274**

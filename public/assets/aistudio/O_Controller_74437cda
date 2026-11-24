@@ -1,0 +1,413 @@
+﻿Nexus V2.0 Perpetual Power & Adaptive I/O Controller
+
+
+#!/usr/bin/env python3
+"""
+NEXUS I/O-KOMPRESS × PERPETUAL-POWER ENGINE (V2.0)
+===================================================
+A unified high-performance data engineering pipeline architecture.
+Integrates:
+ 1. An Adaptive Bellman / Q-Learning Elastic Scaling Controller.
+ 2. A Bidirectional 32-bit ARX State Crossover & Verification Engine.
+ 3. A Command-Line 'Pipe-Through' and 'Redirect' Stream Parser.
+ 4. Real-time cost, latency, energy, and throughput simulation metrics.
+
+This implementation is completely self-contained, well-commented, and runnable.
+"""
+
+import sys
+import json
+import time
+import math
+import random
+
+
+
+from typing import List, Tuple, Dict, Any
+
+
+# =====================================================================
+# 1. CORE CONFIGURATION & CONSTANTS
+# =====================================================================
+MASK32 = 0xFFFFFFFF
+MASK_EVEN = 0x55555555
+MASK_ODD  = 0xAAAAAAAA
+
+ACTIONS = ["RAW", "LZ4", "ZSTD", "SNAPPY", "GZIP"]
+ACTION_MAP = {idx: act for idx, act in enumerate(ACTIONS)}
+
+
+# =====================================================================
+# 2. ADVANCED BIDIRECTIONAL ARX STATE ENGINE
+# =====================================================================
+class AdvancedBidirectionalHashEngine256:
+   """
+
+
+
+    A 256-bit sequential state transformation engine executing bidirectional 32-bit ARX
+   (Addition-Rotation-XOR) equations. Used as an experimental state verification layer.
+   """
+   def __init__(self, initial_state: List[int] = None, seed_hex: str = None):
+       if seed_hex is None:
+           seed_hex = "55AA55AAFF00FF00EEDDEECCBBAA99887766554433221100F0E0D0C0B0A09080"
+       
+       # Parse 256-bit seed into eight 32-bit slices
+       seed_val = int(seed_hex, 16)
+       self.r_slices = [(seed_val >> (32 * i)) & MASK32 for i in range(8)]
+       
+       if initial_state and len(initial_state) == 8:
+           self.state = [x & MASK32 for x in initial_state]
+       else:
+           # Default Initialization Vectors
+           base_iv = [
+               0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+               0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+           ]
+
+
+
+            self.state = [base_iv[i] ^ self.r_slices[i] for i in range(8)]
+
+   @staticmethod
+   def rotate_left(val: int, r_bits: int) -> int:
+       val &= MASK32
+       return ((val << r_bits) | (val >> (32 - r_bits))) & MASK32
+
+   @staticmethod
+   def rotate_right(val: int, r_bits: int) -> int:
+       val &= MASK32
+       return ((val >> r_bits) | (val << (32 - r_bits))) & MASK32
+
+   def interlace_pair(self, x: int, y: int) -> Tuple[int, int]:
+       out_x = (x & MASK_EVEN) | (y & MASK_ODD)
+       out_y = (y & MASK_EVEN) | (x & MASK_ODD)
+       return out_x, out_y
+
+   def deinterlace_pair(self, out_x: int, out_y: int) -> Tuple[int, int]:
+       # Bijective symmetry allows direct inverse mapping
+
+
+
+        return (out_x & MASK_EVEN) | (out_y & MASK_ODD), (out_y & MASK_EVEN) | (out_x & MASK_ODD)
+
+   def compute_potential(self, reference_word: int, step_index: int) -> int:
+       seed_modifier = self.r_slices[step_index % 8]
+       potential_density = (reference_word ^ seed_modifier) + step_index
+       return (potential_density * 1103515245 + 12345) & MASK32
+
+   def apply_potential_sequence(self, forward: bool = True):
+       A, B, C, D, E, F, G, H = self.state
+       if forward:
+           A = (A + self.compute_potential(B, 0)) & MASK32
+           B = (B ^ self.compute_potential(C, 1)) & MASK32
+           C = (C + self.compute_potential(D, 2)) & MASK32
+           D = (D ^ self.compute_potential(E, 3)) & MASK32
+           E = (E + self.compute_potential(F, 4)) & MASK32
+           F = (F ^ self.compute_potential(G, 5)) & MASK32
+           G = (G + self.compute_potential(H, 6)) & MASK32
+           H = (H ^ self.compute_potential(A, 7)) & MASK32
+       else:
+
+
+
+            H = (H ^ self.compute_potential(A, 7)) & MASK32
+           G = (G - self.compute_potential(H, 6)) & MASK32
+           F = (F ^ self.compute_potential(G, 5)) & MASK32
+           E = (E - self.compute_potential(F, 4)) & MASK32
+           D = (D ^ self.compute_potential(E, 3)) & MASK32
+           C = (C - self.compute_potential(D, 2)) & MASK32
+           B = (B ^ self.compute_potential(C, 1)) & MASK32
+           A = (A - self.compute_potential(B, 0)) & MASK32
+       self.state = [A, B, C, D, E, F, G, H]
+
+   def execute_forward_step(self, step_constant: int):
+       A, B, C, D, E, F, G, H = self.state
+       A = (A + step_constant + self.r_slices[0]) & MASK32
+       B = B ^ self.rotate_left(A, 7)
+       c_add = (C + B + self.r_slices[2]) & MASK32
+       D = D ^ self.rotate_right(c_add, 11)
+       E = (E + D + self.r_slices[4]) & MASK32
+       F = F ^ self.rotate_left(E, 13)
+       G = (G + F + self.r_slices[6]) & MASK32
+
+
+
+        H = H ^ self.rotate_right(G, 17)
+       
+       A, B = self.interlace_pair(A, B)
+       C, D = self.interlace_pair(c_add, D)
+       E, F = self.interlace_pair(E, F)
+       G, H = self.interlace_pair(G, H)
+       
+       self.state = [A, B, C, D, E, F, G, H]
+       self.apply_potential_sequence(forward=True)
+
+   def execute_backward_step(self, step_constant: int):
+       self.apply_potential_sequence(forward=False)
+       A, B, C, D, E, F, G, H = self.state
+       
+       A, B = self.deinterlace_pair(A, B)
+       C, D = self.deinterlace_pair(C, D)
+       E, F = self.deinterlace_pair(E, F)
+       G, H = self.deinterlace_pair(G, H)
+       
+
+
+
+        H ^= self.rotate_right(G, 17)
+       G = (G - F - self.r_slices[6]) & MASK32
+       F ^= self.rotate_left(E, 13)
+       E = (E - D - self.r_slices[4]) & MASK32
+       D ^= self.rotate_right(C, 11)
+       C = (C - B - self.r_slices[2]) & MASK32
+       B ^= self.rotate_left(A, 7)
+       A = (A - step_constant - self.r_slices[0]) & MASK32
+       
+       self.state = [A, B, C, D, E, F, G, H]
+
+   def get_hex_string(self) -> str:
+       return "".join(f"{word:08x}" for word in self.state)
+
+
+# =====================================================================
+# 3. UNBOUNDED REINFORCEMENT LEARNING & PERPETUAL CONTROLLER
+# =====================================================================
+class UnboundedPerpetualController:
+
+
+
+    """
+   Implements a perpetual adaptive optimization framework using extended parameter bounds Q-learning.
+   Balances execution latency, compression overhead, cloud compute costs, and node power depletion.
+   Optimizes: V(s) = min_a [ Cost(s,a) + gamma * sum(P(s'|s,a)V(s')) ]
+   """
+   def __init__(self, gamma: float = 0.95, alpha: float = 0.2):
+       self.gamma = gamma
+       self.alpha = alpha
+       # Q-Table mapping: state tuple -> list of values corresponding to ACTIONS
+       # State formulation: (Discretized_Payload_Size, Discretized_Network_Congestion, Discretized_Battery_Level)
+       self.q_table: Dict[Tuple[int, int, int], List[float]] = {}
+       
+   def _discretize_state(self, state: Dict[str, Any]) -> Tuple[int, int, int]:
+       # Quantize fluid network parameters into bounding buckets
+       bytes_factor = min(4, int(math.log10(max(1, state["incoming_bytes"]))))
+       congestion_factor = min(3, int(state["latency_ms"] / 50))
+       power_factor = min(3, int(state["energy_expenditure_joules"] * 10))
+       return (bytes_factor, congestion_factor, power_factor)
+
+
+
+
+    def get_q_values(self, state_key: Tuple[int, int, int]) -> List[float]:
+       if state_key not in self.q_table:
+           # Initialize with standard proxy operational cost matrix weights
+           self.q_table[state_key] = [10.0, 5.0, 3.0, 7.0, 8.0]
+       return self.q_table[state_key]
+
+   def choose_optimal_action(self, state: Dict[str, Any], exploration: bool = False) -> str:
+       state_key = self._discretize_state(state)
+       q_vals = self.get_q_values(state_key)
+       
+       if exploration and random.random() < 0.05:
+           return random.choice(ACTIONS)
+       
+       # Since this formulation models cost-minimization, select the smallest cost vector
+       min_idx = q_vals.index(min(q_vals))
+       return ACTION_MAP[min_idx]
+
+   def update_policy(self, state: Dict[str, Any], action: str, next_state: Dict[str, Any], immediate_cost: float):
+       state_key = self._discretize_state(state)
+
+
+
+        next_key = self._discretize_state(next_state)
+       
+       act_idx = ACTIONS.index(action)
+       current_q = self.get_q_values(state_key)[act_idx]
+       
+       # Bound future value estimation
+       next_min_q = min(self.get_q_values(next_key))
+       
+       # Temporal difference equation targeting the Bellman optimization minimum
+       target_q = immediate_cost + self.gamma * next_min_q
+       self.q_table[state_key][act_idx] += self.alpha * (target_q - current_q)
+
+
+# =====================================================================
+# 4. PIPELINE ORCHESTRATOR & STREAM PARSER
+# =====================================================================
+class NexusPipelineOrchestrator:
+   """
+   Manages complex text configuration files, pipe-through evaluation syntax,
+
+
+
+    and runtime performance auditing logs.
+   """
+   def __init__(self):
+       self.controller = UnboundedPerpetualController()
+       self.state_engine = AdvancedBidirectionalHashEngine256()
+       self.system_metrics = {
+           "incoming_bytes": 1024,
+           "latency_ms": 25,
+           "energy_expenditure_joules": 0.15
+       }
+
+   def simulate_environment_delta(self, action: str, payload_size: int) -> float:
+       """Calculates specific resource costs matching the actions selection criteria."""
+       base_latency = 12.0
+       base_energy = 0.05
+       
+       if action == "RAW":
+           latency = base_latency + (payload_size * 0.02)
+           energy = base_energy + (payload_size * 0.005)
+
+
+
+        elif action == "LZ4":
+           latency = base_latency * 0.4 + (payload_size * 0.005)
+           energy = base_energy * 1.5 + (payload_size * 0.01)
+       elif action == "ZSTD":
+           latency = base_latency * 0.2 + (payload_size * 0.002)
+           energy = base_energy * 3.0 + (payload_size * 0.025)
+       elif action == "SNAPPY":
+           latency = base_latency * 0.5 + (payload_size * 0.007)
+           energy = base_energy * 1.1 + (payload_size * 0.008)
+       else:  # GZIP
+           latency = base_latency * 0.3 + (payload_size * 0.004)
+           energy = base_energy * 2.5 + (payload_size * 0.02)
+
+       # Composite minimization penalty objective score
+       cost_objective = (latency * 0.6) + (energy * 0.4)
+       
+       # Update metrics dynamically
+       self.system_metrics["incoming_bytes"] = max(100, payload_size + random.randint(-50, 50))
+       self.system_metrics["latency_ms"] = max(5, int(latency))
+
+
+
+        self.system_metrics["energy_expenditure_joules"] = round(energy, 4)
+       
+       return cost_objective
+
+   def parse_and_execute_stream(self, command_string: str, input_payload: str) -> Dict[str, Any]:
+       """
+       Parses composite pipeline command strings containing structures such as 'pipethru' and 'redirect'.
+       """
+       print(f"[NEXUS CONSOLE] Ingesting command stream: '{command_string}'")
+       tokens = [t.strip() for t in command_string.split("|")]
+       
+       current_data = input_payload
+       audit_trail = []
+       
+       for idx, token in enumerate(tokens):
+           if token.startswith("pipethru"):
+               # Determine adaptive action choice from controller parameters
+               selected_codec = self.controller.choose_optimal_action(self.system_metrics, exploration=True)
+               initial_metrics = dict(self.system_metrics)
+
+
+
+                
+               # Execute simulation evaluation step
+               calculated_cost = self.simulate_environment_delta(selected_codec, len(current_data))
+               next_metrics = dict(self.system_metrics)
+               
+               # Synchronize reinforcement policy parameter table
+               self.controller.update_policy(initial_metrics, selected_codec, next_metrics, calculated_cost)
+               
+               # Pass state index changes down the bidirectional verification engine
+               self.state_engine.execute_forward_step(len(current_data) + idx)
+               current_digest = self.state_engine.get_hex_string()[:16]
+               
+               current_data = f"[{selected_codec}_CONTAINER_DATA_BLOCK({current_data})]"
+               
+               audit_trail.append({
+                   "stage": idx,
+                   "command": "pipethru",
+                   "allocated_codec": selected_codec,
+                   "objective_cost_score": round(calculated_cost, 4),
+
+
+
+                    "intermediary_state_digest": current_digest
+               })
+               
+           elif token.startswith("redirect"):
+               # Simulates routing system metrics directly into log file targets
+               destination = token.replace("redirect", "").strip()
+               audit_trail.append({
+                   "stage": idx,
+                   "command": "redirect",
+                   "routing_destination": destination or "stdout/null_substrate"
+               })
+       
+       return {
+           "status": "SUCCESS",
+           "processed_payload": current_data,
+           "final_system_state": self.system_metrics,
+           "execution_audit": audit_trail
+       }
+
+
+
+
+
+# =====================================================================
+# 5. VERIFICATION SYSTEM DEMONSTRATOR
+# =====================================================================
+def run_system_smoke_test():
+   """Runs a complete test validation loop over the synthesized architecture components."""
+   print("=" * 70)
+   print("      NEXUS PIPELINE CONTROLLER SYSTEM DEMONSTRATION & SMOKE TEST")
+   print("=" * 70)
+   
+   orchestrator = NexusPipelineOrchestrator()
+   
+   # Test 1: Bidirectional ARX Mathematical Roundtrip Guarantee Verification
+   print("\n[TEST 1] Initializing Reversible ARX Integrity Subsystem Check...")
+   engine_f = AdvancedBidirectionalHashEngine256()
+   initial_digest = engine_f.get_hex_string()
+   print(f" -> Initial State Vector Digest: {initial_digest}")
+   
+   # Process sequential step constant mutations
+   mutation_chain = [1024, 2048, 4096, 8192]
+
+
+
+    for step in mutation_chain:
+       engine_f.execute_forward_step(step)
+   
+   mutated_digest = engine_f.get_hex_string()
+   print(f" -> Post-Mutation Forward State:  {mutated_digest}")
+   
+   # Instantiate reciprocal transformation loop
+   engine_b = AdvancedBidirectionalHashEngine256()
+   engine_b.state = list(engine_f.state) # Inject mutated configuration
+   
+   for step in reversed(mutation_chain):
+       engine_b.execute_backward_step(step)
+       
+   restored_digest = engine_b.get_hex_string()
+   print(f" -> Reversal Computation Digest:  {restored_digest}")
+   
+   assert restored_digest == initial_digest, "Error: Bijective state preservation integrity failure."
+   print(" -> [PASS] Bidirectional roundtrip verified successfully.")
+   
+
+
+
+    # Test 2: Stream Parser & Optimization Policy Tracking
+   print("\n[TEST 2] Parsing Composite 'pipethru' Architecture Streams...")
+   mock_pipeline = "pipethru --adaptive-select | pipethru --optimize-cost | redirect /var/log/nexus_audit.json"
+   raw_payload = "Quantum-Solfeggio-Interlaced-Fermat-Prime-Block-Structure"
+   
+   pipeline_result = orchestrator.parse_and_execute_stream(mock_pipeline, raw_payload)
+   print("\n[RESULT LOG OUTPUT]")
+   print(json.dumps(pipeline_result, indent=2))
+   print("-" * 70)
+
+
+if __name__ == "__main__":
+   run_system_smoke_test()

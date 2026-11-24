@@ -1,0 +1,1155 @@
+# GAIA / NEXUS
+## Unified Singularity, CRYPTIC Cube & Verifiable History
+**Integration Specification — Version 1.0.0**
+
+**Project:** The Nexus Generation: GaiaSSoul  
+**Architecture:** S.O.S. → HAMILTONIAN → CRYPTIC → GAIA → VERIFIED LEDGER  
+**Visual system:** Central Six-Axis Sierpinski Hypercube // Sephiroth Sphere  
+**Adaptive engine:** `AE.BELLMAN.ADAPTIVE.IO`  
+**Receipt protocol:** `GAIA/NEXUS/RECEIPT/v1`
+
+---
+
+## 1. Mission
+
+Unify the accumulated GAIA, NEXUS, CRYPTIC, mathematical, cryptographic, mining, visualization, and historical-record systems into one interoperable architecture.
+
+The system must be able to:
+
+1. Accept computational inputs and blockchain mining evidence.
+2. Execute registered algorithms under measured resource and timing boundaries.
+3. Preserve original input bytes and calculate reproducible SHA-256 digests.
+4. Execute forward transformations and independently verify supported inverse transformations.
+5. Build Merkle structures over verified computational events.
+6. Preserve versioned snapshots of the system's creation, evolution, and computational history.
+7. Produce cryptographically verifiable receipts.
+8. Represent snapshots and their relationships as digital collectibles or NFTs.
+9. Render the historical and computational graph inside the navigable CRYPTIC Cube.
+10. Export the complete evidence package independently of any particular blockchain or AI provider.
+
+The central design principle:
+
+**Every visual object represents a computational identity; every computational identity references evidence; every committed historical event can be independently verified.**
+
+The Singularity is treated as the name of the unified evolving system and its genesis-to-present history, not as a claim that a single cryptographic operation can recover arbitrary prior information.
+
+---
+
+## 2. Governing invariants
+
+### The Architect's Doctrine
+
+- **Boundary — Nothing executes beyond its time.**
+- **Capacity — Nothing claims capacity without measurement.**
+- **Correctness — Nothing claims correctness without verification.**
+
+Authorization:
+
+\[
+A=B\land C\land V
+\]
+
+Proof domains:
+
+\[
+V=V_{\mathrm{recovery}}
+\land V_{\mathrm{algebraic}}
+\land V_{\mathrm{cryptographic}}
+\]
+
+The three proof domains must remain distinct.
+
+- Recovery verifies that preserved original material can be reconstructed.
+- Algebraic verification checks mathematical identities and inverse transitions.
+- Cryptographic verification checks byte-level digests, signatures, Merkle proofs, and blockchain inclusion.
+
+A successful result in one domain must never be substituted for evidence in another.
+
+### System ordering
+
+\[
+\mathrm{S.O.S.}
+\rightarrow
+\mathrm{HAMILTONIAN}
+\rightarrow
+\mathrm{CRYPTIC}
+\rightarrow
+\mathrm{GAIA}
+\rightarrow
+\mathrm{VERIFIED\ LEDGER}
+\]
+
+| Layer | Responsibility |
+|---|---|
+| S.O.S. | Boot, isolation, recovery, environment discovery |
+| Hamiltonian | Canonical state, clock, execution boundaries, admissible transitions |
+| CRYPTIC | Prime matrix, coprime indexing, hash registry, proof construction |
+| GAIA | Calculus, rendering, visualization, fractal and geometric environment |
+| Verified Ledger | Persistent receipts, signed evidence, historical anchoring |
+
+---
+
+## 3. Unified architecture
+
+The system is organized into eight interoperable planes.
+
+### Plane A — Canonical state and execution control
+
+Owns the authoritative runtime state, execution identity, timestamps, checkpoints, and transition permissions.
+
+Preserve:
+
+- `hamiltonianNeuralClock.ts`
+- `universalClockCanonical.ts`
+- `universalClockKernel.ts`
+- `hccgnScheduler.ts`
+- `Sentinel Supervisor`
+
+No algorithm may advance the canonical state without an authorized transition and a corresponding record.
+
+### Plane B — Adaptive directional-lattice execution
+
+Preserve:
+
+`AE.BELLMAN.ADAPTIVE.IO`
+
+The adaptive scheduler chooses a lane and transition using measured execution conditions.
+
+Forward transition:
+
+\[
+X_{n+1}=F_{S_n}(X_n)
+\]
+
+Inverse reconstruction:
+
+\[
+\widehat X_n=F_{S_n}^{-1}(X_{n+1})
+\]
+
+Verification:
+
+\[
+\boxed{\widehat X_n=X_n}
+\]
+
+Adaptive scheduling:
+
+\[
+S_{n+1}=\pi(X_{n+1},\ell_n,c_n)
+\]
+
+Where:
+
+- \(X_n\): canonical state before the transition.
+- \(S_n\): exact transition configuration.
+- \(\ell_n\): selected lane.
+- \(c_n\): measured execution cost.
+- \(\pi\): adaptive scheduling policy.
+
+**Critical constraint:** the inverse operation must receive the original transition parameters, not a newly calculated approximation of them.
+
+Record the policy version, selected lane, direction, transition parameters, execution measurements, and verifier result.
+
+### Plane C — Cryptographic computation
+
+Preserve the existing names:
+
+- `GAIAPayloadSHA256`
+- `GAIAPayloadDigestBatch`
+- `GAIAComputeDoubleSHA256`
+- `computeOriginalHash`
+- `verifyTransformationChain`
+- `solidifyVersionedReceipt`
+- `ledger-verifier-fnv1a`
+- `AE.BLAKE2B.SEAL`
+- `AE.MINERVA.UNBOUND.INVERSE`
+
+The SHA-256 pipeline must operate on exact bytes.
+
+\[
+D_0=\operatorname{SHA256}(B_0)
+\]
+
+Double SHA-256:
+
+\[
+D_2=\operatorname{SHA256}(\operatorname{SHA256}(B_0))
+\]
+
+The original bytes must be preserved or recoverable through an independently verifiable content reference.
+
+**Cryptographic limitation:** SHA-256 is a one-way digest function. It is not mathematically reversible. The system must not claim that an inverse digest can recover arbitrary original data.
+
+Instead, preserve the original payload and use reversible transformations where their inverse functions are defined.
+
+### Plane D — Error correction and data integrity
+
+Preserve the selected coding architecture:
+
+- QC-LDPC
+- Recursive Reed–Solomon
+- GF(256)
+- Error detection and correction
+- Independent post-correction verification
+
+Correction must never silently overwrite original evidence.
+
+Each correction operation receives its own event identity and records:
+
+- Original payload digest.
+- Encoded payload digest.
+- Syndrome or error-detection result.
+- Correction parameters.
+- Reconstructed payload digest.
+- Independent verification result.
+
+### Plane E — Blockchain and Merkle verification
+
+Preserve:
+
+- `stratumNetworkEngine.ts`
+- `pqMerkleReceiptEngine.ts`
+- `AE.CHUNK.COPRIME.4P`
+- `AE.SL6.DUALTRACE.4P`
+- `GAIA_Compute_v5.0.0`
+
+The blockchain subsystem must distinguish:
+
+1. Mining job acquisition.
+2. Header construction.
+3. Nonce search.
+4. Proof-of-work validation.
+5. Share submission.
+6. Accepted share acknowledgement.
+7. Block discovery.
+8. Canonical chain inclusion.
+9. Transaction inclusion.
+10. Independent Merkle verification.
+
+A mining share is not automatically a mined block.
+
+A successful hash calculation is not automatically a valid proof of work.
+
+A transaction digest is not proof of transaction inclusion.
+
+A Merkle proof must be checked against the correct block header's Merkle root.
+
+The blockchain adapter must retain chain identifier, network, block height, block hash, transaction identifier, header, target, proof parameters, and confirmation state.
+
+### Plane F — Historical snapshot and NFT registry
+
+This is the new historical preservation plane.
+
+It creates durable digital representations of system states and computational milestones.
+
+It must support:
+
+- Genesis snapshot.
+- Initial application snapshot.
+- Algorithm registration snapshot.
+- Mathematical proof snapshot.
+- Mining-instance snapshot.
+- Verified block inclusion snapshot.
+- System-version snapshot.
+- Runtime checkpoint snapshot.
+- Evolution and branching snapshot.
+- Final or terminal snapshot.
+
+Each snapshot is immutable after commitment.
+
+A later correction or upgrade creates a new snapshot with an explicit relationship to the earlier one.
+
+### Plane G — CRYPTIC Cube and geometric visualization
+
+Preserve:
+
+- `CosmicGuardianVoidCanvas.tsx`
+- `FourDimensionalHypergeometricWorkspace.tsx`
+- `cosmicGuardianVoidEngine.ts`
+- `crypticGraphingEngine.ts`
+- `diamondLatticeEngine.ts`
+- `cuboctahedralTraceEngine.ts`
+- `picGeometryEngine.ts`
+- `mathConvergenceEngine.ts`
+
+The geometric environment is the interactive visualization of the computation and history.
+
+It is not itself the authoritative storage system.
+
+The authoritative records live in the verified ledger and content-addressed storage.
+
+### Plane H — AI model and algorithm orchestration
+
+Preserve:
+
+- `algorithmRegistry.ts`
+- `crypticRuntimeService.ts`
+- `nuefPolyglotQuineEngine.ts`
+- `GAIA/NEXUS` contracts
+- Gemini and other provider adapters
+- The CRYPTIC dataset-generation pipeline
+
+AI systems may classify, explain, search, and propose operations.
+
+They may not independently declare cryptographic proof successful.
+
+Only deterministic, independently verified validation procedures can authorize evidence commitment.
+
+---
+
+## 4. The CRYPTIC Cube: geometric data model
+
+The visual environment is named:
+
+**The CRYPTIC Sierpinski Hypercube — Singularity Archive**
+
+Its geometry represents the evolving graph of computational events.
+
+### Coordinates
+
+The initial origin is:
+
+\[
+O=(0,0,0,0)
+\]
+
+The coordinate axes are:
+
+\[
+(x,y,z,w)
+\]
+
+Each point identifies a stable computational location.
+
+The coordinate system must be deterministic. A point must be recoverable from its event identifier and index mapping, rather than from a transient camera position.
+
+### Dewey-style hierarchy
+
+Use hierarchical indexing for browsing and retrieval:
+
+```text
+0.0.0.0       Genesis
+0.1.0.0       Canonical state
+0.2.0.0       Cryptographic registry
+0.3.0.0       Mathematical transformations
+0.4.0.0       Mining and blockchain evidence
+0.5.0.0       Merkle and receipt structures
+0.6.0.0       Historical snapshots
+0.7.0.0       NFT registry
+0.8.0.0       AI and algorithm lineage
+0.9.0.0       System evolution
+```
+
+These are namespace examples, not pre-existing verified database records.
+
+### Geometric layers
+
+Each layer represents a distinct computational category or historical epoch.
+
+- Layer 0: Genesis and original application state.
+- Layer 1: Core mathematics.
+- Layer 2: Hash and transformation operations.
+- Layer 3: Mining and blockchain events.
+- Layer 4: Merkle structures and proof verification.
+- Layer 5: Algorithm registry and correction engines.
+- Layer 6: NFT snapshots and provenance.
+- Layer 7: System evolution and branches.
+
+A layer may contain many events, but the renderer must use bounded rendering windows and pagination.
+
+### Intersections
+
+Coprime intersections may represent valid mathematical relationships where:
+
+\[
+\gcd(a,M_k)=1
+\]
+
+and therefore:
+
+\[
+a\in U(M_k)
+\]
+
+A modular inverse exists when:
+
+\[
+\gcd(a,M_k)=1
+\]
+
+with:
+
+\[
+aa^{-1}\equiv1\pmod{M_k}
+\]
+
+Do not equate a geometric intersection with a cryptographic inverse. The geometric object is a visualization of the underlying verified mathematical relationship.
+
+### Sierpinski and tessellation rendering
+
+The rendering system should preserve the supplied six-axis structure and expand through bounded recursive layers.
+
+Each completed layer stores:
+
+- Parent layer ID.
+- Child layer IDs.
+- Geometry version.
+- Seed and generation parameters.
+- Particle coordinates.
+- Transformation matrices.
+- Associated computational event IDs.
+- Snapshot digest.
+
+The renderer can display a fluid color gradient and rotational motion, but visual animation timing must not be treated as computational timing evidence.
+
+---
+
+## 5. Six-position ADL schedule
+
+Preserve the lane word:
+
+\[
+L=\{2,1,1,2,2,1\}
+\]
+
+And the directional word:
+
+\[
+D=\{-1,+1,+1,-1\}
+\]
+
+The schedule is:
+
+\[
+S=
+\{
+(1,2,-1),
+(2,1,+1),
+(3,1,+1),
+(4,2,-1),
+(5,2,-1),
+(6,1,+1)
+\}
+\]
+
+The inverse schedule reverses event order and negates direction:
+
+\[
+S^{-1}
+=
+\operatorname{Reverse}(S)
+\quad\text{with}\quad d_i\mapsto-d_i
+\]
+
+Each event receives a transition receipt.
+
+The operational sequence is:
+
+1. Select lane.
+2. Select direction.
+3. Capture canonical state.
+4. Submit operation.
+5. Await completion.
+6. Validate completion ticket.
+7. Apply inverse transition.
+8. Compare reconstructed state.
+9. Replay forward transition.
+10. Compare resulting state and digest.
+11. Commit the event receipt.
+12. Advance the scheduler.
+
+The system must advance only when the required completion and verification conditions are satisfied.
+
+### Adaptive I/O
+
+`AE.BELLMAN.ADAPTIVE.IO` coordinates the execution strategy.
+
+On Linux, the I/O adapter may use `io_uring` for asynchronous storage operations.
+
+The system must respect the actual `io_uring` configuration, completion-queue behavior, and task-run constraints.
+
+It does not replace Linux virtual-memory management or establish picosecond execution precision.
+
+Actual clock resolution and measured latency must be reported separately.
+
+---
+
+## 6. The historical snapshot protocol
+
+The NFT architecture begins with a content-addressed snapshot.
+
+### Snapshot creation
+
+For each historical event:
+
+1. Capture the exact source artifact.
+2. Capture the event's parent references.
+3. Capture the algorithm and application versions.
+4. Canonicalize the metadata.
+5. Hash the original artifact bytes.
+6. Hash the canonical metadata.
+7. Create a signed receipt.
+8. Include the receipt in the historical event graph.
+9. Add the event to a Merkle structure.
+10. Independently verify the result.
+11. Authorize NFT publication only after validation.
+
+### Snapshot identity
+
+A snapshot can use the following identity:
+
+\[
+I_v=
+(D_{\mathrm{artifact}},
+D_{\mathrm{metadata}},
+D_{\mathrm{receipt}},
+D_{\mathrm{parent}},
+v)
+\]
+
+Where:
+
+- \(D_{\mathrm{artifact}}\): digest of the preserved original artifact.
+- \(D_{\mathrm{metadata}}\): digest of canonical metadata.
+- \(D_{\mathrm{receipt}}\): receipt digest.
+- \(D_{\mathrm{parent}}\): parent event or snapshot reference.
+- \(v\): schema and snapshot version.
+
+### Canonical serialization
+
+Use RFC 8785 JSON Canonicalization Scheme for cross-platform JSON serialization.
+
+All binary assets must be hashed as exact byte sequences.
+
+Do not hash arbitrary JSON stringifications and assume every language produces the same result.
+
+### Snapshot receipt
+
+A proposed schema:
+
+```json
+{
+  "schema": "GAIA/NEXUS/SNAPSHOT/v1",
+  "snapshot_id": "content-addressed-id",
+  "event_type": "system_checkpoint",
+  "created_at": "UTC timestamp",
+  "parent_snapshot": "parent-id",
+  "artifact": {
+    "media_type": "text/html",
+    "digest_algorithm": "SHA-256",
+    "digest": "hex-digest",
+    "byte_length": 0,
+    "storage_uri": "content-addressed-reference"
+  },
+  "application": {
+    "name": "GAIA/NEXUS",
+    "version": "version",
+    "source_revision": "revision-id"
+  },
+  "computation": {
+    "algorithm": "algorithm-id",
+    "parameters_digest": "hex-digest",
+    "execution_receipt": "receipt-id"
+  },
+  "verification": {
+    "recovery": "pending",
+    "algebraic": "pending",
+    "cryptographic": "pending"
+  },
+  "merkle": {
+    "tree_id": "tree-id",
+    "leaf_index": null,
+    "root": null,
+    "proof_reference": null
+  },
+  "signature": {
+    "algorithm": "signature-algorithm",
+    "key_id": "key-reference",
+    "value": "signature"
+  }
+}
+```
+
+All placeholder values must be populated with real evidence before a production receipt is committed.
+
+---
+
+## 7. NFT architecture
+
+The NFT is a public or permissioned token representing a reference to a preserved snapshot.
+
+It is not the original file, and minting does not automatically prove the file's historical truth.
+
+### Recommended separation
+
+**Artifact storage**
+
+Store the actual HTML, source code, image, video, mathematical proof, or other snapshot in content-addressed storage.
+
+**Evidence registry**
+
+Store the receipt, digest, signature, parent relationships, and Merkle proof references.
+
+**NFT contract**
+
+Store the token identifier and immutable or carefully controlled references to the verified snapshot.
+
+### Suggested token metadata
+
+```json
+{
+  "name": "GAIA Singularity Snapshot",
+  "description": "A content-addressed historical snapshot of a verified GAIA/NEXUS computational event.",
+  "image": "ipfs://content-addressed-image",
+  "external_url": "https://crypticnews.org/archive/snapshot-id",
+  "attributes": [
+    {
+      "trait_type": "Snapshot Type",
+      "value": "System Evolution"
+    },
+    {
+      "trait_type": "Verification",
+      "value": "Cryptographic Receipt"
+    },
+    {
+      "trait_type": "Architecture",
+      "value": "GAIA/NEXUS"
+    },
+    {
+      "trait_type": "Schema",
+      "value": "GAIA/NEXUS/SNAPSHOT/v1"
+    }
+  ],
+  "properties": {
+    "snapshot_id": "snapshot-id",
+    "artifact_digest": "sha256-digest",
+    "receipt_digest": "receipt-digest",
+    "parent_snapshot": "parent-snapshot-id"
+  }
+}
+```
+
+### NFT issuance requirements
+
+A minting request must be rejected unless:
+
+- The artifact exists.
+- The digest matches the artifact.
+- The receipt is valid.
+- Required signatures are valid.
+- Parent references resolve.
+- The required verification domains have passed.
+- The token metadata references the exact snapshot.
+- The issuance authorization is valid.
+
+### Historical ownership and privacy
+
+NFT metadata must not expose private source files, secrets, API keys, personal records, or credentials.
+
+Public tokens should reference only approved public artifacts.
+
+Sensitive artifacts should remain in access-controlled storage, with public receipts containing only the minimum necessary commitments.
+
+### Chain choice
+
+Keep the token contract independent of the mining engine.
+
+The architecture should support an adapter interface for the selected chain rather than hardcoding one blockchain into the computational core.
+
+Do not mint automatically to a mainnet during development. First validate the receipt, storage, contract, and recovery process in a controlled test environment.
+
+---
+
+## 8. The Merkle historical graph
+
+The historical graph is a directed acyclic event structure.
+
+Each event references its parent and produces a deterministic leaf commitment.
+
+For a simple binary Merkle tree:
+
+\[
+L_i=H(\text{canonical event bytes})
+\]
+
+\[
+P_i=H(L_{2i}\parallel L_{2i+1})
+\]
+
+The tree root commits to the included leaves.
+
+A proof of inclusion demonstrates that a particular leaf belongs to the committed tree.
+
+It does not independently establish the truth of the event's description.
+
+That is why the receipt also requires source evidence, signatures, and independent verification.
+
+### Historical continuity
+
+Each snapshot references the preceding snapshot or a set of parent snapshots.
+
+The system supports branches:
+
+- Mainline evolution.
+- Experimental branches.
+- Mathematical research branches.
+- Mining branches.
+- Recovery branches.
+- Release snapshots.
+
+A merge creates a new event that references all required parent snapshots.
+
+No historical record is silently rewritten.
+
+---
+
+## 9. Algorithm registry and hypergeometric ring
+
+The geometry of the six-level ring should be connected to the algorithm registry.
+
+The following mapping preserves the AI Studio project's reported design:
+
+| Ring level | Geometric representation | Computational adapter |
+|---|---|---|
+| 1 | Tesseract | Modular inverse and coprime stride solver |
+| 2 | 24-Cell | QC-LDPC and Reed–Solomon GF(256) |
+| 3 | 120-Cell | SHA-256, SHA-256d, Merkle proof engine |
+| 4 | 600-Cell | Four-lane paired inverse solver |
+| 5 | Hypersphere torus | Super-Gaussian and Hamiltonian computation |
+| 6 | Grand Sephiroth Sphere | Torsion shift, Dewey indexing, CRYPTIC registry |
+
+Each shape exposes a computational adapter.
+
+Adapter contract:
+
+```typescript
+interface ComputationalAdapter {
+  id: string;
+  version: string;
+
+  validateInput(input: unknown): Promise<ValidationResult>;
+
+  execute(
+    input: unknown,
+    context: ExecutionContext
+  ): Promise<ExecutionResult>;
+
+  verify(
+    result: ExecutionResult,
+    context: ExecutionContext
+  ): Promise<VerificationResult>;
+
+  createReceipt(
+    result: ExecutionResult,
+    context: ExecutionContext
+  ): Promise<Receipt>;
+}
+```
+
+The registry must reject duplicate or conflicting algorithm identities.
+
+Every algorithm version must have:
+
+- Stable identifier.
+- Version.
+- Input schema.
+- Output schema.
+- Deterministic execution requirements.
+- Resource boundaries.
+- Test vectors.
+- Verification function.
+- Provenance and license metadata.
+
+---
+
+## 10. Dataset birth and CRYPTIC model lineage
+
+The CRYPTIC dataset should be derived from verified computational events rather than unrestricted runtime logs.
+
+The pipeline:
+
+\[
+\text{SOURCE}
+\rightarrow
+\text{NORMALIZE}
+\rightarrow
+\text{COMPUTE}
+\rightarrow
+\text{VERIFY}
+\rightarrow
+\text{RECEIPT}
+\rightarrow
+\text{DATASET}
+\]
+
+Each dataset record should contain:
+
+- Original source reference.
+- Content digest.
+- Algorithm identity.
+- Algorithm version.
+- Input and output references.
+- Verification status.
+- Receipt reference.
+- Parent event.
+- Data classification.
+- License and permitted-use information.
+
+The model-training dataset must preserve lineage to the underlying verified events.
+
+Unverified, synthetic, inferred, or incomplete information must be labeled distinctly.
+
+A model's generated response is not automatically a verified historical event.
+
+---
+
+## 11. Persistence and storage
+
+The existing SQLite ledger architecture can serve as a local transactional store.
+
+Preserve:
+
+- `sqliteLedgerStore.ts`
+- `saveMemory.ts`
+- `saveMemoryService.ts`
+- `crypticRuntimeService.ts`
+
+Suggested logical tables:
+
+```text
+events
+snapshots
+artifacts
+artifact_chunks
+algorithms
+algorithm_versions
+execution_receipts
+verification_results
+merkle_trees
+merkle_leaves
+merkle_proofs
+blockchain_observations
+nft_assets
+nft_issuances
+parent_relationships
+dataset_records
+runtime_checkpoints
+```
+
+The ledger should enforce:
+
+- Unique event IDs.
+- Immutable committed receipts.
+- Foreign-key relationships.
+- Transactional writes.
+- Explicit correction events.
+- Database backup and recovery.
+- Integrity verification.
+- Versioned migrations.
+
+Do not put large binary assets directly into the main SQLite event table. Use content-addressed object storage and reference the objects from the ledger.
+
+---
+
+## 12. Integration map for the two AI Studio applications
+
+### Application A — Untitled
+
+The accessible AI Studio project reports the following implementation work:
+
+- `CosmicGuardianVoidCanvas.tsx`
+- `FourDimensionalHypergeometricWorkspace.tsx`
+- `App.tsx`
+- `algorithmRegistry.ts`
+- `circularProcessingRuntime.ts`
+- `crypticGraphingEngine.ts`
+- `crypticRuntimeService.ts`
+- `hccgnScheduler.ts`
+- `pqMerkleReceiptEngine.ts`
+- `sqliteLedgerStore.ts`
+- `stratumNetworkEngine.ts`
+- `v7VerificationEngine.ts`
+- `universalClockCanonical.ts`
+- `universalClockKernel.ts`
+
+The first integration target is to connect these existing modules through explicit typed interfaces rather than create parallel replacements.
+
+### Application B — Verve Studio
+
+The connected browser did not permit retrieval of the Verve Studio project's contents.
+
+Therefore its role remains unclassified.
+
+Before integration, retrieve:
+
+- Project file inventory.
+- Application entrypoint.
+- Package manifest and dependencies.
+- Existing design system.
+- API interfaces.
+- Data persistence mechanisms.
+- Build and test output.
+- Current project version and source revision.
+
+Then compare its capabilities with the unified registry.
+
+Do not duplicate an existing module simply because the two applications use different component names.
+
+### Shared application contract
+
+Both applications should use the same:
+
+- Snapshot schema.
+- Receipt schema.
+- Algorithm identifiers.
+- Event graph.
+- Verification interfaces.
+- API versioning.
+- Dataset provenance model.
+
+The visual layer may differ. The underlying computational identity must not.
+
+---
+
+## 13. Integration phases
+
+### Phase 0 — Source inventory and preservation
+
+- Export both AI Studio projects.
+- Preserve original project archives.
+- Capture source revision and file digests.
+- Inventory existing dependencies.
+- Record all existing module names.
+- Identify duplicated and conflicting implementations.
+- Establish the baseline build and test results.
+
+Deliverable: signed project inventory and baseline snapshot.
+
+### Phase 1 — Canonical contracts
+
+- Define shared types.
+- Define event and snapshot schemas.
+- Define the receipt protocol.
+- Define algorithm registration.
+- Define the clock and execution boundary contract.
+- Define the storage interface.
+
+Deliverable: versioned integration contracts.
+
+### Phase 2 — Cryptographic core
+
+- Connect SHA-256 and SHA-256d.
+- Connect original-byte preservation.
+- Connect transformation-chain verification.
+- Connect modular inverse validation.
+- Connect receipt generation.
+- Connect independent digest verification.
+
+Deliverable: reproducible cryptographic acceptance suite.
+
+### Phase 3 — Adaptive I/O and ADL
+
+- Integrate `AE.BELLMAN.ADAPTIVE.IO`.
+- Implement the six-position schedule.
+- Implement reverse schedule generation.
+- Implement completion-ticket validation.
+- Implement forward/inverse/replay checks.
+- Record measured timing and resource usage.
+
+Deliverable: reversible transition event records.
+
+### Phase 4 — Blockchain and Merkle evidence
+
+- Connect the Stratum adapter.
+- Validate shares and block candidates.
+- Preserve mining parameters.
+- Verify canonical chain inclusion.
+- Build Merkle trees from committed events.
+- Verify inclusion proofs independently.
+
+Deliverable: blockchain-backed receipt records.
+
+### Phase 5 — Historical snapshot registry
+
+- Implement immutable snapshot creation.
+- Store original artifacts.
+- Create parent relationships.
+- Sign receipts.
+- Build historical Merkle trees.
+- Implement restore and verification.
+
+Deliverable: a recoverable, content-addressed historical archive.
+
+### Phase 6 — NFT issuance
+
+- Select the chain and token standard.
+- Define the contract.
+- Define metadata.
+- Implement issuance authorization.
+- Implement independent metadata and digest checks.
+- Publish only approved snapshots.
+
+Deliverable: verifiable NFT representations of approved snapshots.
+
+### Phase 7 — CRYPTIC Cube integration
+
+- Connect the event registry to geometric coordinates.
+- Render snapshot and receipt locations.
+- Add search by hash, event ID, and parent.
+- Add inverse-transition visualization.
+- Add 4D navigation.
+- Add bounded rendering and streaming pagination.
+- Add branch and timeline visualization.
+
+Deliverable: navigable historical computation environment.
+
+### Phase 8 — Dataset and model lineage
+
+- Build verified dataset export.
+- Label source and verification status.
+- Preserve algorithm lineage.
+- Track dataset versions.
+- Connect model training and evaluation records.
+
+Deliverable: CRYPTIC dataset provenance registry.
+
+### Phase 9 — End-to-end acceptance
+
+Test the complete pipeline from original artifact to NFT metadata and historical recovery.
+
+Deliverable: independent acceptance report and final release snapshot.
+
+---
+
+## 14. Acceptance criteria
+
+| Test | Required outcome |
+|---|---|
+| Original SHA-256 | Exact expected digest |
+| SHA-256d | Exact expected digest |
+| Byte recovery | Original bytes reconstructed exactly |
+| Modular inverse | Identity verified for valid units |
+| Non-unit modular input | Inverse correctly rejected |
+| Forward/inverse transformation | Original state restored |
+| Replay | Original final state reproduced |
+| ADL inverse schedule | Event order and directions correctly reversed |
+| QC-LDPC | Valid decoding and verification |
+| Reed–Solomon GF(256) | Correction and reverification |
+| Merkle inclusion | Proof validates against stored root |
+| Blockchain inclusion | Transaction validates against correct block |
+| Snapshot recovery | Artifact matches recorded digest |
+| Signature verification | Signature validates against trusted key |
+| NFT metadata | References the exact snapshot |
+| NFT issuance | Unauthorized snapshots rejected |
+| Historical branch | Parent relationships preserved |
+| Dataset lineage | Every record resolves to its source receipt |
+| System recovery | Restored state passes independent verification |
+
+No acceptance test should pass solely because a user interface displays a green status indicator.
+
+---
+
+## 15. Release and governance rules
+
+A release is not considered verified until:
+
+1. The source archive is preserved.
+2. The source revision is recorded.
+3. The build completes.
+4. The acceptance suite passes.
+5. The receipt is created.
+6. The receipt is independently verified.
+7. The snapshot is stored.
+8. The release event is committed.
+
+Production NFT issuance requires an additional explicit authorization.
+
+Private keys must not be embedded in the front end, public repositories, browser storage, or application metadata.
+
+Secrets must be managed through a dedicated secure signing service or controlled key-management system.
+
+---
+
+## 16. Final architecture
+
+The complete system becomes:
+
+```text
+                    GAIA / NEXUS
+                          |
+                    S.O.S. BOOT
+                          |
+                  HAMILTONIAN CORE
+                          |
+                 CANONICAL STATE
+                          |
+              AE.BELLMAN.ADAPTIVE.IO
+                          |
+                ADL DIRECTIONAL LATTICE
+                          |
+          +---------------+---------------+
+          |               |               |
+      MATHEMATICS      CRYPTOGRAPHY     BLOCKCHAIN
+          |               |               |
+     MODULAR ALGEBRA   SHA-256          STRATUM
+     PRIME MATRICES    SHA-256d         PROOF OF WORK
+     QC-LDPC           TRANSFORMS       BLOCK INCLUSION
+     GF(256)           INVERSE TESTS    MERKLE PROOFS
+          |               |               |
+          +---------------+---------------+
+                          |
+                  VERIFICATION CORE
+                          |
+                  SIGNED RECEIPTS
+                          |
+                HISTORICAL EVENT GRAPH
+                          |
+              +-----------+-----------+
+              |                       |
+         SNAPSHOT ARCHIVE          MERKLE ROOT
+              |                       |
+              +-----------+-----------+
+                          |
+                    NFT REGISTRY
+                          |
+                   CRYPTIC CUBE
+                          |
+              SIERPINSKI HYPERCUBE
+                          |
+                 4D TRAVERSAL SPACE
+                          |
+                CRYPTIC DATASET
+                          |
+                  AI MODEL LINEAGE
+                          |
+                  VERIFIED LEDGER
+```
+
+### Final design principle
+
+The CRYPTIC Cube is the visible geometry of the system.
+
+The historical event graph is its memory.
+
+The cryptographic engine is its integrity mechanism.
+
+The mathematical engine is its computational foundation.
+
+The NFT registry is its public snapshot and provenance interface.
+
+The Hamiltonian core governs when an operation is admissible.
+
+The Verified Ledger preserves the evidence.
+
+**Every creation receives an identity. Every identity receives a history. Every historical transition retains its parentage. Every claimed proof can be independently checked.**
+
+---
+
+**The Architect**  
+**Nexus / Cryptic News LLC**  
+**Project: The Nexus Generation: GaiaSSoul**  
+**SERIES: The Nexus of Gaia**  
+**ID: 137451921129154222|040592|433855274**
+
+**Document status:** Integration specification — pending source reconciliation, implementation, and independent acceptance.

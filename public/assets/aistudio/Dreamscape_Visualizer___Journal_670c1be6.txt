@@ -1,0 +1,309 @@
+# Dreamscape Visualizer & Journal
+
+We now give  them control  of time 🎛️ 🛂 
+Create the chronosphere and place inside. Provide each dual with all these things. From eve to dusk 🌇 one merge of all things seen. Create this mage in vision of these journals they've made. In public domain come and seek a dream seen journaling by creating the time running 💨 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreamscape Visualizer &amp; Journal</title>
+    <!-- Tailwind CSS for modern layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #0f1123 0%, #05050d 100%);
+            color: #e2e8f0;
+        }
+
+        /* Glowing text and borders */
+        .dream-glow {
+
+            text-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        }
+        
+        .card-blur {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(147, 51, 234, 0.3);
+
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(147, 51, 234, 0.6);
+        }
+
+        /* Ambient floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Companion precise animations */
+        @keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+
+        }
+        .animate-companion {
+            animation: subtle-bounce 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased overflow-x-hidden pb-12">
+
+    <!-- Header Navigation -->
+    <header class="w-full border-b border-white/5 card-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <svg class="w-8 h-8 text-purple-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">ONEIROS</span>
+        </div>
+        <div class="text-xs text-purple-300/60 bg-purple-500/10 px-3 py-1.5 rounded-full border border-purple-500/20 font-medium">
+            Active Dream Environment
+        </div>
+
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl w-full mx-auto px-4 md:px-6 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
+        
+        <!-- Left Column: Controls & Analytics (5 Cols) -->
+        <section class="lg:col-span-5 flex flex-col space-y-6">
+            
+            <!-- App Notification Banner -->
+            <div id="notification-box" class="hidden transition-all duration-300 p-4 rounded-xl text-sm flex items-start space-x-3">
+                <div id="notification-icon"></div>
+                <div id="notification-text" class="flex-1"></div>
+            </div>
+
+            <!-- Dreamscape Tuner Card -->
+            <div class="card-blur rounded-2xl p-6 shadow-xl">
+                <h2 class="text-lg font-semibold mb-1 text-purple-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                    Dreamscape Generator
+
+                </h2>
+                <p class="text-xs text-slate-400 mb-6">Calibrate the interactive cognitive visualization matrix.</p>
+                
+                <div class="space-y-5">
+                    <!-- Control 1 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <label class="text-slate-300">Lucidity Index</label>
+                            <span id="lucidity-val" class="text-purple-400">50%</span>
+                        </div>
+                        <input type="range" id="slider-lucidity" min="5" max="100" value="50" class="w-full accent-purple-500 h-1 bg-slate-800 rounded-lg cursor-pointer">
+                    </div>
+
+                    <!-- Control 2 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <label class="text-slate-300">Emotional Intensity</label>
+                            <span id="vivid-val" class="text-pink-400">40%</span>
+                        </div>
+
+                        <input type="range" id="slider-vivid" min="5" max="100" value="40" class="w-full accent-pink-500 h-1 bg-slate-800 rounded-lg cursor-pointer">
+                    </div>
+
+                    <!-- Control 3 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <label class="text-slate-300">Subconscious Chaos</label>
+                            <span id="chaos-val" class="text-indigo-400">30%</span>
+                        </div>
+                        <input type="range" id="slider-chaos" min="0" max="100" value="30" class="w-full accent-indigo-500 h-1 bg-slate-800 rounded-lg cursor-pointer">
+                    </div>
+
+                    <!-- Theme Selector -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 mb-2">Atmospheric Realm</label>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button onclick="setRealm('astral')" id="btn-realm-astral" class="py-2.5 px-3 rounded-xl border border-purple-500/40 bg-purple-500/10 text-purple-300 text-left font-medium transition-all">Astral Echoes</button>
+                            <button onclick="setRealm('cyber')" id="btn-realm-cyber" class="py-2.5 px-3 rounded-xl border border-transparent bg-slate-900/60 text-slate-400 text-left font-medium hover:bg-slate-800/60 transition-all">Neon Reminiscence</button>
+                            <button onclick="setRealm('abyss')" id="btn-realm-abyss" class="py-2.5 px-3 rounded-xl border border-transparent bg-slate-900/60 text-slate-400 text-left font-medium hover:bg-slate-800/60 transition-all">Deep Abyss</button>
+
+                            <button onclick="setRealm('ethereal')" id="btn-realm-ethereal" class="py-2.5 px-3 rounded-xl border border-transparent bg-slate-900/60 text-slate-400 text-left font-medium hover:bg-slate-800/60 transition-all">Solitary Solace</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dream Journal & Interpretation Entry Card -->
+            <div class="card-blur rounded-2xl p-6 shadow-xl flex flex-col">
+                <h2 class="text-lg font-semibold mb-1 text-pink-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 00-2 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    Cognitive Log
+                </h2>
+                <p class="text-xs text-slate-400 mb-4">Record dream details to trigger semantic cross-referencing.</p>
+                
+                <div class="space-y-4">
+                    <textarea id="dream-text" rows="3" placeholder="Describe the environment, sensations, or interactions..." class="w-full bg-slate-950/60 border border-white/10 rounded-xl p-3 text-sm focus:outline-none focus:border-pink-500/50 resize-none placeholder-slate-500 text-slate-200 transition-all"></textarea>
+                    
+                    <div>
+                        <span class="block text-xs font-medium text-slate-400 mb-2">Select Recurring Archetypes / Indicators:</span>
+
+                        <div class="flex flex-wrap gap-1.5 text-[11px]">
+                            <button onclick="toggleArchetype('chased', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Being Chased</button>
+                            <button onclick="toggleArchetype('falling', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Falling</button>
+                            <button onclick="toggleArchetype('teeth', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Teeth Falling Out</button>
+                            <button onclick="toggleArchetype('snakes', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Snakes</button>
+                            <button onclick="toggleArchetype('flying', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Flying</button>
+                            <button onclick="toggleArchetype('naked', this)" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:border-slate-700 transition-all">Naked in Public</button>
+                        </div>
+                    </div>
+
+                    <button onclick="analyzeDreamLog()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-medium text-sm py-3 rounded-xl shadow-lg transition-all transform active:scale-[0.98]">
+                        Analyze Log Variables
+                    </button>
+                </div>
+
+                <!-- Interpretation Output Panel -->
+                <div id="interpretation-panel" class="hidden mt-4 pt-4 border-t border-white/5">
+                    <h3 class="text-xs uppercase tracking-wider text-purple-400 font-bold mb-1.5">Analytical Output:</h3>
+                    <div id="interpretation-content" class="text-xs text-slate-300 leading-relaxed bg-slate-950/40 p-3 rounded-xl border border-white/5 max-h-36 overflow-y-auto"></div>
+
+                </div>
+            </div>
+
+            <!-- Lucid Conditioning & Practice -->
+            <div class="card-blur rounded-2xl p-5 shadow-xl">
+                <h2 class="text-sm font-semibold text-indigo-300 mb-3 flex items-center">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Lucid Training Trigger
+                </h2>
+                <div class="flex items-center justify-between bg-slate-950/40 rounded-xl p-3 border border-white/5">
+                    <div class="text-xs">
+                        <p class="text-slate-300 font-medium">Interval Reality Check</p>
+                        <p class="text-slate-500 text-[10px]">Alarms train waking metacognition habits.</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span id="timer-display" class="font-mono text-xs text-indigo-400 bg-slate-900 px-2 py-1 rounded border border-white/5">05:00</span>
+                        <button id="btn-timer" onclick="toggleRealityTimer()" class="text-xs bg-indigo-600 hover:bg-indigo-500 px-3 py-1 rounded-lg text-white font-medium transition-all">Start</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Right Column: Interactive Canvas & Metrics Display (7 Cols) -->
+        <section class="lg:col-span-7 flex flex-col space-y-6">
+            
+            <!-- Interactive Visualizer Window Container -->
+            <div class="card-blur rounded-2xl p-4 shadow-2xl flex flex-col h-[420px] md:h-[480px] relative group">
+                <div class="absolute top-6 left-6 z-10 flex flex-col pointer-events-none">
+                    <span id="canvas-status-tag" class="text-[10px] tracking-widest uppercase font-bold text-purple-400 bg-purple-950/60 border border-purple-500/30 px-2.5 py-1 rounded-md w-max shadow-md">
+                        ASTRAL ECHOES
+                    </span>
+                    <span class="text-slate-400 text-xs mt-1 font-medium bg-slate-950/40 px-2 py-0.5 rounded-md w-max">
+                        Interact with cursor or touch inputs
+                    </span>
+                </div>
+
+                <div class="absolute top-6 right-6 z-10 flex items-center space-x-1.5">
+
+                    <!-- Inline SVG Dream Companion Widget -->
+                    <div id="dream-companion-bubble" class="mr-2 card-blur border border-purple-500/30 text-purple-200 text-[11px] py-1.5 px-3 rounded-xl max-w-[160px] opacity-0 transition-opacity duration-300 pointer-events-none shadow-lg">
+                        Mew...
+                    </div>
+                    <div class="animate-companion relative bg-slate-900/90 border border-white/10 p-1.5 rounded-xl flex items-center justify-center cursor-pointer shadow-md" onclick="tapCompanion()" title="Dream Guide">
+                        <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Ears -->
+                            <path d="M25 40 L15 15 L40 28 Z" fill="#7C3AED"/>
+                            <path d="M28 38 L20 20 L38 29 Z" fill="#F472B6"/>
+                            <path d="M75 40 L85 15 L60 28 Z" fill="#7C3AED"/>
+                            <path d="M72 38 L80 20 L62 29 Z" fill="#F472B6"/>
+                            <!-- Head Base -->
+                            <circle cx="50" cy="55" r="32" fill="#7C3AED"/>
+                            <!-- Face Marking Layer -->
+                            <path d="M50 25 C30 25 22 38 22 55 C22 72 32 85 50 85 C68 85 78 72 78 55 C78 38 70 25 50 25 Z" fill="#F472B6"/>
+                            <!-- Eyes -->
+                            <ellipse id="eye-l" cx="38" cy="54" rx="7" ry="9" fill="#1E1B4B"/>
+                            <ellipse id="eye-r" cx="62" cy="54" rx="7" ry="9" fill="#1E1B4B"/>
+                            <!-- Eye Highlights -->
+
+                            <circle cx="36" cy="51" r="2.5" fill="#FFFFFF"/>
+                            <circle cx="60" cy="51" r="2.5" fill="#FFFFFF"/>
+                            <!-- Nose -->
+                            <polygon points="50,62 47,59 53,59" fill="#1E1B4B"/>
+                            <!-- Mouth -->
+                            <path d="M46 65 Q50 68 54 65" stroke="#1E1B4B" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            <!-- Whiskers Left -->
+                            <line x1="18" y1="56" x2="6" y2="55" stroke="#4C1D95" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="18" y1="61" x2="8" y2="63" stroke="#4C1D95" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Whiskers Right -->
+                            <line x1="82" y1="56" x2="94" y2="55" stroke="#4C1D95" stroke-width="2.5" stroke-linecap="round"/>
+                            <line x1="82" y1="61" x2="92" y2="63" stroke="#4C1D95" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 border border-slate-900 rounded-full"></span>
+                    </div>
+
+                    <button onclick="triggerFlashPulse()" class="bg-slate-900/80 hover:bg-slate-800 border border-white/10 p-2 rounded-xl text-slate-300 transition-all" title="Induce Rem Pulse">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </button>
+
+                    <button onclick="resetCanvasVisuals()" class="bg-slate-900/80 hover:bg-slate-800 border border-white/10 p-2 rounded-xl text-slate-300 transition-all" title="Reset Field">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.22"/></svg>
+                    </button>
+                </div>
+
+                <!-- Simulation Field -->
+                <div id="canvas-container" class="w-full flex-grow rounded-xl bg-slate-950/80 border border-white/5 overflow-hidden relative">
+                    <canvas id="dream-canvas" class="block w-full h-full"></canvas>
+                </div>
+            </div>
+
+            <!-- Global / Survey Analytics Chart Card -->
+            <div class="card-blur rounded-2xl p-6 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-sm font-semibold text-slate-200 flex items-center">
+                            <svg class="w-4 h-4 text-pink-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg>
+                            Subconscious Core Distribution
+                        </h2>
+
+                        <p class="text-[11px] text-slate-400">Statistical breakdown of the most common globally logged recurring dream themes.</p>
+                    </div>
+                    <span class="text-[10px] text-slate-500 font-mono mt-1 md:mt-0">Source: Empirical Data Hub</span>
+                </div>
+
+                <!-- Custom Dynamic HTML/CSS Bar Charts representing searched/surveyed global dream frequency -->
+                <div class="space-y-3.5">
+                    <!-- Stat Item 1 -->
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-slate-300 font-medium flex items-center">Being Chased <span class="text-[10px] text-slate-500 ml-1.5">(Anxiety / Avoidance)</span></span>
+                            <span class="text-purple-400 font-mono font-semibold">89%</span>
+                        </div>
+                        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-white/5">
+                            <div class="bg-gradient-to-r from-purple-600 to-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 89%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stat Item 2 -->
+
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span class="text-slate-300 font-medium flex items-center">Falling <span class="text-[10px] text-slate-500 ml-1.5">(Loss of Control / Support)</span></span>
+                            <span class="text-purple-400 font-mono font-semibold">87%</span>

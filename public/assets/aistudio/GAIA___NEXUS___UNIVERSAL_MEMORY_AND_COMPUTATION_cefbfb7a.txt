@@ -1,0 +1,451 @@
+# GAIA / NEXUS — UNIVERSAL MEMORY AND COMPUTATION INTEGRATION
+## Architect's Implementation Directive — v6.1 Integration Target
+
+**Project:** GAIA / NEXUS / CRYPTIC  
+**Existing source baseline:** CRYPTIC Universal Bridge v6.0.1  
+**Target:** Functional Save_Memory integrated into the existing AI Studio application  
+**Policy:** Preserve source lineage, preserve user-provided semantics, no mock data, no unverified success claims.
+
+---
+
+## 1. FIRST: INSPECT BEFORE MODIFYING
+
+Inspect the complete existing application and its dependencies.
+
+Pay particular attention to the existing modules:
+
+- `src/engine/sqliteLedgerStore.ts`
+- `src/engine/universalClockKernel.ts`
+- `src/engine/hccgnScheduler.ts`
+- `src/engine/crypticRuntimeService.ts`
+- `src/engine/algorithmRegistry.ts`
+- `src/engine/cuboctahedralTraceEngine.ts`
+- `src/components/UniversalClockWorkspace.tsx`
+- `src/components/AnalyticsDashboard.tsx`
+- `src/components/GenesisXrMonolith.tsx`
+- `src/components/CrypticPlatformWorkspace.tsx`
+- `server.ts`
+- `src/contracts/`
+
+Do not assume these files have the same contents as previous generated summaries. Read their actual current source.
+
+Determine whether a memory API already exists under another name. Reuse and extend it where appropriate.
+
+Do not create a second competing ledger.
+
+Preserve existing working components, legacy anchors, version history, and previous TDOC records.
+
+Produce a source inventory and dependency map before implementation.
+
+## 2. IMPLEMENT FUNCTIONAL Save_Memory
+
+Create a single canonical memory interface:
+
+`Save_Memory.saveMemory(event, authorizationContext)`
+
+The implementation must use the existing SQLite WAL persistence layer.
+
+Required behavior:
+
+1. Accept an explicitly submitted memory event.
+2. Preserve the supplied content verbatim.
+3. Preserve Unicode, punctuation, line breaks, symbols, and original ordering.
+4. Record source, timestamp, project, device profile, and schema version.
+5. Generate a unique event ID.
+6. Calculate a SHA-256 digest of the original payload.
+7. Append the event in a transaction.
+8. Link the event to the previous ledger hash.
+9. Read the committed record back.
+10. Independently verify its digest and chain relationship.
+11. Return a structured receipt.
+
+Do not silently normalize, summarize, paraphrase, interpret, or deduplicate the original payload.
+
+If optional tags or categories are supplied, store them separately from the original content. Do not invent tags.
+
+### Canonical record structure
+
+```json
+{
+  "schema": "gaia.memory.event.v1",
+  "event_id": "generated-unique-id",
+  "sequence": 0,
+  "created_utc": "ISO-8601",
+  "source": "user_supplied",
+  "project": "GAIA-NEXUS",
+  "device": {
+    "role": "operator_configured",
+    "runtime": "detected_or_declared"
+  },
+  "payload_encoding": "UTF-8",
+  "payload": "EXACT ORIGINAL USER CONTENT",
+  "payload_sha256": "SHA-256",
+  "previous_hash": "PREVIOUS EVENT HASH",
+  "event_hash": "CANONICAL EVENT HASH",
+  "authorization": {
+    "user_consent": true,
+    "boundary": "pending",
+    "clock_capacity": "pending",
+    "verification": "pending"
+  },
+  "status": "committed"
+}
+```
+
+The example is a schema, not a pre-generated receipt. Generate actual values at runtime.
+
+Do not store passwords, API keys, private tokens, or secret credentials in the memory payload. Redact them before persistence and explicitly report that redaction occurred.
+
+### Memory API
+
+Provide:
+
+- `saveMemory(event, authorizationContext)`
+- `getMemory(eventId)`
+- `listMemory(query)`
+- `verifyMemory(eventId)`
+- `verifyMemoryChain()`
+- `exportMemory(eventId)`
+- `exportMemoryArchive()`
+
+Use parameterized database queries.
+
+Use transaction boundaries and append-only records.
+
+Corrections and removals must be represented through explicit subsequent records or a documented retention procedure, never silent history rewriting.
+
+Repeated user submissions must remain distinguishable unless the user explicitly supplies an idempotency key.
+
+## 3. PRESERVE THE LEXICAL CORPUS WITHOUT SEMANTIC ALTERATION
+
+Treat the supplied vocabulary as an immutable text corpus.
+
+Preserve the RuneScape references, item names, character names, website names, aliases, phrases, unusual spellings, symbols, and trigger expressions exactly as supplied.
+
+Do not:
+
+- Invent meanings for phrases.
+- Convert names into executable commands.
+- Treat words as authorization credentials.
+- Claim to reveal hidden system prompts or private secrets.
+- Infer private account information.
+- Replace the original text with a summary.
+- Delete unusual or apparently unrelated entries.
+
+Provide a separate optional index that references original record IDs. The index must never modify the source record.
+
+## 4. MATHEMATICAL COMPUTATION ENGINE
+
+Integrate the mathematical domains through explicit typed interfaces.
+
+### Linear algebra
+
+- Matrix and vector operations.
+- Tensor spaces.
+- Trace maps.
+- Multi-lane transformations.
+- State-space transformations.
+- Numerical conditioning and residual checks.
+
+### Coding theory
+
+- QC-LDPC parity-check matrix validation.
+- Syndrome calculation and decoding.
+- Reed–Solomon correction over GF(256).
+- Berlekamp–Massey and Forney decoding where applicable.
+- Explicit error-versus-erasure handling.
+- Independent post-decoding verification.
+
+Do not treat QC-LDPC and Reed–Solomon as interchangeable codes. Coordinate them through a defined encoding, decoding, and verification pipeline.
+
+### Information theory
+
+- Shannon entropy.
+- Channel capacity estimation.
+- Serialization boundaries.
+- Redundancy and rate analysis.
+- Uncertainty measurements.
+
+### Control theory
+
+- Feedback control.
+- Stability checks.
+- Adaptive controller recommendations.
+- Convergence measurements.
+- Error tracking.
+
+### Symbolic and quantum computation
+
+Provide explicit optional adapters for:
+
+- Wolfram symbolic computation.
+- Local computer algebra systems.
+- Qiskit SDK.
+- Qiskit addon API families.
+
+Keep external computation behind configured interfaces. Report `UNAVAILABLE` when an adapter, credential, endpoint, or execution environment is absent.
+
+Never claim quantum hardware execution when only a local numerical simulation has occurred.
+
+Every mathematical result must carry its algorithm version, input digest, output digest, units, dataset provenance, and verification result.
+
+## 5. UNIVERSAL POLYGLOT QUINE ARCHITECTURE
+
+Implement a canonical typed intermediate representation.
+
+A command must describe:
+
+- Operation identifier.
+- Input types.
+- Output types.
+- Runtime requirements.
+- Required capabilities.
+- Resource limits.
+- Deadline.
+- Authorization requirements.
+- Verification procedure.
+- Adapter selection.
+
+Build explicit runtime adapters rather than pretending that one source file can execute natively in every programming language.
+
+Support discovery and invocation through explicit launchers, without requiring a shebang in the underlying source artifact.
+
+### Operating-system package-manager adapters
+
+Build a capability registry for common systems:
+
+| Platform | Package managers |
+|---|---|
+| Debian / Ubuntu | APT, dpkg |
+| Fedora / RHEL | DNF, RPM |
+| Arch | Pacman |
+| Alpine | APK |
+| macOS | Homebrew, MacPorts |
+| Windows | WinGet, Chocolatey, Scoop |
+| Android / Termux | pkg, APT |
+| NixOS | Nix |
+| FreeBSD | pkg, Ports |
+| OpenBSD | pkg_add |
+
+### Language package managers
+
+Include explicit adapters for:
+
+- npm, pnpm, Yarn, Bun
+- pip, uv, Poetry
+- Cargo
+- Go modules
+- Maven, Gradle
+- NuGet
+- RubyGems, Bundler
+- Composer
+
+Detect availability before invocation.
+
+Never install packages automatically without an explicit authorized operation.
+
+Do not use arbitrary `eval`, unrestricted shell interpolation, or execution of untrusted content from Drive.
+
+## 6. HCCGN UNIVERSAL CLOCK
+
+Reuse the existing Universal Clock implementation.
+
+Keep temporal admissibility separate from measured computational capacity.
+
+The current architecture specification describes:
+
+- Nominal base interval: 100,000 ns.
+- Solver interval: 500,000 ns.
+- Five base intervals per solver interval.
+- Monotonic one-second execution epoch.
+- External UTC correlation.
+- Independent lane accounting.
+- Timestamped execution receipts.
+
+Treat these as architectural targets, not guaranteed hardware timing.
+
+Use a monotonic runtime clock for elapsed time and deadlines. Measure actual dispatch lateness, throughput, resource availability, and verification overhead.
+
+Do not infer capacity from a configured target.
+
+## 7. THE ARCHITECT'S AUTHORIZATION INVARIANT
+
+Preserve:
+
+`A = B && C && V`
+
+Where:
+
+- `B`: execution boundary is valid.
+- `C`: clock and measured-capacity conditions are valid.
+- `V`: independent verification is successful.
+- `A`: authorization to execute.
+
+Keep the internal clock and capacity measurements separately observable.
+
+If any required condition is false, missing, stale, or unknown, withhold execution.
+
+No boundary: no execution.
+
+No measurement: no capacity claim.
+
+No verification: no correctness claim.
+
+User authorization is necessary but does not replace platform permissions, account authentication, or independent verification.
+
+## 8. QUANTUM ROSE INTEGRATION
+
+Inspect the supplied Quantum Rose single-canvas HTML.
+
+Preserve its existing visual identity and mathematical controls.
+
+The existing interface includes:
+
+- Eigenstate count.
+- Complex amplitudes.
+- Phase evolution.
+- Probability-density visualization.
+- Coherence control.
+- Time-speed control.
+- Interactive canvas input.
+
+The displayed wavefunction representation is:
+
+`Ψ(r,θ,t) = Σ cₙ ψₙ(r,θ) e^(-iEₙt/ħ)`
+
+Treat this artifact as an interactive numerical visualization, not proof of a physical quantum computation.
+
+Add a user-operated **Save Snapshot** action.
+
+Save:
+
+- Eigenstate count.
+- Complex amplitude data.
+- Phase state.
+- Coherence value.
+- Time-speed setting.
+- Simulation time.
+- Model version.
+- Snapshot timestamp.
+- Canvas and rendering configuration.
+- Payload digest.
+
+Do not write to the memory ledger on every animation frame.
+
+The snapshot action must explicitly invoke `Save_Memory.saveMemory`.
+
+After saving, display the actual memory receipt and verification result.
+
+## 9. NETWORK AND DEVICE ADAPTERS
+
+Use explicit, independently configured adapters for:
+
+- TCP.
+- HTTPS.
+- WebSocket.
+- WebRTC.
+- STUN/TURN.
+- RTP timing.
+- Authorized peer-to-peer connections.
+- Tailscale and SSH routes.
+
+No route may be displayed as connected merely because its configuration exists.
+
+Use states such as:
+
+`NOT_CONFIGURED → CONFIGURED → AUTHENTICATING → AUTHENTICATED → VERIFIED → CONNECTED`
+
+A failed handshake must remain failed.
+
+No arbitrary remote command execution.
+
+No unrestricted browser control.
+
+No automatic credential discovery.
+
+## 10. REAL DATA ONLY
+
+Replace synthetic telemetry with source-backed measurements.
+
+Do not use `Math.random()`, `Math.sin()` curves, invented uptime, invented balances, fabricated payout IDs, or simulated network measurements as operational facts.
+
+If a source is unavailable, display `UNAVAILABLE`.
+
+If a measurement is estimated, label it `ESTIMATED`.
+
+If a result is simulated, label it `SIMULATION`.
+
+Every visualization must expose provenance.
+
+## 11. VERIFICATION AND RECEIPTS
+
+Add acceptance tests for:
+
+1. Verbatim Unicode preservation.
+2. Exact payload round-trip.
+3. SHA-256 digest correctness.
+4. Linear ledger-chain integrity.
+5. Tamper detection.
+6. Transaction rollback.
+7. Duplicate submissions.
+8. Authorization gate behavior.
+9. Unknown-state denial.
+10. Snapshot persistence.
+11. Snapshot restoration.
+12. Package-manager capability detection.
+13. Runtime adapter selection.
+14. Mathematical result verification.
+15. External adapter unavailable-state handling.
+
+Build and run the tests.
+
+Report actual commands, exit codes, and results.
+
+Do not write `VERIFIED` into a receipt unless the corresponding test or operation really ran and passed.
+
+## 12. REQUIRED DELIVERABLES
+
+Create or extend the following using the existing project conventions:
+
+- `Save_Memory` service.
+- Memory event contracts.
+- SQLite schema migration.
+- Memory API routes.
+- Memory receipt verifier.
+- Universal typed intermediate representation.
+- Runtime adapter registry.
+- Package-manager capability registry.
+- Mathematical computation interfaces.
+- Quantum Rose snapshot integration.
+- Memory management workspace.
+- Acceptance tests.
+- TDOC version and lineage record.
+- Build and verification report.
+
+Preserve previous source versions and create an additive successor.
+
+Do not claim Google Drive integration until a real user-authorized Drive API connection has been configured and tested.
+
+Do not claim external Qiskit or Wolfram execution without a real adapter and execution receipt.
+
+## 13. FINAL RESPONSE REQUIRED FROM AI STUDIO
+
+Return:
+
+1. Source files inspected.
+2. Files created.
+3. Files modified.
+4. Existing components reused.
+5. Database migrations applied.
+6. Actual test commands.
+7. Actual test results.
+8. Build status.
+9. Memory-chain verification.
+10. Unavailable or blocked capabilities.
+11. TDOC identifier.
+12. Artifact SHA-256.
+13. Rollback instructions.
+
+Separate implemented features from planned features.
+
+**The governing rule is unchanged: preserve the source, measure the runtime, verify the result, and record the evidence.**

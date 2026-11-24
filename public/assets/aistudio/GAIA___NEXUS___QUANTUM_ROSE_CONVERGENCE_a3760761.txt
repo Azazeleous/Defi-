@@ -1,0 +1,461 @@
+# GAIA / NEXUS — QUANTUM ROSE CONVERGENCE
+## Integrated Runtime Recode · Version 7.0.0
+### Designation: HCCGN.QR.HAMILTONIAN.GRIMOIRE
+
+**Architectural objective**
+
+Recode and integrate the existing GAIA / NEXUS application into a coherent visual, temporal, computational, and memory runtime.
+
+Do not create a mock demonstration. Do not claim that an external device, network, sensor, GPU, clock, quantum processor, mining pool, or cloud service is connected unless an actual connection and its evidence are available.
+
+Preserve existing project files, working implementations, interfaces, and historical data. Inspect the current source before editing. Reuse the existing SQLite WAL ledger and HCCGN clock implementation. Do not create parallel memory stores or duplicate clock kernels.
+
+---
+
+# 1. GOVERNING INVARIANT
+
+Implement one shared authorization contract:
+
+`A = B && C && V`
+
+Where:
+
+- B = boundary admissibility.
+- C = measured computational capacity.
+- V = independent verification.
+- A = authorization to commit or execute the requested operation.
+
+Missing, stale, false, or unknown conditions must withhold authorization.
+
+Maintain separate internal observability for B, C, and V. Never collapse unknown into true.
+
+The governing doctrine:
+
+- Time establishes the execution boundary.
+- Measurement establishes computational capacity.
+- Verification establishes correctness.
+
+The visual governor cannot override this invariant.
+
+# 2. QUANTUM ROSE — VISUAL GOVERNOR
+
+Create or refactor:
+
+`src/engine/quantumRoseGovernor.ts`
+
+`src/components/QuantumRoseWorkspace.tsx`
+
+Use the existing Quantum Rose mathematical visualization as the foundation.
+
+The visual governor must support:
+
+- Eigenstate count and coefficient vectors.
+- Complex amplitudes.
+- Hamiltonian eigenvalues.
+- Phase evolution.
+- Coherence parameter.
+- Probability-density visualization.
+- Normalization verification.
+- Phase-space visualization.
+- Responsive canvas rendering.
+- Deterministic snapshot generation.
+
+Use the Hamiltonian evolution:
+
+`|psi(t)> = exp(-iHt/hbar) |psi(0)>`
+
+For a diagonal Hamiltonian:
+
+`c_n(t) = c_n(0) exp(-i E_n t / hbar)`
+
+The visualization must preserve the distinction between a mathematical model and a physical quantum device.
+
+## Color governor
+
+Implement a complete color-management pipeline.
+
+Support:
+
+- sRGB.
+- Linear RGB.
+- HSL and HSV.
+- OKLab and OKLCH.
+- CSS wide-gamut Display-P3 when supported.
+- Alpha compositing.
+- Multistop gradients.
+- Radial, conic, linear, and procedural gradients.
+- Hue rotation.
+- Saturation and luminance modulation.
+- Contrast and accessibility checks.
+- Palette interpolation.
+- Deterministic color snapshots.
+
+Do not merely cycle through a small list of hardcoded colors.
+
+Generate the palette from normalized visual state:
+
+- Hamiltonian phase.
+- Eigenstate amplitude.
+- Coherence.
+- Probability density.
+- Graph values.
+- Verified system state.
+- User-selected palette constraints.
+
+The same state and seed must produce the same palette.
+
+Color must communicate state without pretending that color alone proves correctness.
+
+Create a role hierarchy:
+
+`QuantumRoseGovernor -> ColorManager -> GradientEngine -> Renderer`
+
+The governor produces visual parameters. The renderer consumes them. The memory ledger records significant transitions, not every animation frame.
+
+# 3. PIC BITWISE GEOMETRY ENGINE
+
+Create:
+
+`src/engine/picGeometryEngine.ts`
+
+Preserve the PIC designation as an explicit module interface. Do not invent an undocumented expansion of the acronym.
+
+Implement deterministic pixel and channel transformations.
+
+Support:
+
+- RGBA channel extraction.
+- Integer bit masks.
+- Bitwise channel reshaping.
+- Pixel-plane transformations.
+- Alpha masks.
+- Quantization.
+- Clipping.
+- Resampling.
+- Image-to-canvas transformations.
+- Reversible transformations where mathematically possible.
+
+Keep floating-point color calculations separate from integer bitwise operations.
+
+Use CSS `clip-path` for visual geometry and clipping, including:
+
+- Polygonal masks.
+- Circle and ellipse masks.
+- Inset masks.
+- Path masks where supported.
+- Responsive geometry.
+- Animated mask interpolation.
+
+The `clip-path` renderer must never be treated as a substitute for actual image-buffer transformations.
+
+Implement bounds checking, dimension limits, memory limits, and tests for channel preservation.
+
+# 4. HAMILTONIAN CLOCK AND HAMLTONEURAL ENGINE
+
+Create or extend:
+
+`src/engine/hamiltonianNeuralClock.ts`
+
+Reuse:
+
+- `universalClockKernel.ts`
+- `universalClockCanonical.ts`
+- `hccgnScheduler.ts`
+- `UniversalClockWorkspace.tsx`
+
+The Hamiltonian engine is the temporal coordination and phase-evolution layer.
+
+Maintain:
+
+- Monotonic time.
+- Integer nanosecond accounting where supported.
+- Clock epoch.
+- Tick sequence.
+- Scheduler anchors.
+- Missed-tick accounting.
+- Solver-window boundaries.
+- Phase evolution.
+- Clock drift measurements.
+- Event timestamps.
+- Clock-source provenance.
+
+Preserve the existing HCCGN nominal schedule:
+
+- Base interval: 100,000 ns.
+- Solver interval: 500,000 ns.
+- Five base intervals per solver window.
+- One nominal second: 10,000 base intervals.
+
+These are scheduling targets, not guaranteed hardware timing.
+
+Use `process.hrtime.bigint()` in the Node runtime for monotonic nanosecond measurements. In browser contexts use `performance.now()` and record its actual available resolution.
+
+The picosecond representation may be used for mathematical phase calculations and virtual-clock display. It must never be reported as picosecond-accurate physical execution without suitable hardware and independent measurement.
+
+The clock must expose:
+
+`clock.read()`
+
+`clock.schedule()`
+
+`clock.measure()`
+
+`clock.getPhase()`
+
+`clock.getDrift()`
+
+`clock.getReceipt()`
+
+The engine must not modify its own executable source code. Its self-etching behavior is implemented through append-only event records, deterministic state transitions, and verified configuration updates.
+
+# 5. DREAMING GRIMOIRE ENGINE
+
+Create:
+
+`src/engine/dreamingGrimoireEngine.ts`
+
+`src/components/DreamingGrimoireWorkspace.tsx`
+
+This engine receives verified visual snapshots, graph datasets, mathematical outputs, and user-authored journal entries.
+
+Pipeline:
+
+`DISCOVER -> CATALOG -> PROVENANCE -> NORMALIZE -> VERIFY -> COMPOSE -> SNAPSHOT -> LEDGER`
+
+Every generated artifact must retain:
+
+- Source identifier.
+- Source hash where available.
+- Generation timestamp.
+- Engine version.
+- Input references.
+- Transformation history.
+- Verification status.
+- User approval status.
+
+The Grimoire may generate evolving compositions and visual interpretations.
+
+It must not silently rewrite source datasets, erase user material, promote generated interpretations to verified facts, or execute generated code.
+
+Support exportable JSON records and image snapshots.
+
+# 6. MACRO IMAGE STUDIO AND GRAPHING ENGINE
+
+Reuse the existing graphing and analytics components.
+
+Inspect:
+
+`AnalyticsDashboard.tsx`
+
+`CrypticLiveChartsPanel.tsx`
+
+`CrypticGraphingWorkspace.tsx`
+
+`algorithmRegistry.ts`
+
+Add provenance-aware graph sources:
+
+- Directly measured data.
+- Persisted application events.
+- Deterministically derived data.
+- External data with source evidence.
+- Estimated data.
+- Unavailable data.
+
+Every chart must visibly distinguish these categories.
+
+Do not use synthetic curves or random values to fill missing measurements.
+
+The Macro Image Studio must accept:
+
+- Quantum Rose snapshots.
+- Graph snapshots.
+- Grimoire compositions.
+- User-selected images.
+- Verified visual state.
+- Palette and gradient presets.
+
+Support compositing, masks, transformations, and deterministic exports.
+
+# 7. COSMIC GUARDIAN — VOID() ENGINE
+
+Create or refactor:
+
+`src/engine/cosmicGuardianVoidEngine.ts`
+
+`src/components/CosmicGuardianVoidWorkspace.tsx`
+
+The void is no longer a static black canvas.
+
+Render a continuously evolving, full-color visual field.
+
+The background must support:
+
+- Full-spectrum gradients.
+- Procedural color fields.
+- Hamiltonian phase modulation.
+- Quantum Rose palette modulation.
+- Graph-derived geometry.
+- Image Studio compositing.
+- Particle and field layers.
+- Clip-path masks.
+- WebGL2 rendering.
+- 2D canvas fallback.
+- Reduced-motion mode.
+- Responsive rendering.
+- Snapshot and restore.
+
+The visual field must remain functional when WebGL2 is unavailable.
+
+Use the Quantum Rose state to guide the visual field, but do not make the renderer responsible for authorizing system operations.
+
+Do not write to persistent memory on every frame.
+
+# 8. SAVE_MEMORY — CANONICAL PERSISTENCE
+
+Create or extend:
+
+`src/engine/saveMemory.ts`
+
+Reuse `sqliteLedgerStore.ts`.
+
+Required interface:
+
+- `saveMemory(event)`
+- `getMemory(id)`
+- `listMemory(query)`
+- `verifyMemory(id)`
+- `verifyMemoryChain()`
+- `exportMemory(id)`
+- `exportMemoryArchive()`
+
+Requirements:
+
+1. Preserve supplied UTF-8 payloads exactly.
+2. Preserve original wording and source identity.
+3. Store tags and derived interpretations separately.
+4. Use append-only event records.
+5. Use canonical serialization.
+6. Compute SHA-256 digests.
+7. Link records to the preceding verified record.
+8. Commit before read-back verification.
+9. Return a verifiable receipt.
+10. Do not log secrets or credentials.
+11. Do not silently normalize, summarize, or rewrite original content.
+12. Do not treat a successful write as proof of external notarization.
+
+Persist significant events:
+
+- Quantum Rose snapshots.
+- Clock epoch transitions.
+- Hamiltonian phase checkpoints.
+- Color governor changes.
+- Graph snapshots.
+- Image Studio exports.
+- Grimoire compositions.
+- Verification results.
+- Authorization decisions.
+
+The memory engine must support provenance and version history.
+
+# 9. CIRCULAR DATA PROCESSING RUNTIME
+
+Implement a bounded, cooperative background processing loop for data discovery, transformation, graphing, verification, and visualization.
+
+This is a data-processing and dataset-mining workflow, not an unbounded cryptocurrency-mining or proof-of-work process.
+
+Requirements:
+
+- Explicit workload limits.
+- CPU and memory budgets.
+- Pause and resume controls.
+- Visibility-aware scheduling.
+- Battery-aware scheduling where available.
+- Cancellation.
+- Backpressure.
+- Error recovery.
+- Durable checkpointing.
+- No hidden background execution.
+- No claims of always-on operation when the browser or operating system may suspend the process.
+
+The processing loop must yield to the host environment and remain user-controllable.
+
+# 10. INTEGRATION MAP
+
+Integrate into the existing application:
+
+- QuantumRoseWorkspace -> visual governor.
+- HamiltonianNeuralClock -> HCCGN temporal kernel.
+- PICGeometryEngine -> visual transformations.
+- DreamingGrimoireWorkspace -> evolving compositions.
+- MacroImageStudio -> image and graph composition.
+- CosmicGuardianVoidWorkspace -> primary living canvas.
+- SaveMemory -> existing SQLite WAL ledger.
+- UniversalClockWorkspace -> timing and verification observability.
+
+Use existing application navigation and state-management conventions.
+
+Do not create duplicate application roots, competing event buses, parallel clock services, or separate ledgers.
+
+# 11. VERIFICATION
+
+Add tests for:
+
+- Hamiltonian phase evolution.
+- Complex coefficient normalization.
+- Probability-density integration.
+- Deterministic palette generation.
+- Color-space conversion.
+- PIC bitwise channel transformations.
+- Clip-path bounds.
+- Snapshot reproducibility.
+- Memory append-only behavior.
+- SHA-256 verification.
+- Ledger-chain verification.
+- Clock drift reporting.
+- Scheduler missed-tick accounting.
+- Authorization gate behavior.
+- Missing and stale measurement handling.
+- Renderer fallback.
+- Reduced-motion behavior.
+- Background suspension and resume.
+
+Test the invariant:
+
+`A === (B && C && V)`
+
+Unknown must never be interpreted as true.
+
+# 12. DELIVERY CONTRACT
+
+Before editing:
+
+1. Inspect the existing source and dependencies.
+2. Identify existing interfaces and storage contracts.
+3. Produce a change map.
+4. Preserve working code and user-authored material.
+
+After editing:
+
+1. Run the existing test suite.
+2. Run TypeScript checks.
+3. Run the production build.
+4. Report actual results.
+5. Report changed file names.
+6. Report any blocked integration.
+7. Report the memory ledger verification result.
+8. Provide a versioned TDOC receipt.
+9. Provide artifact hashes.
+10. Separate measured, derived, estimated, unavailable, and unverified values.
+
+Do not state that a feature is complete merely because its component was generated.
+
+Final designation:
+
+`GAIA.NEXUS.HCCGN.QUANTUM-ROSE.V7`
+
+The governing principle remains:
+
+`A = B && C && V`
+
+The system may evolve continuously, but every committed state must remain traceable, bounded, and verifiable.

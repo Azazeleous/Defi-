@@ -1,0 +1,1159 @@
+HCCGN / GAIA / NEXUS / CRYPTIC
+PROJECT CONVERGENCE & APPLICATION BUILD HANDOFF
+Version: 1.0.0
+Prepared: 2026-11-15
+Target recipient: Existing Google AI Studio application instance
+Project context: Hamiltonian Test / The Nexus Generation: GaiaSSoul
+Status: Source-grounded implementation directive; not a claim that the project is already complete
+
+======================================================================
+0. EXECUTIVE DIRECTIVE TO THE AI STUDIO INSTANCE
+======================================================================
+
+You are continuing an existing, evolving application. You are NOT starting
+from an empty template and you must NOT replace working code with a new
+monolith merely because a new architecture document is supplied.
+
+Your mission is to conduct a staged, evidence-driven convergence of the
+existing GAIA / NEXUS / CRYPTIC application and the associated project
+history, specifications, notes, source files, archives, and Drive material
+that the user explicitly supplies to this project.
+
+Build one integrated application from the verified, compatible parts. Keep
+all source lineage, preserve useful legacy behavior, identify unfinished
+work, implement missing modules incrementally, and prove each integration
+with tests and build output. Do not mark a feature complete merely because
+an earlier AI response said it was complete.
+
+The project governing invariant is:
+
+  TIME ESTABLISHES THE EXECUTION BOUNDARY;
+  MEASUREMENT ESTABLISHES COMPUTATIONAL CAPACITY;
+  VERIFICATION ESTABLISHES CORRECTNESS.
+
+This invariant governs the scheduler, compute admission, four-lane engine,
+telemetry, data ingestion, package federation, AI routing, and every
+completion report.
+
+PRIMARY OUTCOME:
+A unified GAIA / NEXUS workspace with a shared contract layer, a verified
+HCCGN temporal kernel, AE.SL6.DUALTRACE.4P inverse-verification engine,
+AE.AXS.POLYGLOT language and execution fabric, mathematical provider layer,
+CRYPTIC computation/network adapters, device/service mesh, visual runtime,
+AI provider federation, immutable evidence ledger, and an integrated
+project/documentation atlas.
+
+Do not claim a bootable operating system, native hardware control, live
+blockchain mining, real reward credits, real payment settlement, hardware
+real-time guarantees, or external service connectivity unless the exact
+capability is implemented and independently tested in its real environment.
+Use offline datasets and deterministic test vectors for development.
+External actions, device control, package installation, payment, wallet,
+mining-pool, account, or production-network operations require explicit
+authorization and appropriate safeguards. Keep the default application
+read-only and non-destructive.
+
+======================================================================
+1. SOURCE INVENTORY AND EVIDENCE LEVELS
+======================================================================
+
+1.1 MATERIALS ACTUALLY SUPPLIED IN THIS CONVERSATION
+
+The following uploaded text files were available and reviewed as source
+material. Treat their contents as requirements/history, not proof that the
+corresponding software exists or passes tests:
+
+A. Universal Polyglot Architecture.txt
+   - AE.AXS.POLYGLOT.3.0 concept.
+   - Common typed intermediate representation (AXIR), language adapters,
+     mathematical engine, execution router, package federation, quine and
+     self-description concepts.
+   - Explicit distinction between a universal command surface and native
+     language semantics; adapters must preserve semantics.
+   - Shebang-free dispatch requires an explicit interpreter or a native
+     executable; an OS cannot infer an arbitrary text file's interpreter.
+   - Mathematics domains include exact arithmetic, number theory, algebra,
+     calculus, linear algebra/tensors, geometry, Riemannian/Clifford methods,
+     statistics, optimization/control, information theory, QC-LDPC,
+     Reed-Solomon/GF(256), and cryptographic primitives.
+   - Package federation list spans Windows, macOS, Linux distributions,
+     BSD, Termux, Python, JavaScript, Rust, Go, Ruby, PHP, .NET, Java, R,
+     and Wolfram package systems.
+
+B. Continue AI Studio Project.txt
+   - Arithmetic route key for N = 97,152.
+   - Factorization: 97,152 = 2^7 * 3 * 11 * 23.
+   - Euler totient: phi(97,152) = 28,160.
+   - Coprime traversal U = [u_0 ... u_28159].
+   - Forward route F(k) = U[(a + k*s) mod 28160].
+   - Reverse route R(k) = U[(a - k*s) mod 28160].
+   - Require gcd(s, 28160) = 1 for full traversal.
+   - Suggested 33 1/3%, 66 2/3%, and optional 11% increments are checkpoints,
+     not permission to skip mandatory integrity checks.
+   - Even/odd computation-verification roles, explicit direction flags,
+     error notebook, recursive partition metadata.
+   - Distinguishes modular inverse from Euler totient and asks whether AXS
+     means a named inverse operator or ordinary modular inverse.
+
+C. Continue AI Studio Project (2).txt
+   - Phase 2 authorization for AE.SOVEREIGN.OS and AE.AXS.POLYGLOT.
+   - Existing types to inspect: src/types/cryptic.ts,
+     src/types/gaiaNexus.ts, src/types/nexus.ts.
+   - Existing engines to inspect: src/engine/cuboctahedralTraceEngine.ts,
+     src/engine/crypticGraphingEngine.ts, and server.ts.
+   - Existing architecture doc: docs/ARCHITECTURE_V6_2.md.
+   - Canonical contracts: common, sovereign OS, AXS polyglot, device mesh,
+     events, errors, index.
+   - OS interfaces: BootOrchestrator, VirtualFilesystem,
+     DeviceDiscovery, HealthMonitor, InitramfsProvider.
+   - AXS interfaces: LanguageProvider, CommandParser, ExecutionRouter,
+     ResultEnvelope.
+   - PIPETHRUUC operators: | pipe, > output redirection, < input
+     redirection, <-- reverse redirection. Tokenize <-- before < and >.
+   - Versioned manifests and schema validation, explicit capabilities,
+     permissions, dependencies, compatibility, integrity, lifecycle/status.
+   - Module direction: common contracts -> OS/AXS contracts -> service
+     implementations -> UI adapters. No React in OS interfaces; no UI
+     logic in kernel; no circular dependencies; versioned worker messages.
+   - Tests for manifests, API compatibility, operator precedence,
+     multilingual normalization, permission denial, and worker versions.
+   - Phase 2 is contracts/manifests only. It does not authorize bootloader
+     creation, disk modification, destructive storage operations, or a
+     claim that an installable OS exists.
+
+D. Discuss Stride Skips.txt
+   - IBM Granite provider designation AE.AI.IBM.GRANITE.
+   - watsonx.ai hosted inference, IBM IAM token exchange, model registry,
+     GPT/Gemini/Granite federation, independent verifier.
+   - Granite language, code, embedding, and Guardian model families.
+   - Guardian safety classification is not cryptographic integrity proof.
+   - API credentials must be stored server-side in secret storage, never
+     embedded in browser bundles or committed to source.
+
+E. Initramfs Configuration Analysis (1).txt
+   - AE.SL6.DUALTRACE.4P four-lane paired inverse kernel.
+   - Pair A: Lane 1 automation 1234; Lane 2 shadow 4321.
+   - Pair B: Lane 3 automation 4321; Lane 4 shadow 1234.
+   - Independent lane cursors and tickets; each lane retains its own source
+     ticket and the opposing ticket; midpoint 0.5 synchronizes comparisons.
+   - Fractional checkpoints {0.1 ... 0.9}; reverse sequence {0.9 ... 0.1};
+     whole-cycle boundaries use ( ).
+   - For each operator O_i, record input/output/version/position and require
+     an actual inverse before claiming reconstruction.
+   - Reconstruction residual e_i = xhat_i - x_i and tolerance checks.
+   - Shadows may tune their own inverse parameters but may not rewrite the
+     automation source; every adjustment gets a version and receipt.
+   - Preserve polarity +1/-1; do not use Math.abs where direction matters.
+   - 1234 -> 4321 ordering alone is not proof of an inverse.
+   - Browser/JavaScript timing is not hard real-time. MAC comparison is not
+     device authentication. Privileged CMOS access belongs in authorized
+     OS services/drivers. Distinguish reserved from actually written and
+     verified storage. 8 MiB = 8,388,608 bytes.
+
+F. Inversion proof summary (1).txt
+   - AE.MINERVA.UNBOUND.INVERSE.1.0.0.
+   - Generic injected forward and inverse operators.
+   - Right-inverse verification: F(F^-1(Y)) = Y.
+   - Stronger two-sided check: F^-1(F(X)) = X.
+   - Domain, codomain, and parameters must match; unbound does not mean
+     parameter-free. Failures remain rejected/unresolved, not successful.
+   - Supplied example uses F(x) = (3x + 2) mod 17 and inverse
+     F_INV(y) = 6(y - 2) mod 17, with exhaustive finite-domain assertions.
+
+G. Pipeline architecture synthesis.txt
+   - Historical archive lineage references, not verified archive contents:
+     AE-M4 / TDOC-0036 dynamic creation engine; AE-M5 / TDOC-0037
+     HyperTerminal Polyglot Quine OS; Raven Desk / Cryptic HyperTerminal;
+     NEXUS ANIMUS D3/Three; geometric singularity and HyperTerminal archives.
+   - Preserve provenance; do not assume the archives contain features until
+     the actual archives are available and inspected.
+   - Coprime prime matrix, calculus/trigonometry, abstract algebra, recursive
+     fractals, and self-evolving optimization remain requirements unless
+     actual code and tests prove implementation.
+
+H. EPUB Forge & Launcher.txt
+   - Computational geometry/cinematic subsystem: position, velocity,
+     acceleration, jerk, curvature, torsion, Frenet-Serret frames,
+     adaptive arc-length lookup, spline ribbons, camera frames.
+   - Five-point velocity/acceleration stencils are fourth-order O(h^4)
+     for sufficiently smooth curves.
+   - Torsion formula: ((v x a) dot j) / |v x a|^2; handle degeneracy.
+   - Use rotation-minimizing frame fallback to avoid camera flips.
+   - Worker/SSE/WebSocket telemetry sequencing, stale-result rejection,
+     throttling and backpressure.
+   - Koopman/SVD spectral work asynchronous and separate from rendering.
+   - ARX reversible state transition is not a cryptographic hash; use
+     SHA-256 for integrity receipts and authenticated mechanisms for trust.
+   - Report total parameters, embedding parameters, tied-weight count,
+     and non-embedding parameters separately.
+
+I. Branch · Valuate Ancestry Solver (3) (1).txt
+   - CRYPTIC shared computation platform with hash engine, reversible
+     arithmetic/indexing, candidate engine, receipts, network adapters.
+   - Network examples: Bitcoin/BCH SHA-256 PoW; Litecoin/Dogecoin Scrypt
+     PoW; Monero RandomX PoW; Kaspa kHeavyHash PoW; Ethereum/Solana PoS.
+   - PoS is not conventional mining. Network support must be proven per
+     protocol. Arithmetic indexing does not invert hashes or automatically
+     accelerate proof-of-work.
+   - V1 universal core; V2 SHA-256 PoW adapter; V3 multi-algorithm; V4
+     non-mining/PoS observation interfaces; V5 unified network atlas.
+
+J. Reconstruct untitled zip (1).txt
+   - Modular inverse question for e = 65,537.
+   - Inverse d exists modulo m only if gcd(65,537, m) = 1.
+   - RSA-style d = e^-1 mod lambda(n), lambda(n)=lcm(p-1,q-1).
+   - Need the actual modulus/factors; do not invent them.
+
+K. Uploaded archive status
+   - A file named untitled.zip was mentioned in the upload event, but it is
+     not present in the accessible /mnt/data filesystem during this pass.
+     Do not claim it was inspected. Request a fresh upload if needed.
+
+1.2 GOOGLE DRIVE BROWSER OBSERVATIONS
+
+Two Drive tabs were readable in the connected browser session:
+
+DRIVE TAB A — My Drive, account context authuser=3
+The visible root listing included:
+- a small compressed archive named .ai.zip (920 bytes);
+- a Google Docs item containing an identity_policy JSON excerpt;
+- an HTML item titled "§ɣ⁹ NEXUS OMNIKERNEL // POLYMORPHIC OS";
+- "Parallel Multimodal Architecture with Concurrent Fault Injection Harness";
+- two "Gemini Notebook.pdf" items;
+- "04_sentinel_prime_v11.py (1).txt";
+- "05_sentinel_cron_verifier.py.txt";
+- "7gemini-code-1778752163624.html";
+- "20K Ultra-Vibrant Singularity Fly-Through Renderer";
+- additional images and short research notes, including a note about
+  multilingual character arrays, UTF-8/ASCII mapping, joiners, parity,
+  dimensional visualization and browser/data-URL concepts.
+The root listing was a snapshot; it was not a full recursive crawl.
+
+DRIVE TAB B — Home, account context authuser=2
+Visible suggested/shared/recent items included:
+- The_Nexus_Generation.ipynb;
+- Nexus_MultiAccount_Drive_Bridge.ipynb;
+- quantum_coherence_record.json;
+- quantum_coherence_expand.sh;
+- quantum_coherence_cron.sh;
+- "Nexus Gaia: Polyglot Command Center" (Google AI Studio app archive);
+- "NEXUS SOVEREIGN __ Master Workspace Renderer" (Slides);
+- "Ethereal Gaia Omni-Kernel Dashboard";
+- Project-NexusCryptic-main files: README.md, SECURITY.md,
+  TOOL_MANIFEST.md, INFINITE_STORAGE_KALI_PREP.md, LocalHost Directory.md;
+- Resonance README and RESONANCE_CONSCIOUSNESS_JOURNAL.md;
+- "(G) The Architect's Canvas";
+- Dreamscape, planetary continuity and coherence PDFs.
+This is the Home/recommended listing, not a complete My Drive crawl.
+
+Important: the Drive pages were inspected as visible listings. The current
+browser read-only access did not authorize opening every listed Drive file,
+recursively traversing folders, or modifying Drive. Treat names as leads,
+not verified contents. The user's AI Studio prompt should ask the user to
+attach/import selected Drive files through AI Studio's supported "Add files
+from Google Drive" action or supply exports. Do not try to bypass browser
+security or infer hidden file contents from names.
+
+1.3 GOOGLE AI STUDIO TAB — EXISTING APP OBSERVATIONS
+
+The open AI Studio app is titled "Untitled" and uses a React/TypeScript
+project. Visible project tree entries included:
+
+Components/workspaces (observed names):
+- AnalyticsDashboard.tsx
+- CalculusCoprimeGridModal.tsx
+- CrypticGraphingWorkspace.tsx
+- D3FourLaneTransitionGraph.tsx
+- ExecutionDetailModal.tsx
+- FourLaneLatticeConsole.tsx
+- GaiaEyesWorkspace.tsx
+- GaiaLinksShell.tsx
+- GaiaPixelstreamCanvas.tsx
+- GaiaVaultLedger.tsx
+- GenesisXrMonolith.tsx
+- GISTerminal.tsx
+- Header.tsx
+- MetricsOverview.tsx
+- MiningAdvancedAnalytics.tsx
+- NexusCecGateway.tsx
+- NexusPerpetualWorkspace.tsx
+- OpenLayersMap.tsx
+- QuantumCapsule.tsx
+- QuantumWorkspace.tsx
+- StripeMultiCurrencyPayouts.tsx
+- SubseaGISWorkspace.tsx
+- UniversalClockWorkspace.tsx
+
+Contracts/types/engine/OS/workers (observed names):
+- src/contracts/axs-polyglot.ts
+- src/contracts/dualtrace.ts
+- src/contracts/index.ts
+- src/contracts/sovereign-os.ts
+- src/contracts/universal-clock.ts
+- src/engine/crypticGraphingEngine.ts
+- src/engine/cuboctahedralTraceEngine.ts
+- src/engine/hccgnScheduler.ts
+- src/engine/nexusPerpetualEngine.ts
+- src/engine/udevStorageWatcher.ts
+- src/engine/universalClockCanonical.ts
+- src/engine/universalClockKernel.ts
+- src/os/interfaces/BootOrchestrator.ts
+- src/os/interfaces/DeviceDiscovery.ts
+- src/os/interfaces/HealthMonitor.ts
+- src/os/interfaces/InitramfsProvider.ts
+- src/os/interfaces/VirtualFilesystem.ts
+- src/types/arbitrage.ts
+- src/types/cryptic.ts
+- src/types/gaiaNexus.ts
+- src/types/nexus.ts
+- src/types/subsea.ts
+- src/workers/calculusWorker.ts
+- src/workers/gaiaNexusWorker.ts
+- src/workers/matrixWorker.ts
+
+Other visible project files:
+- App.tsx, main.tsx, index.css, index.html, server.ts, vite.config.ts,
+  tsconfig.json, package.json, bun.lock, metadata.json, .env.example,
+  .gitignore, storage/system/hub/cec_gateway.js,
+  storage/system/hub/cec_gateway.service.sh,
+  storage/system/modules/self_healing_interface_mobile.js.
+
+The file names show substantial existing architecture. They do not prove
+that every listed module is complete, connected, correct, or production-ready.
+Open and inspect each source before editing.
+
+1.4 AI STUDIO ACTION HISTORY AND OBSERVED REPORTS
+
+The visible AI Studio history reported:
+- A React render-phase state update issue in CalculusCoprimeGridModal:
+  ledger notifications triggered parent App setState during child render.
+  Reported fix: defer listener dispatch with queueMicrotask; add
+  commitToLedger=false and peekLatestBlock for non-mutating animation reads.
+- A maximum update depth issue in CalculusCoprimeGridModal and
+  FourLaneLatticeConsole: nested setCycleData calls inside setStepIndex
+  updaters. Reported fix: stable refs and decoupled state updates; throttle
+  UI synchronization while canvas animation remains independent.
+- A Vite/WebSocket development-client connection failure was visible in
+  runtime logs after backend restart. Re-test HMR/WebSocket after any server
+  or Vite config change. A Vite warning mentioned __dirname under
+  configLoader native; use import.meta.dirname if compatible with the
+  actual Node/Vite versions, and verify rather than blindly changing.
+- Earlier action history reported PayoutManager/StripeMultiCurrencyPayouts,
+  AnalyticsDashboard, and integration into CrypticGraphingWorkspace.
+- A prior report explicitly called a Stripe API mock; a later report claimed
+  AnalyticsDashboard switched to internal engine-derived state but described
+  network latency as an estimate based on internal frequency and simulated
+  nodes. This is NOT proof of external live network telemetry.
+- Prior reported build/typecheck/API 200 results must be rerun in the current
+  workspace before being treated as current evidence.
+- The current editor showed an "App has been paused" notice and reload
+  action; current live preview health must be rechecked.
+- Visible AI Studio capabilities listed: maps/routes, Three.js scenes,
+  Firebase/Auth, Cloud SQL/PostgreSQL, Gemini Live, image/video/audio,
+  search grounding and context-aware chat. These are platform options, not
+  automatically configured project services.
+- The AI Studio action history included tasks for HCCGN clock contracts,
+  deterministic canonical event serialization, WebCrypto SHA-256 helper,
+  Node.js hrtime.bigint kernel, five-tick four-lane solver, fault injection,
+  acceptance suite, REST/WebSocket telemetry, UniversalClockWorkspace,
+  SchedulerAnchorRecord, AdaptiveRecommendation and SequentialTriggerPipeline.
+  Verify each task's source file and test before marking complete.
+
+======================================================================
+2. CANONICAL ARCHITECTURE AND NAMING
+======================================================================
+
+Use these designations as subsystem names, not as proof of maturity:
+
+- HCCGN.UCLK.DUAL.ADAPTIVE — Universal Clock and adaptive computation.
+- AE.SL6.DUALTRACE.4P — Four-Lane Paired Interleaved Inverse Kernel.
+- AE.MINERVA.UNBOUND.INVERSE.1.0.0 — Generic inverse verifier.
+- AE.SOVEREIGN.OS — OS/service contracts and lifecycle abstraction.
+- AE.AXS.POLYGLOT.3.0 — Universal polyglot language/execution fabric.
+- AXIR — canonical typed intermediate representation.
+- CRYPTIC CORE — shared computation, algorithm and evidence layer.
+- AE.AI.FEDERATION — model provider registry/router.
+- AE.AI.IBM.GRANITE — IBM Granite/watsonx provider adapter.
+- NEXUS V2.2 Runtime Fabric — SDF/implicit-field renderer, autonomous
+  parameter director, environment/capability directory and AI boundary.
+- GAIA / NEXUS Workspace — integrated user-facing application shell.
+
+Keep module IDs, API versions, schema versions and UI labels separate.
+Use semantic versioning and stable IDs. Do not create competing type
+systems when existing src/types and src/contracts already cover the concept.
+
+======================================================================
+3. APPLICATION LAYERS AND OWNERSHIP
+======================================================================
+
+LAYER 1 — SOURCE / KNOWLEDGE INGESTION
+- Project inventory, Drive file import, archive manifests, conversation
+  extracts, notes, specifications, code, datasets, and research references.
+- Every imported item gets source ID, file name, origin, modified/imported
+  timestamp where available, SHA-256 content fingerprint, version, and
+  classification (specification, source, dataset, evidence, historical,
+  unresolved, deprecated).
+- Preserve original bytes; normalized/extracted text is a derived artifact.
+- Do not ingest API keys, passwords, private tokens, private identity data,
+  or unrelated personal files into the project corpus.
+
+LAYER 2 — CANONICAL CONTRACTS
+- common.ts: identifiers, versions, timestamps, result/error primitives.
+- events.ts: versioned events and correlation IDs.
+- errors.ts: structured error taxonomy and recovery metadata.
+- sovereign-os.ts: service, boot, filesystem, device, health contracts.
+- axs-polyglot.ts: language, parser, AXIR, router, result contracts.
+- dualtrace.ts: tickets, lane states, pair receipts, residuals.
+- universal-clock.ts: anchors, ticks, adaptive recommendations, triggers.
+- device-mesh.ts: device identity, discovery, capabilities, endpoints.
+- manifest schema and module manifests.
+
+LAYER 3 — CORE SERVICES
+- HCCGN scheduler and clock kernel.
+- Four-lane paired solver and generic inverse verifier.
+- Mathematical provider service.
+- Hash/integrity/receipt service.
+- Polyglot lexer/parser/semantic analyzer/AXIR compiler.
+- Execution router and package-manager adapters.
+- OS service interfaces, VFS provider abstraction and device discovery.
+- AI provider federation and independent output verification.
+- CRYPTIC algorithm adapters and network protocol interfaces.
+
+LAYER 4 — DATA AND EVIDENCE
+- Immutable source event log / append-only ledger.
+- Canonical deterministic serialization.
+- SHA-256 content digest for integrity fingerprints.
+- Signature or authenticated mechanism where authenticity is required.
+- Merkle tree/receipt chaining where appropriate.
+- Separate provenance, correctness, authorization and reward evidence.
+- Store raw input, normalized input, parameters, tool/provider versions,
+  timing measurements, outputs, errors, correction attempts and verifier
+  outcomes. Corrections append; they never erase the original failure.
+
+LAYER 5 — ADAPTERS / TRANSPORT
+- REST endpoints for stable request/response operations.
+- WebSocket or SSE for ordered telemetry streams; sequence IDs, stale
+  message rejection, reconnect policy and backpressure.
+- Worker interfaces for CPU-heavy browser work; version all messages.
+- Native OS services only through explicitly installed/authorized providers.
+- Browser IndexedDB/localStorage are browser persistence, not native VFS,
+  disk, or physical block device access.
+
+LAYER 6 — UI / VISUALIZATION
+- Main GAIA/NEXUS workspace shell and navigation.
+- Universal Clock console.
+- Four-lane lattice and D3 transition graph.
+- Coprime-grid/ancestry explorer.
+- CRYPTIC computation and analytics workspace.
+- SDF/Riemannian/Clifford/implicit field visualizer.
+- Device/service health and mesh view.
+- Polyglot terminal and command inspector.
+- Knowledge atlas, project lineage, import status, ledger and diagnostics.
+- Use real internal telemetry when available; label unavailable values as
+  unavailable. Never fill gaps with fabricated telemetry or mock values.
+
+======================================================================
+4. MATHEMATICAL AND COMPUTATIONAL CORRECTNESS RULES
+======================================================================
+
+4.1 MODULAR ARITHMETIC / COPRIME TRAVERSAL
+
+For N = 97,152:
+  N = 2^7 * 3 * 11 * 23
+  phi(N) = 28,160
+
+Let U be a deterministic ordered list of residues u in [0,N) such that
+  gcd(u,N) = 1.
+
+For start index a and stride s where gcd(s, 28,160)=1:
+  F(k) = U[(a + k*s) mod 28,160]
+  R(k) = U[(a - k*s) mod 28,160]
+
+These are opposing traversals of the same finite index set. Verify coverage,
+uniqueness and closure exhaustively for test-sized domains. Define canonical
+ordering of U; otherwise the mapping is underspecified. Do not call phi(N)
+an inverse. Do not treat a prime factor such as 23 as a positional marker
+unless the routing mapping explicitly assigns it that meaning.
+
+Checkpoint percentages (11%, 22%, 33%, ... 99%) are sampling/observation
+markers. They may reduce redundant work only when mathematically safe; they
+must never bypass required integrity checks or hide skipped intervals.
+Record skipped ranges and prove coverage.
+
+4.2 MODULAR INVERSE
+
+For a modulo m, inverse a^-1 exists iff gcd(a,m)=1. For e=65,537:
+  d = e^-1 mod m
+is only defined after the exact modulus m is known and gcd(e,m)=1.
+For RSA-style use, m is usually lambda(n)=lcm(p-1,q-1), not an arbitrary
+assumed modulus. Do not invent missing factors or a modulus.
+
+4.3 REVERSIBLE TRANSFORMATIONS VS HASHES
+
+A reversible transform can be inverted only if its mathematical domain,
+range and parameters permit it. A cryptographic hash such as SHA-256 or
+BLAKE2b is intentionally one-way; a digest alone does not reveal a unique
+previous or next digest. A hash chain can be traversed only when the linked
+preimage/record or external structure is available. A quotient/residue
+projection or coprime index map does not invert SHA-256.
+
+Use:
+- ARX or another reversible permutation for reversible diagnostic replay;
+- SHA-256/BLAKE2b for content fingerprints/integrity digests;
+- signatures/MACs with managed keys for authenticity;
+- Merkle proofs/append-only records for inclusion and history integrity.
+Never label an arithmetic checksum as a cryptographic hash or a plain hash
+as proof of author identity.
+
+4.4 AE.MINERVA.UNBOUND.INVERSE
+
+Given target Y, inverse G and forward F:
+  X = G(Y)
+  Y_check = F(X)
+  accept right-inverse iff Y_check == Y.
+For a full bijection claim, also test G(F(X)) == X over the declared domain.
+The verifier must receive compatible parameters/domain/codomain, preserve
+input immutability, return structured ACCEPTED / REJECTED / UNRESOLVED,
+and issue evidence only after comparison. If an inverse is not defined,
+return UNRESOLVED; do not fabricate reconstruction.
+
+4.5 FOUR-LANE ENGINE
+
+Pair A: L1 automation 1234; L2 shadow 4321.
+Pair B: L3 automation 4321; L4 shadow 1234.
+Each lane has its own cursor, source ticket, opposing ticket, sequence ID,
+polarity, operator-set version, fractional cursor and whole-cycle count.
+The source ticket is immutable. Shadow parameter tuning is versioned and
+cannot rewrite the source. Pair residuals and cross-pair closure are
+separately measured. A reverse ordering is not itself an inverse.
+
+Preserve signed direction/polarity; never erase signs using absolute value
+where orientation matters. Keep fractional and whole-cycle delimiters
+separate. The visualization renders kernel state; it does not decide truth.
+
+4.6 ERROR CORRECTION
+
+Integrate QC-LDPC (quasi-cyclic LDPC) as the selected LDPC family, plus
+recursive Reed-Solomon over GF(256) where appropriate. Define code profiles,
+block sizes, parity checks, syndrome calculations, decoding limits,
+correction counts, erasure/error semantics, and post-decode verification.
+A corrected block is not accepted until the independent integrity/semantic
+verification stage passes. Record original, corrected and residual data.
+Do not silently change the selected QC-LDPC approach to a random sparse
+matrix.
+
+======================================================================
+5. HCCGN UNIVERSAL CLOCK AND ADAPTIVE COMPUTATION
+======================================================================
+
+Specification HCCGN.UCLK.DUAL.ADAPTIVE v1.0 defines:
+- nominal base interval T = 100,000 ns = 100 microseconds = 0.1 ms;
+- solver/convergence window S = 500,000 ns = 5T = 0.5 ms;
+- monotonic one-second epoch E = 1,000,000,000 ns;
+- nominally 10,000 base intervals and 2,000 solver windows per second;
+- external UTC/precision-time correlation, independent lane accounting,
+  adaptive work admission and timestamped receipts.
+
+Use integer nanoseconds internally. In the Node.js authoritative server
+kernel use process.hrtime.bigint() for monotonic elapsed-time measurement.
+In browser contexts use performance.now() and label it as browser timing.
+Use UTC ISO-8601 for interchange timestamps, not for elapsed durations.
+
+A 100 microsecond interval is a target schedule, not a guarantee that
+JavaScript, a browser, Node.js, or a general-purpose OS will execute every
+tick at that cadence. Record scheduled deadline, actual start/end, drift,
+missed ticks, queue depth, batch size, CPU/worker availability and
+measurement uncertainty. Do not fabricate precision or claim hard real-time
+behavior without a real-time OS/hardware test environment.
+
+Adaptive controller responsibilities:
+- measure actual throughput and latency;
+- estimate safe work budget;
+- adjust batch admission within explicit bounds;
+- publish recommendation and confidence/provenance;
+- never redefine correctness thresholds to make a failed run pass.
+
+Sequential trigger pipeline:
+- explicit dependency graph;
+- monotonic sequence/anchor IDs;
+- idempotency keys;
+- timeout/cancellation behavior;
+- failure propagation and retry policy;
+- no duplicate trigger execution on reconnect.
+
+Receipts must include canonical event serialization, clock source, tick
+sequence, scheduled and actual times, lane IDs, input/output fingerprints,
+algorithm/provider versions, adaptive decision, missed-tick details, and
+verification result. Verify canonical serialization deterministically and
+recompute SHA-256 independently.
+
+======================================================================
+6. AE.AXS.POLYGLOT / UNIVERSAL QUINE LANGUAGE FABRIC
+======================================================================
+
+Goal: one command language and typed execution model with multiple native
+backends, not one syntax that magically has identical semantics everywhere.
+
+Core flow:
+  Input language / locale / shell
+    -> tokenizer and parser
+    -> semantic analysis and type/capability resolution
+    -> AXIR canonical typed intermediate representation
+    -> authorized service or native backend
+    -> structured ResultEnvelope
+    -> verification and immutable ledger.
+
+Required providers/adapters:
+- English intent and mathematical notation;
+- Bash, Zsh, PowerShell, CMD;
+- Python, JavaScript/TypeScript, SQL;
+- native compiler/runtime adapters where actually available;
+- Wolfram/Mathematica provider where installed/licensed/authorized;
+- package-manager adapters discovered at runtime.
+
+PIPETHRUUC operators:
+  |    pipe
+  >    output redirection
+  <    input redirection
+  <--  reverse redirection
+Tokenize <-- before < and >. Preserve original source, byte/character
+positions, Unicode normalization choice, operand identity, precedence,
+signedness, locale and parse diagnostics. Never silently translate a
+command into a semantically different command.
+
+AXIR should represent typed operations, values, references, effects,
+capabilities, permissions, execution context, dependencies, error policy,
+and provenance. Separate parsing from execution. Require an explicit
+permission/capability check before side effects. Provide dry-run/plan mode
+for review; execution mode must show the exact native command/backend and
+require confirmation for high-impact actions.
+
+Shebang-free behavior:
+- text source needs an explicit interpreter or launcher dispatch;
+- examples: python axs.py, py axs.py, node axs.mjs, bun axs.ts,
+  pwsh -File axs.ps1;
+- compiled native executables can be invoked directly;
+- do not promise that arbitrary text files are directly executable without
+  an interpreter selection mechanism.
+
+Quine behavior:
+- implement a true quine only within a declared language/runtime grammar;
+- verify emitted source byte-for-byte against the original canonical source;
+- distinguish self-description, source regeneration, and a multi-language
+  polyglot quine; no universal program is guaranteed valid in every language;
+- AXIR serializer should have deterministic ordering and stable encoding.
+
+Package federation targets (discover, don't assume installed):
+Windows: WinGet, Chocolatey, Scoop.
+macOS: Homebrew, MacPorts.
+Debian/Ubuntu: APT, dpkg.
+Fedora/RHEL: DNF, YUM.
+Arch: Pacman.
+openSUSE: Zypper.
+Alpine: APK.
+Gentoo: Portage/emerge.
+NixOS: Nix.
+Guix: Guix.
+Cross-platform Linux: Flatpak, Snap.
+FreeBSD: pkg. NetBSD: pkgin.
+Android/Termux: pkg/apt.
+Python: pip, uv, Poetry, PDM, Conda, Mamba.
+JavaScript: npm, pnpm, Yarn, Bun.
+Rust: Cargo. Go: go install. Ruby: gem/Bundler.
+PHP: Composer. .NET: dotnet. Java: Maven/Gradle.
+R: install.packages. Wolfram: PacletInstall.
+
+Do not equate package semantics. OS packages, language packages, isolated
+environments, app bundles and compiler registries are distinct classes.
+The adapter must report manager, version, scope, package identity, planned
+command, privileges, side effects and exit status. Never elevate privilege
+automatically; require explicit user confirmation for install/update/remove.
+
+======================================================================
+7. MATHEMATICS, GEOMETRY, RENDERING AND SCIENTIFIC COMPUTING
+======================================================================
+
+Create a shared mathematics provider interface and dispatch operations to
+available providers without changing mathematical semantics.
+Domains to integrate:
+- exact integers/rationals/arbitrary precision;
+- number theory and modular arithmetic;
+- groups, rings, fields, permutations, finite fields;
+- calculus and numerical differentiation/integration;
+- matrices, eigenvalues, decompositions and tensors;
+- Euclidean/projective/Riemannian/Clifford geometry;
+- differential geometry, curvature, torsion and geodesics;
+- numerical root solving, interpolation, convergence/error bounds;
+- statistics, inference, regression and uncertainty;
+- optimization, control and adaptive scheduling;
+- information theory, entropy and channel capacity;
+- QC-LDPC and Reed-Solomon/GF(256);
+- cryptographic digest/signature provider interfaces.
+
+Provider candidates: native TypeScript math utilities, Python/SymPy, and
+Wolfram Engine/Mathematica if an actual installation and valid license/API
+are available. Return provider ID/version, precision, assumptions, units,
+input normalization, result, error bounds and provenance. Do not imply
+Mathematica is connected until the adapter is configured and tested.
+
+Geometry/cinematic runtime:
+- position, velocity, acceleration, jerk;
+- fourth-order five-point finite-difference stencils where smoothness and
+  sampling assumptions hold;
+- curvature and torsion with singularity/near-zero guards;
+- Frenet-Serret frame and rotation-minimizing frame fallback;
+- adaptive arc-length lookup and spline/ribbon mesh;
+- camera interpolation and stable orientation;
+- asynchronous Koopman/SVD spectral analysis;
+- worker sequencing, stale response rejection, throttling/backpressure.
+
+NEXUS V2.2 renderer concepts visible in the historical material:
+- WebGL2 renderer with fallback;
+- SDF scene functions, Clifford/quaternion rotations, Riemannian curvature,
+  neural implicit/hash-field noise, ray marching and shading;
+- autonomous director with AUTO/HYBRID/MANUAL modes and bounded parameter
+  trajectories;
+- capability directory for WebGL2, WebCrypto, IndexedDB,
+  BroadcastChannel, ServiceWorker, WebSocket/SSE, storage and AI bridge;
+- browser-contained cooperative process model and user-gated access.
+
+Do not label SDF/implicit field math as a validated physical model without
+formal equations and numerical tests. Distinguish visual parameters from
+physical quantities. Record seeds, parameters, shader version, renderer,
+frame timing and reproducibility metadata.
+
+======================================================================
+8. CRYPTIC COMPUTATION AND NETWORK ADAPTERS
+======================================================================
+
+CRYPTIC CORE modules:
+- hash algorithm registry;
+- reversible indexing/quotient-residue utilities;
+- candidate/nonce interface;
+- target comparison and protocol validation;
+- receipt and evidence engine;
+- network adapters and telemetry;
+- separate PoW and PoS interfaces.
+
+Protocol examples in source notes:
+- Bitcoin and Bitcoin Cash: SHA-256 PoW;
+- Litecoin and Dogecoin: Scrypt PoW (Dogecoin merged mining);
+- Monero: RandomX PoW;
+- Kaspa: kHeavyHash PoW;
+- Ethereum and Solana: PoS systems, not conventional mining.
+
+Implement each adapter only from authoritative protocol specifications and
+known test vectors. Start with offline test vectors and local/regtest/testnet
+where appropriate. No real reward, payout, accepted share, block submission,
+wallet balance or pool connectivity claim without verifiable external
+response evidence. Do not connect payment rails or move funds as part of
+this application build. A Stripe mock seen in historical AI Studio work
+must be clearly marked non-production and removed from any real-money path.
+
+Analytics:
+- derive values from actual engine events, not constants or fabricated
+  samples;
+- if no real network source exists, show "not connected" or "unavailable";
+- internal compute frequency is not external network latency;
+- hashrate requires counted valid hashes over measured elapsed time;
+- uptime requires persisted service start/stop/heartbeat evidence;
+- reward requires independent chain/account/pool evidence.
+
+======================================================================
+9. AI PROVIDER FEDERATION
+======================================================================
+
+Define provider-neutral request/response contracts and adapters for the
+providers actually configured. Candidate providers include OpenAI, Gemini,
+local Ollama models, IBM Granite/watsonx and other explicitly configured
+providers.
+
+AE.AI.FEDERATION responsibilities:
+- model registry with capabilities, context limits and provider versions;
+- policy-based task routing;
+- explicit user choice/consent for provider data sharing;
+- secret isolation on server-side only;
+- timeout, cancellation, retries and rate-limit handling;
+- structured result envelopes and provider provenance;
+- optional independent validation by a separate model or deterministic
+  verifier; never treat model agreement as mathematical proof.
+
+IBM Granite provider:
+- provider ID IBM_GRANITE;
+- hosted runtime WATSONX_AI;
+- IAM API-key-to-temporary-token exchange;
+- model registry GRANITE_REGISTRY;
+- Guardian can perform safety/risk assessment, not cryptographic proof;
+- do not hardcode WATSONX_API_KEY or project secrets in frontend.
+
+Never place API keys in client bundles, Drive exports, browser localStorage,
+public repositories, source maps, or logs. Use server-side environment
+secrets/secret manager. Redact secrets before ingestion and logging.
+
+======================================================================
+10. DRIVE / HISTORY INGESTION PIPELINE — MULTI-PASS WORKFLOW
+======================================================================
+
+The application should include a Knowledge & Project Ingestion workspace.
+The user can import Drive documents, code files, notebooks, PDFs, HTML,
+archives, datasets and conversation exports using supported user-authorized
+connectors or explicit file uploads.
+
+PASS 0 — ACCESS AND SCOPE
+- Enumerate only folders/files the user explicitly authorizes.
+- Record account/workspace context without copying account identifiers into
+  project content.
+- Exclude unrelated personal material and secrets.
+- Preserve source URL/ID and permissions; do not broaden sharing.
+
+PASS 1 — INVENTORY
+- Recursively inventory authorized project folders where the connector
+  permits it.
+- Record names, MIME types, sizes, modified times, parent folders, owner
+  scope, version/revision if available.
+- Identify duplicates by content SHA-256, not filename alone.
+- Identify archives and notebooks needing specialized extraction.
+
+PASS 2 — EXTRACTION
+- Extract text/code with line numbers and original file path.
+- For ZIPs: list members first, reject path traversal, symlinks and unsafe
+  entries, preserve archive manifest, then extract into a quarantine area.
+- For PDFs/docs: preserve page/section references.
+- For notebooks: extract markdown, code cells, outputs and execution order.
+- For source repositories: retain git commit, branch, file path and diff.
+- Do not execute imported code during extraction.
+
+PASS 3 — CLASSIFICATION
+Assign each item one or more labels:
+SPECIFICATION, REQUIREMENT, SOURCE_CODE, TEST, DATASET, DESIGN,
+ARCHIVE, BUILD_OUTPUT, HISTORICAL_CONVERSATION, EXTERNAL_REFERENCE,
+SECRET_REDACTED, DUPLICATE, DEPRECATED, CONFLICT, UNRESOLVED.
+
+PASS 4 — SEMANTIC EXTRACTION
+Extract named modules, interfaces, constants, algorithms, formulas,
+assumptions, test vectors, TODOs, acceptance criteria, dependencies,
+versions, platform constraints, known failures and claims requiring proof.
+Every extracted claim points to its source file and line/page/cell.
+
+PASS 5 — CROSS-SOURCE RECONCILIATION
+- Group repeated concepts and compare versions.
+- Detect contradictory requirements and stale design decisions.
+- Preserve the original wording and provenance.
+- Create decision records; do not silently overwrite conflicting specs.
+- Separate user-approved decisions from assistant suggestions and
+  unverified historical claims.
+- Mark unresolved questions for the user rather than guessing.
+
+PASS 6 — IMPLEMENTATION MAPPING
+Map each requirement to:
+source evidence -> owning module -> files -> dependencies -> tests ->
+acceptance criteria -> status -> unresolved risks.
+
+PASS 7 — IMPLEMENTATION
+Work in small dependency-ordered changes. Preserve existing behavior.
+Use feature branches, small commits and migration adapters. Do not make
+large simultaneous rewrites across the app.
+
+PASS 8 — VERIFICATION
+Run unit tests, integration tests, typecheck, lint, build, API smoke tests,
+worker message compatibility tests, deterministic replay tests, security
+checks and UI smoke tests. Record exact command, environment, exit code,
+output summary and artifact hash.
+
+PASS 9 — KNOWLEDGE LEDGER
+Append an immutable record for each import, decision, code change, test,
+verification, rejection and unresolved item. A corrected record supersedes
+but never erases the original.
+
+PASS 10 — REPEAT / DELTA SCAN
+Repeat the inventory and reconciliation passes after new files are added.
+Use content hashes and revision IDs to process only changed items, while
+periodically rechecking the complete authorized inventory for omissions.
+
+======================================================================
+11. RECOMMENDED IMPLEMENTATION ROADMAP
+======================================================================
+
+PHASE 0 — BASELINE AND PRESERVATION
+- Snapshot current repository/project state and identify the actual branch.
+- Export or checkpoint the current AI Studio app before major changes.
+- Inventory package.json, bun.lock, tsconfig, Vite, server, all source,
+  routes, workers, environment variables and existing tests.
+- Capture current build/typecheck/lint/test/API/preview results.
+- Record current errors including HMR/WebSocket instability.
+- Create a baseline manifest and file hashes.
+Exit: reproducible baseline and no untracked destructive action.
+
+PHASE 1 — ARCHITECTURE AND SOURCE LINEAGE
+- Build module map, dependency graph, source lineage and feature matrix.
+- Identify duplicate types and overlapping engines.
+- Mark each feature IMPLEMENTED-VERIFIED, IMPLEMENTED-UNVERIFIED,
+  PARTIAL, SPECIFIED-ONLY, BLOCKED, DEPRECATED or NOT-FOUND.
+- Inspect AE-M4/AE-M5/Raven Desk archives only if user provides them.
+Exit: complete source-grounded backlog and ownership map.
+
+PHASE 2 — SHARED CONTRACTS AND MANIFESTS
+- Implement the contracts specified in Continue AI Studio Project (2).txt.
+- Reuse existing src/types and src/contracts; no duplicate canonical models.
+- Validate manifests, permissions, capabilities, schema/API versions.
+- Preserve PIPETHRUUC operator behavior and source positions.
+Exit: contracts typecheck and runtime validation tests pass.
+
+PHASE 3 — TEMPORAL KERNEL AND EVENT FABRIC
+- Verify HCCGN constants and timing semantics.
+- Implement/review hrtime.bigint kernel, anchors, missed ticks,
+  adaptive controller, sequential triggers and receipts.
+- REST/WebSocket endpoints and browser telemetry client.
+- Add deterministic replay and independent SHA-256 verification.
+Exit: acceptance suite passes; measured timing limitations reported.
+
+PHASE 4 — DUALTRACE / MINERVA
+- Implement lane tickets, pair-local states, fractional/whole checkpoints,
+  inverse operator registry and residual calculation.
+- Add generic right/left inverse verification.
+- Integrate QC-LDPC and RS/GF(256) correction with reverification.
+- Exhaustive finite-domain tests and fault injection.
+Exit: all claims are bounded to declared domains and tests.
+
+PHASE 5 — MATHEMATICS AND VISUAL RUNTIME
+- Shared math provider contract; exact arithmetic and modular library.
+- Geometry/calculus worker modules and stable rendering frames.
+- SDF/implicit field models with reproducible parameters.
+- Wolfram provider only when configured and testable.
+Exit: deterministic numerical tests and visualization performance report.
+
+PHASE 6 — AXS POLYGLOT / PACKAGE FEDERATION
+- Lexer/parser/semantic analyzer and AXIR schema.
+- PIPETHRUUC operator grammar and tests.
+- Execution router, permission gate, backend adapters.
+- Package manager discovery and explicit-confirmation workflows.
+- Quine and byte-for-byte self-reproduction test.
+Exit: parser conformance and safe backend tests pass.
+
+PHASE 7 — CRYPTIC / DEVICE MESH / AI FEDERATION
+- Cryptic algorithm registry and protocol adapters from known test vectors.
+- Read-only device discovery and authenticated mesh interfaces.
+- AI provider adapters and server-side secret isolation.
+- External telemetry and reward status only with actual evidence.
+Exit: integration tests, threat model and provider capability report.
+
+PHASE 8 — APPLICATION CONVERGENCE AND RELEASE
+- Unified navigation, state management, permissions and UI adapters.
+- Project atlas and knowledge ingestion workspace.
+- Four-lane, clock, analytics, polyglot, math, cryptic, device, AI and
+  visualization workspaces all consume shared contracts.
+- Accessibility, responsive layout, performance, error states and docs.
+- Release candidate, rollback plan and deployment verification.
+Exit: release checklist complete; unresolved limitations visible.
+
+======================================================================
+12. GIT / BRANCH / PULL REQUEST CONVERGENCE POLICY
+======================================================================
+
+The user's requested lineage is:
+  feature branches -> project main -> cryptic main -> ideal-enigma main
+
+Do not assume those repositories, branches or remotes are connected. First
+inspect git remotes, branch protections, existing PRs, commit history and
+repository permissions. Produce a repository/branch map before merging.
+
+For each feature:
+1. Create a named feature branch from the correct current base.
+2. Implement one coherent scope.
+3. Run tests, typecheck, lint and build.
+4. Review diff for secrets, generated artifacts, accidental deletions and
+   dependency drift.
+5. Open/update PR with source evidence, change summary, tests and risks.
+6. Fix CI/review errors in the feature branch; rerun all required checks.
+7. Merge only after required approvals/checks and explicit repository
+   permission. Never force-push protected branches or bypass required checks.
+8. Pull merged changes into the next integration repository using a
+   documented merge/cherry-pick strategy and conflict resolution record.
+9. Run full downstream integration tests after each convergence step.
+10. Update release manifest, commit IDs, PR links and verification ledger.
+
+Do not automatically merge every PR merely because a merge was requested
+in a prior note. Resolve ownership, branch protection and CI policy first.
+Never overwrite divergent work. If conflicts occur, compare semantic intent
+and preserve both histories until the resolution is tested.
+
+Public pages/sites are a separate release stage. Inventory each target,
+confirm owner, deployment provider, content scope, secrets, privacy and
+accessibility. Do not publish unfinished/private project data or credentials.
+
+======================================================================
+13. TEST MATRIX AND ACCEPTANCE GATES
+======================================================================
+
+GENERAL
+- clean install/build from lockfile;
+- typecheck, lint, unit and integration tests;
+- no unresolved critical console errors;
+- responsive desktop/mobile layouts and accessibility checks;
+- API health and WebSocket reconnect/HMR checks;
+- dependency/security audit and secret scan.
+
+CONTRACTS
+- valid/invalid manifest fixtures;
+- schema/API compatibility and migration tests;
+- duplicate module IDs and missing dependencies;
+- capability/permission denial;
+- worker protocol version mismatch.
+
+POLYGLOT
+- tokenize <-- before < and >;
+- operator precedence and source offsets;
+- Unicode normalization, combining marks, zero-width joiners and RTL text;
+- preserve original input and signedness;
+- AXIR round-trip serialization;
+- quine exact byte reproduction;
+- backend permission and error propagation.
+
+CLOCK
+- monotonic clock never regresses within a process;
+- deadline anchoring and drift calculations;
+- missed tick detection and no duplicate sequence IDs;
+- adaptive batch bounds and deterministic replay;
+- receipt serialization stable across runs;
+- WebCrypto SHA-256 recomputation matches receipt digest.
+
+DUALTRACE / INVERSE
+- each lane retains original/opposing ticket;
+- lane cursors independent;
+- all four lane orders correct;
+- direction/polarity preserved;
+- right inverse and left inverse tested separately;
+- unresolved inverse correctly rejected;
+- residual tolerance and floating-point conditioning tested;
+- fault injection detected and recorded.
+
+MATH / RENDERER
+- exact modular arithmetic known vectors;
+- coprime stride covers all residues exactly once for test modulus;
+- numerical error/convergence bounds;
+- curvature/torsion degeneracy cases;
+- camera frame continuity;
+- shader compile and WebGL fallback;
+- reproducible seeded render state.
+
+CRYPTIC / PROVIDERS
+- known algorithm test vectors;
+- target comparison and protocol validation;
+- no fake external latency/hashrate/reward data;
+- external result has source and timestamp;
+- provider secrets never reach browser/logs;
+- provider unavailable/timeout/rate-limit paths tested.
+
+INGESTION / LEDGER
+- duplicate file detection by content hash;
+- archive path traversal rejection;
+- source line/page/cell provenance;
+- redaction of secrets and unrelated personal data;
+- immutable correction history;
+- full authorized inventory reconciliation.
+
+A feature is COMPLETE only when its acceptance criteria pass and evidence
+is attached. Build success alone does not prove runtime correctness.
+
+======================================================================
+14. REQUIRED REPORTING FORMAT AFTER EACH PASS
+======================================================================
+
+Return a concise but complete status report with:
+- pass number and scope;
+- source files actually inspected;
+- files created/modified/deleted;
+- requirements mapped to modules;
+- tests/commands run and exact results;
+- actual build/runtime state;
+- measured performance and timing limits;
+- security/privacy findings;
+- unresolved conflicts and missing source material;
+- next smallest implementation step;
+- commit/branch/PR identifiers where applicable.
+
+Use these status values only:
+IMPLEMENTED-VERIFIED
+IMPLEMENTED-UNVERIFIED
+PARTIAL
+SPECIFIED-ONLY
+BLOCKED
+NOT-FOUND
+DEPRECATED
+
+Do not use "fully integrated", "production-ready", "real-time", "live",
+"autonomous", "self-healing" or "verified" unless the report includes the
+specific test/evidence supporting that word.
+
+======================================================================
+15. FIRST PROMPT / IMMEDIATE EXECUTION INSTRUCTIONS
+======================================================================
+
+Begin with PHASE 0 and PHASE 1. Do not immediately generate a replacement
+application. Inspect the existing AI Studio source tree and current build.
+Create a baseline report and a file-by-file module map.
+
+Then conduct a multi-pass ingestion of the Drive material the user imports:
+- First process the files already attached to the project.
+- Ask the user to use AI Studio's supported "Add files from Google Drive"
+  feature for the named Drive items that are relevant but not yet attached.
+- Prioritize these visible Drive leads:
+  * The_Nexus_Generation.ipynb
+  * Nexus_MultiAccount_Drive_Bridge.ipynb
+  * Nexus Gaia: Polyglot Command Center
+  * §ɣ⁹ NEXUS OMNIKERNEL // POLYMORPHIC OS
+  * Parallel Multimodal Architecture with Concurrent Fault Injection Harness
+  * 04_sentinel_prime_v11.py (1).txt
+  * 05_sentinel_cron_verifier.py.txt
+  * 20K Ultra-Vibrant Singularity Fly-Through Renderer
+  * Project-NexusCryptic-main README.md, SECURITY.md, TOOL_MANIFEST.md,
+    INFINITE_STORAGE_KALI_PREP.md and LocalHost Directory.md
+  * NEXUS SOVEREIGN Master Workspace Renderer
+  * Ethereal Gaia Omni-Kernel Dashboard
+  * Resonance README / RESONANCE_CONSCIOUSNESS_JOURNAL.md
+  * quantum_coherence_record.json and associated scripts
+- Treat these as leads, not verified implementation details until imported.
+- Ask for the AE-M4, AE-M5, Raven Desk and other named ZIP archives if
+  their source contents are needed; prior history only establishes lineage.
+
+After import, run Passes 1-10 from Section 10. Produce a requirements
+traceability matrix and conflict register before Phase 2 changes.
+
+The user wants one coherent application, not a collection of disconnected
+mock panels. Reuse existing modules, route all views through shared services,
+and expose real evidence/limitations in the UI. Where no real provider or
+source data exists, show a truthful unavailable state and create a concrete
+integration contract rather than inventing data.
+
+The initial implementation priority is:
+1. Baseline + source inventory.
+2. Canonical contracts/manifests.
+3. HCCGN clock/receipts.
+4. Four-lane inverse verification.
+5. Math provider and AXIR.
+6. CRYPTIC adapters and real telemetry.
+7. Device mesh and AI federation.
+8. Unified application UI and knowledge atlas.
+9. PR convergence and public releases only after gates pass.
+
+Do not silently skip any project requirement. If two requirements conflict,
+record both, explain the conflict and request a decision. Preserve every
+original source and attach provenance to every derived implementation.
+
+======================================================================
+16. PROJECT FOOTER / PROVENANCE
+======================================================================
+
+The Architect / Nexus / Cryptic News LLC
+Project: The Nexus Generation: GaiaSSoul
+SERIES: The Nexus of Gaia
+ID: 137451921129154222|040592|433855274
+
+Document: GAIA_NEXUS_PROJECT_CONVERGENCE_HANDOFF_v1.0.txt
+Prepared from: user-supplied project notes, visible Google Drive listings,
+visible Google AI Studio project tree/action history, and project context
+available in this conversation.
+
+This document is a build directive and source index. It is not a claim that
+all referenced Drive files were opened, all repositories were inspected,
+all source code was tested, or any feature was deployed.

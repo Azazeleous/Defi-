@@ -1,0 +1,9 @@
+{
+  "manifestVersion": "1.0.0",
+  "moduleId": "AE.AXS.POLYGLOT",
+  "moduleVersion": "6.2.0",
+  "apiVersion": "v2",
+  "schemaVersion": "1.0.0",
+  "description": "ChromeOS AXS Polyglot Terminal Engine: Lexer, parser, pipeline execution, and multi-language command dispatcher.",
+  "status": "DEVELOPMENT"
+}

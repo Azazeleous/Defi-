@@ -1,0 +1,9 @@
+{
+  "manifestVersion": "1.0.0",
+  "moduleId": "AE.SOVEREIGN.OS",
+  "moduleVersion": "6.2.0",
+  "apiVersion": "v2",
+  "schemaVersion": "1.0.0",
+  "description": "Sovereign Operating System Core: Boot orchestration, virtual filesystem abstraction, hardware discovery, and health telemetry.",
+  "status": "DEVELOPMENT"
+}
